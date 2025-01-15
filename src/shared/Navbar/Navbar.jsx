@@ -10,7 +10,7 @@ const Navbar = () => {
 
   </>
   return (
-    <div className='bg-secondary px-4'>
+    <div className=' px-4'>
       <div className="navbar container mx-auto p-0">
         <div className="navbar-start">
           <div className="dropdown">

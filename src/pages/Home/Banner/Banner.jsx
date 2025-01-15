@@ -27,6 +27,7 @@ const Banner = () => {
     return (
       <>
         <Swiper
+          
           spaceBetween={30}
           centeredSlides={true}
           autoplay={{
@@ -43,14 +44,14 @@ const Banner = () => {
         >
           <SwiperSlide style={{ backgroundImage: `url(https://i.ibb.co/1JbfskB/slider1.jpg)`, backgroundSize: "cover", backgroundPosition: "center", height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <div className='bg-[#00000062] w-full h-full text-white flex justify-center items-center text-center flex-col gap-2'>
-               <h2 className='text-3xl md:text-4xl font-bold text-[#2f7662]'>Your Trusted Online Pharmacy</h2>
+               <h2 className='text-3xl md:text-4xl font-bold text-[#309578]'>Your Trusted Online Pharmacy</h2>
                <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
                <button className="btn bg-primary">Shop Now</button>
             </div>
           </SwiperSlide>
           <SwiperSlide style={{ backgroundImage: `url(https://i.ibb.co/1JbfskB/slider1.jpg)`, backgroundSize: "cover", backgroundPosition: "center", height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <div className='bg-[#00000062] w-full h-full text-white flex justify-center items-center text-center flex-col gap-2'>
-               <h2 className='text-3xl md:text-4xl font-bold text-[#2f7662]'>Your Trusted Online Pharmacy</h2>
+               <h2 className='text-3xl md:text-4xl font-bold text-[#309578]'>Your Trusted Online Pharmacy</h2>
                <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
                <button className="btn bg-primary">Shop Now</button>
             </div>
@@ -58,9 +59,9 @@ const Banner = () => {
           </SwiperSlide>
           <SwiperSlide style={{ backgroundImage: `url(https://i.ibb.co/1JbfskB/slider1.jpg)`, backgroundSize: "cover", backgroundPosition: "center", height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <div className='bg-[#00000062] w-full h-full text-white flex justify-center items-center text-center flex-col gap-2'>
-               <h2 className='text-3xl md:text-4xl font-bold text-[#2f7662]'>Your Trusted Online Pharmacy</h2>
+               <h2 className='text-3xl md:text-4xl font-bold text-[#309578]'>Your Trusted Online Pharmacy</h2>
                <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
-               <button className="btn bg-primary">Shop Now</button>
+               <button className="btn bg-primary hover:bg-secondary">Shop Now</button>
             </div>
           </SwiperSlide>
         
