@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import logo from '../../assets/images/logo5.png'
+import logo from '../../assets/images/logo/logo5.png'
 
 const Navbar = () => {
   const links = <>
-    <NavLink to='/'><li><a> Home</a></li></NavLink>
-    <NavLink><li><a> Shop</a></li></NavLink>
+    <li><NavLink to='/'> Home</NavLink></li>
+    <li><NavLink to='/shop'> Shop</NavLink></li>
+
   </>
   return (
     <div className='bg-secondary px-4'>
-      <div className="navbar container mx-auto">
+      <div className="navbar container mx-auto p-0">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -33,7 +34,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <Link className='' to='/'> <img className='w-20' src={logo} alt="" />      
+          <Link className='' to='/'> <img className='w-20' src={logo} alt="" />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
