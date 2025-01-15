@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import logo from '../../assets/images/logo/logo5.png'
+import { IoCartOutline } from 'react-icons/io5';
 
 const Navbar = () => {
   const links = <>
@@ -10,11 +11,11 @@ const Navbar = () => {
 
   </>
   return (
-    <div className=' px-4'>
-      <div className="navbar container mx-auto p-0">
+    <div className=' bg-white/70 backdrop-blur-md px-4 sticky top-0 left-0 z-20 shadow-xl'>
+      <div className="navbar container mx-auto p-0 py-4 font-medium ">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="btn pl-0 btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -42,8 +43,28 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end gap-2">
+
+          <Link className='flex items-center gap-1'>
+            <span className='text-2xl relative'><IoCartOutline></IoCartOutline> <span className='p-1 bg-primary text-white rounded-lg textarea-xs text-xs absolute -top-3 right-0'>1</span></span>
+            <span className="">Cart</span>
+          </Link>
+
+          <select className="select select-bordered">
+            <option defaultValue='english'>English</option>
+            <option value='bangla'>Bangla</option>
+          </select>
+
           <Link><button className="btn bg-primary hover:bg-secondary">Join Us</button></Link>
+
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="btn m-1">Click</div>
+            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-md z-[1] w-52 p-2 shadow mt-2">
+              <li className='border-b'><Link> Update Profile</Link></li>
+              <li className='border-b'><Link to='/dashboard'> Dashboard</Link></li>
+              <li><Link> Logout</Link></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
