@@ -43,7 +43,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link><button className="btn bg-primary hover:bg-secondary">Get Started</button></Link>
+          <Link><button className="btn bg-primary hover:bg-secondary">Join Us</button></Link>
         </div>
       </div>
     </div>
