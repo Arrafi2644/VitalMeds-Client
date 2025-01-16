@@ -4,9 +4,11 @@ import loginAnimation from '../../assets/animations/registration-animation.json'
 import Lottie from 'lottie-react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const Login = () => {
-
+ const {loginUser} = useAuth()
   const {
     register,
     handleSubmit,
@@ -15,8 +17,21 @@ const Login = () => {
   } = useForm()
 
   const onSubmit = (data) => {
-    const userInfo = data;
-    console.log(userInfo)
+
+    const email = data.email;
+    const password = data.password;
+
+    loginUser(email, password)
+    .then(result => {
+      console.log(result);
+      toast.success("Login successful!")
+    })
+    .catch(error =>{
+      console.log(error);
+      toast.error("Something went wrong! Try again.")
+    })
+    
+
   }
 
 

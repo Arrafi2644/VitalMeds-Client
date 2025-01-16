@@ -10,8 +10,8 @@ import toast from 'react-hot-toast';
 const imageHostingKey = import.meta.env.VITE_image_hosting_key;
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`
 const Signup = () => {
-    const {createUser, updateUserProfile} = useAuth()
-const axiosPublic = useAxiosPublic();
+    const { createUser, updateUserProfile } = useAuth()
+    const axiosPublic = useAxiosPublic();
 
     const {
         register,
@@ -20,47 +20,46 @@ const axiosPublic = useAxiosPublic();
         formState: { errors },
     } = useForm()
 
-    const onSubmit = async(data) => {
+    const onSubmit = async (data) => {
         const userInfo = data;
         console.log(userInfo)
 
-        const imageFile = {image: data.photo[0]}
+        const imageFile = { image: data.photo[0] }
         console.log(imageFile);
 
         const res = await axiosPublic.post(imageHostingApi, imageFile, {
             headers: {
-                'content-type' : 'multipart/form-data'
+                'content-type': 'multipart/form-data'
             }
         })
 
         console.log(res.data);
-        
+
         const name = await data.name;
         const email = await data.email;
         const role = await data.role;
         const photo = res.data.data.display_url;
         const password = await data.password
-        console.log({name, email, role, photo, password});
+        console.log({ name, email, role, photo, password });
 
         createUser(email, password)
-        .then(res => {
-            console.log(res);
-            updateUserProfile({displayName: name, photoURL: photo})
-            .then(result => {
-                console.log(result);
-                
-                    toast.success("User created successfully!")
+            .then(res => {
+                console.log(res);
+                updateUserProfile({ displayName: name, photoURL: photo })
+                    .then(result => {
 
+                        toast.success("User created successfully!")
+
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        toast.error("Something went wrong! Please try again.")
+                    })
             })
             .catch(error => {
                 console.log(error);
-                toast.error("Something went wrong! Please try again.")
+                toast.error("Already used this email!")
             })
-        })
-        .catch(error => {
-            console.log(error);
-            toast.error("Already used this email!")
-        })
 
 
 
