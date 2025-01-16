@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import { FaGoogle } from 'react-icons/fa';
 
 const imageHostingKey = import.meta.env.VITE_image_hosting_key;
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`
 const Signup = () => {
-    const { createUser, updateUserProfile } = useAuth()
+    const { createUser, updateUserProfile, signinWithGoogle } = useAuth()
     const axiosPublic = useAxiosPublic();
 
     const {
@@ -61,8 +62,20 @@ const Signup = () => {
                 toast.error("Already used this email!")
             })
 
+    }
 
+    // social login 
+    const handleGoogleLogin = () => {
 
+        signinWithGoogle()
+            .then(result => {
+                console.log(result);
+                toast.success("Login successful!")
+            })
+            .catch(error => {
+                toast.error("Something went wrong! Try again.")
+                console.log(error);
+            })
     }
 
 
@@ -79,6 +92,8 @@ const Signup = () => {
                         </div>
                     </div>
                     <div className="card bg-base-100 w-full shadow-2xl">
+                        <button onClick={handleGoogleLogin} className="btn bg-primary hover:bg-secondary mx-8 mt-8 flex items-center"><span className=''><FaGoogle></FaGoogle></span> Sign up with Google</button>
+                        <div className="divider mx-8"></div>
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             <div className="form-control">
                                 <label className="label">
