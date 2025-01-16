@@ -3,13 +3,16 @@ import { Link, NavLink } from 'react-router-dom';
 
 import logo from '../../assets/images/logo/logo5.png'
 import { IoCartOutline } from 'react-icons/io5';
+import useAuth from '../../hooks/useAuth';
+import { meta } from '@eslint/js';
 
 const Navbar = () => {
+  const {user} = useAuth()
   const links = <>
     <li><NavLink to='/'> Home</NavLink></li>
     <li><NavLink to='/shop'> Shop</NavLink></li>
-
   </>
+
   return (
     <div className=' bg-white/70 backdrop-blur-md px-4 sticky top-0 left-0 z-20 shadow-xl'>
       <div className="navbar container mx-auto p-0 py-4 font-medium ">
@@ -55,7 +58,7 @@ const Navbar = () => {
             <option value='bangla'>Bangla</option>
           </select>
 
-          <Link><button className="btn bg-primary hover:bg-secondary">Join Us</button></Link>
+          <Link to='/login'><button className="btn bg-primary hover:bg-secondary">Join Us</button></Link>
 
           <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn m-1">Click</div>
