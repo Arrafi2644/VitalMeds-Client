@@ -7,9 +7,12 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Login = () => {
  const {loginUser, signinWithGoogle} = useAuth()
+const axiosPublic = useAxiosPublic()
+
   const {
     register,
     handleSubmit,
@@ -39,15 +42,35 @@ const Login = () => {
   // social login 
   const handleGoogleLogin = () => {
 
-        signinWithGoogle()
-        .then(result => {
-          console.log(result);
-          toast.success("Login successful!")
-        })
-        .catch(error => {
-          toast.error("Something went wrong! Try again.")
-          console.log(error);
-        })
+    signinWithGoogle()
+    .then(result => {
+        console.log(result.user);
+        const user = {
+            name: result.user.displayName,
+            email: result.user.email,
+            photo: result.user.photoURL,
+            role: "user"
+        }
+
+        axiosPublic.post('/users', user)
+            .then(res => {
+                console.log(res);
+                if (res.data.insertedId) {
+                    toast.success("User created successfully!")
+                }
+                else{
+                    toast.success("Login successful!")
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+    })
+    .catch(error => {
+        toast.error("Something went wrong! Try again.")
+        console.log(error);
+    })
   }
 
 

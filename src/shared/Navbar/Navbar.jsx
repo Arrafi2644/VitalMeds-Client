@@ -68,7 +68,7 @@ const Navbar = () => {
             user ? <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="btn border btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img src={user.photoURL} alt="User" />
+                  <img referrerPolicy='no-referrer' src={user.photoURL} alt="User" />
                 </div>
               </div>
 

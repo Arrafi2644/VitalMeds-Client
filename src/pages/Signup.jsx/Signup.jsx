@@ -1,29 +1,27 @@
 import Lottie from 'lottie-react';
 import loginAnimation from '../../assets/animations/registration-animation.json'
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
-import { FaGoogle } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 
 const imageHostingKey = import.meta.env.VITE_image_hosting_key;
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`
 const Signup = () => {
     const { createUser, updateUserProfile, signinWithGoogle } = useAuth()
     const axiosPublic = useAxiosPublic();
+    const [showPassword, setShowPassword] = useState(false);
 
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm()
 
     const onSubmit = async (data) => {
-        const userInfo = data;
-        console.log(userInfo)
 
         const imageFile = { image: data.photo[0] }
         console.log(imageFile);
@@ -49,7 +47,23 @@ const Signup = () => {
                 updateUserProfile({ displayName: name, photoURL: photo })
                     .then(result => {
 
-                        toast.success("User created successfully!")
+                        const user = {
+                            name: name,
+                            email: email,
+                            role: role,
+                            photo: photo
+                        }
+                        axiosPublic.post('/users', user)
+                            .then(res => {
+                                console.log(res.data);
+                                if (res.data.insertedId) {
+                                    toast.success("User created successfully!")
+                                }
+                            })
+
+                            .catch(err => {
+                                toast.error("Something went wrong! Try again.")
+                            })
 
                     })
                     .catch(error => {
@@ -69,8 +83,28 @@ const Signup = () => {
 
         signinWithGoogle()
             .then(result => {
-                console.log(result);
-                toast.success("Login successful!")
+                console.log(result.user);
+                const user = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    photo: result.user.photoURL,
+                    role: "user"
+                }
+
+                axiosPublic.post('/users', user)
+                    .then(res => {
+                        console.log(res);
+                        if (res.data.insertedId) {
+                            toast.success("User created successfully!")
+                        }
+                        else {
+                            toast.success("Login successful!")
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+
             })
             .catch(error => {
                 toast.error("Something went wrong! Try again.")
@@ -100,14 +134,14 @@ const Signup = () => {
                                     <span className="label-text">Name</span>
                                 </label>
                                 <input name='name' {...register("name", { required: true })} type="text" placeholder="name" className="input input-bordered" />
-                                {errors.name && <span className='text-red-600'>Name is required</span>}
+                                {errors.name && <span className='text-red-500'>Name is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input name='email' {...register("email", { required: true })} type="email" placeholder="email" className="input input-bordered" />
-                                {errors.email && <span className='text-red-600'>Email is required</span>}
+                                {errors.email && <span className='text-red-500'>Email is required</span>}
                             </div>
 
                             <div className="form-control">
@@ -125,7 +159,7 @@ const Signup = () => {
                                     <option value="user">User</option>
                                     <option value="seller">Seller</option>
                                 </select>
-                                {errors.role && <span className="text-red-600">Role is required</span>}
+                                {errors.role && <span className="text-red-500">Role is required</span>}
                             </div>
 
                             <div className='form-control'>
@@ -133,27 +167,26 @@ const Signup = () => {
                                     <span className="label-text">Pick A Photo</span>
                                 </label>
                                 <input name="photo" {...register("photo", { required: true })} type="file" className="file-input file-input-bordered w-full" />
-                                {errors.photo && <span className='text-red-600'>Photo is required</span>}
+                                {errors.photo && <span className='text-red-500'>Photo is required</span>}
                             </div>
 
 
-
-                            {/* <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Pick A Photo</span>
-                                </label>
-                                <input name="photo" {...register("photo", { required: true })} type="file" className="file-input file-input-bordered w-full" />
-                                {errors.photo && <span className="text-red-600">Photo is required</span>}
-                            </div> */}
-
-
-                            <div className='form-control'>
+                            <div className='form-control relative'>
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input name='password' {...register("password", { required: true })} type="password" placeholder="password" className="input input-bordered" />
-                                {errors.password && <span className='text-red-600'>Password is required</span>}
-
+                                <input name='password' {...register("password", {
+                                    required: true, minLength: 6, maxLength: 20,
+                                    pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/
+                                })} type={showPassword? 'text' : 'password'} placeholder="password" className="relative input input-bordered" />
+                                {errors?.password?.type === "required" && <span className='text-red-500'>Password is required</span>}
+                                {errors?.password?.type === "minLength" && <span className='text-red-500'>Password must be minimum 6 character or more</span>}
+                                {errors?.password?.type === "maxLength" && <span className='text-red-500'>Password must be less or equal 20 character</span>}
+                                {errors?.password?.type === "pattern" && <span className='text-red-500'>Password must be at least one uppercase letter, one lowercase letter, one number and one special character</span>}
+                               <div className='absolute top-[52px] right-6'>
+                               <span className='text-lg cursor-pointer' onClick={()=>setShowPassword(!showPassword)}> {!showPassword ? <FaEye></FaEye>:
+                               <FaEyeSlash></FaEyeSlash>}</span>
+                               </div>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn bg-primary hover:bg-secondary">Sign Up</button>
