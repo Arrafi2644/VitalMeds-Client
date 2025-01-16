@@ -4,14 +4,20 @@ import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/images/logo/logo5.png'
 import { IoCartOutline } from 'react-icons/io5';
 import useAuth from '../../hooks/useAuth';
-import { meta } from '@eslint/js';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
-  const {user} = useAuth()
+  const { user, logoutUser} = useAuth()
+  console.log(user);
   const links = <>
     <li><NavLink to='/'> Home</NavLink></li>
     <li><NavLink to='/shop'> Shop</NavLink></li>
   </>
+
+  const handleLogout = () => {
+    logoutUser()
+    toast.success("Logout successful!")
+  }
 
   return (
     <div className=' bg-white/70 backdrop-blur-md px-4 sticky top-0 left-0 z-20 shadow-xl'>
@@ -58,16 +64,24 @@ const Navbar = () => {
             <option value='bangla'>Bangla</option>
           </select>
 
-          <Link to='/login'><button className="btn bg-primary hover:bg-secondary">Join Us</button></Link>
+          {
+            user ? <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="btn border btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src={user.photoURL} alt="User" />
+                </div>
+              </div>
 
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn m-1">Click</div>
-            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-md z-[1] w-52 p-2 shadow mt-2">
-              <li className='border-b'><Link> Update Profile</Link></li>
-              <li className='border-b'><Link to='/dashboard'> Dashboard</Link></li>
-              <li><Link> Logout</Link></li>
-            </ul>
-          </div>
+              <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-md z-[1] w-52 p-2 shadow mt-2">
+                <li className='border-b'><Link> Update Profile</Link></li>
+                <li className='border-b'><Link to='/dashboard'> Dashboard</Link></li>
+                <li><button onClick={handleLogout}>Logout</button></li>
+              </ul>
+            </div> :
+              <Link to='/login'><button className="btn bg-primary hover:bg-secondary">Join Us</button></Link>
+          }
+
+
         </div>
       </div>
     </div>
