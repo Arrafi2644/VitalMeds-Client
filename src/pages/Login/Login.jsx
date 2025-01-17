@@ -10,8 +10,8 @@ import { FaGoogle } from 'react-icons/fa';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Login = () => {
- const {loginUser, signinWithGoogle} = useAuth()
-const axiosPublic = useAxiosPublic()
+  const { loginUser, signinWithGoogle } = useAuth()
+  const axiosPublic = useAxiosPublic()
 
   const {
     register,
@@ -28,14 +28,14 @@ const axiosPublic = useAxiosPublic()
     // email and password login 
 
     loginUser(email, password)
-    .then(result => {
-      console.log(result);
-      toast.success("Login successful!")
-    })
-    .catch(error =>{
-      console.log(error);
-      toast.error("Something went wrong! Try again.")
-    })
+      .then(result => {
+        console.log(result);
+        toast.success("Login successful!")
+      })
+      .catch(error => {
+        console.log(error);
+        toast.error("Something went wrong! Try again.")
+      })
 
   }
 
@@ -43,81 +43,81 @@ const axiosPublic = useAxiosPublic()
   const handleGoogleLogin = () => {
 
     signinWithGoogle()
-    .then(result => {
+      .then(result => {
         console.log(result.user);
         const user = {
-            name: result.user.displayName,
-            email: result.user.email,
-            photo: result.user.photoURL,
-            role: "user"
+          name: result.user.displayName,
+          email: result.user.email,
+          photo: result.user.photoURL,
+          role: "user"
         }
 
         axiosPublic.post('/users', user)
-            .then(res => {
-                console.log(res);
-                if (res.data.insertedId) {
-                    toast.success("User created successfully!")
-                }
-                else{
-                    toast.success("Login successful!")
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            })
+          .then(res => {
+            console.log(res);
+            if (res.data.insertedId) {
+              toast.success("User created successfully!")
+            }
+            else {
+              toast.success("Login successful!")
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          })
 
-    })
-    .catch(error => {
+      })
+      .catch(error => {
         toast.error("Something went wrong! Try again.")
         console.log(error);
-    })
+      })
   }
 
 
   return (
     <div className='my-10 container mx-auto'>
-    <div className="hero bg-background min-h-screen">
+      <div className="hero bg-background min-h-screen">
 
-      <div className="hero-content flex flex-col md:flex-row gap-4">
-        <div className="text-left w-full md:w-[400px] lg:w-[500px]">
-          <h1 className="text-4xl text-center md:text-left font-bold">Login now!</h1>
+        <div className="hero-content flex flex-col md:flex-row gap-4">
+          <div className="text-left w-full md:w-[400px] lg:w-[500px]">
+            <h1 className="text-4xl text-center md:text-left font-bold">Login now!</h1>
 
-          <div className='w-60 h-auto'>
-            <Lottie animationData={loginAnimation} loop={true}> </Lottie>
+            <div className='w-60 h-auto'>
+              <Lottie animationData={loginAnimation} loop={true}> </Lottie>
+            </div>
           </div>
-        </div>
-        <div className="card bg-base-100 w-full shadow-2xl">
-          <button onClick={handleGoogleLogin} className="btn bg-primary hover:bg-secondary mx-8 mt-8 flex items-center"><span className=''><FaGoogle></FaGoogle></span> Signin with Google</button>
-          <div className="flex flex-col border-opacity-50 mx-8">
-  <div className="divider">OR</div>
-</div>
-          <form onSubmit={handleSubmit(onSubmit)} className="card-body pt-0">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input name='email' {...register("email", {required: true})} type="email" placeholder="email" className="input input-bordered" />
-              {errors.email && <span className='text-red-500 text-sm mt-1'>Email filed is required!</span>}
+          <div className="card bg-base-100 w-full shadow-2xl">
+            <button onClick={handleGoogleLogin} className="btn bg-primary hover:bg-secondary mx-8 mt-8 flex items-center"><span className=''><FaGoogle></FaGoogle></span> Signin with Google</button>
+            <div className="flex flex-col border-opacity-50 mx-8">
+              <div className="divider">OR</div>
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input name='password' {...register("password", {required: true})} type="password" placeholder="password" className="input input-bordered" />
-              {errors.password && <span className='text-red-500 text-sm mt-1'>Password filed is required!</span>}
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-              </label>
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn bg-primary hover:bg-secondary">Login</button>
-            </div>
-            <p>Don't have an account? <Link to='/signup' className='text-primary'>Signup</Link> </p>
-          </form>
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body pt-0">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
+                </label>
+                <input name='email' {...register("email", { required: true })} type="email" placeholder="email" className="input input-bordered" />
+                {errors.email && <span className='text-red-500 text-sm mt-1'>Email filed is required!</span>}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <input name='password' {...register("password", { required: true })} type="password" placeholder="password" className="input input-bordered" />
+                {errors.password && <span className='text-red-500 text-sm mt-1'>Password filed is required!</span>}
+                <label className="label">
+                  <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                </label>
+              </div>
+              <div className="form-control mt-6">
+                <button className="btn bg-primary hover:bg-secondary">Login</button>
+              </div>
+              <p>Don't have an account? <Link to='/signup' className='text-primary'>Signup</Link> </p>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   );
 };
 
