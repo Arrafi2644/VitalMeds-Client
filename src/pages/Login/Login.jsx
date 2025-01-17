@@ -88,19 +88,23 @@ const axiosPublic = useAxiosPublic()
         </div>
         <div className="card bg-base-100 w-full shadow-2xl">
           <button onClick={handleGoogleLogin} className="btn bg-primary hover:bg-secondary mx-8 mt-8 flex items-center"><span className=''><FaGoogle></FaGoogle></span> Signin with Google</button>
-          <div className="divider mx-8"></div>
-          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+          <div className="flex flex-col border-opacity-50 mx-8">
+  <div className="divider">OR</div>
+</div>
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body pt-0">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
-              <input name='email' {...register("email")} type="email" placeholder="email" className="input input-bordered" required />
+              <input name='email' {...register("email", {required: true})} type="email" placeholder="email" className="input input-bordered" />
+              {errors.email && <span className='text-red-500 text-sm mt-1'>Email filed is required!</span>}
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <input name='password' {...register("password")} type="password" placeholder="password" className="input input-bordered" required />
+              <input name='password' {...register("password", {required: true})} type="password" placeholder="password" className="input input-bordered" />
+              {errors.password && <span className='text-red-500 text-sm mt-1'>Password filed is required!</span>}
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
               </label>

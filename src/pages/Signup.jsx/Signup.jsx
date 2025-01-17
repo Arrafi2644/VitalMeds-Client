@@ -127,21 +127,23 @@ const Signup = () => {
                     </div>
                     <div className="card bg-base-100 w-full shadow-2xl">
                         <button onClick={handleGoogleLogin} className="btn bg-primary hover:bg-secondary mx-8 mt-8 flex items-center"><span className=''><FaGoogle></FaGoogle></span> Sign up with Google</button>
-                        <div className="divider mx-8"></div>
-                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                        <div className="flex flex-col border-opacity-50 mx-8">
+                            <div className="divider">OR</div>
+                        </div>
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body pt-0">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
                                 <input name='name' {...register("name", { required: true })} type="text" placeholder="name" className="input input-bordered" />
-                                {errors.name && <span className='text-red-500'>Name is required</span>}
+                                {errors.name && <span className='text-red-500 mt-1 text-sm'>Name is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input name='email' {...register("email", { required: true })} type="email" placeholder="email" className="input input-bordered" />
-                                {errors.email && <span className='text-red-500'>Email is required</span>}
+                                {errors.email && <span className='text-red-500 mt-1 text-sm'>Email is required</span>}
                             </div>
 
                             <div className="form-control">
@@ -159,7 +161,7 @@ const Signup = () => {
                                     <option value="user">User</option>
                                     <option value="seller">Seller</option>
                                 </select>
-                                {errors.role && <span className="text-red-500">Role is required</span>}
+                                {errors.role && <span className="text-red-500 mt-1 text-sm">Role is required</span>}
                             </div>
 
                             <div className='form-control'>
@@ -167,7 +169,7 @@ const Signup = () => {
                                     <span className="label-text">Pick A Photo</span>
                                 </label>
                                 <input name="photo" {...register("photo", { required: true })} type="file" className="file-input file-input-bordered w-full" />
-                                {errors.photo && <span className='text-red-500'>Photo is required</span>}
+                                {errors.photo && <span className='text-red-500 mt-1 text-sm'>Photo is required</span>}
                             </div>
 
 
@@ -178,15 +180,15 @@ const Signup = () => {
                                 <input name='password' {...register("password", {
                                     required: true, minLength: 6, maxLength: 20,
                                     pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/
-                                })} type={showPassword? 'text' : 'password'} placeholder="password" className="relative input input-bordered" />
-                                {errors?.password?.type === "required" && <span className='text-red-500'>Password is required</span>}
-                                {errors?.password?.type === "minLength" && <span className='text-red-500'>Password must be minimum 6 character or more</span>}
-                                {errors?.password?.type === "maxLength" && <span className='text-red-500'>Password must be less or equal 20 character</span>}
-                                {errors?.password?.type === "pattern" && <span className='text-red-500'>Password must be at least one uppercase letter, one lowercase letter, one number and one special character</span>}
-                               <div className='absolute top-[52px] right-6'>
-                               <span className='text-lg cursor-pointer' onClick={()=>setShowPassword(!showPassword)}> {!showPassword ? <FaEye></FaEye>:
-                               <FaEyeSlash></FaEyeSlash>}</span>
-                               </div>
+                                })} type={showPassword ? 'text' : 'password'} placeholder="password" className="relative input input-bordered" />
+                                {errors?.password?.type === "required" && <span className='text-red-500 mt-1 text-sm'>Password is required</span>}
+                                {errors?.password?.type === "minLength" && <span className='text-red-500 mt-1 text-sm'>Password must be minimum 6 character or more</span>}
+                                {errors?.password?.type === "maxLength" && <span className='text-red-500 mt-1 text-sm'>Password must be less or equal 20 character</span>}
+                                {errors?.password?.type === "pattern" && <span className='text-red-500 mt-1 text-sm'>Password must be at least one uppercase letter, one lowercase letter, one number and one special character</span>}
+                                <div className='absolute top-[52px] right-6'>
+                                    <span className='text-lg cursor-pointer' onClick={() => setShowPassword(!showPassword)}> {!showPassword ? <FaEye></FaEye> :
+                                        <FaEyeSlash></FaEyeSlash>}</span>
+                                </div>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn bg-primary hover:bg-secondary">Sign Up</button>
