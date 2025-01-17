@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from '../../firebase/firebase.config';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 export const AuthContext = createContext({})
 
@@ -8,10 +9,11 @@ export const AuthContext = createContext({})
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({})
     const [loading, setLoading] = useState(true)
+    const axiosPublic = useAxiosPublic()
 
     const createUser = (email, password) => {
-       setLoading(true);
-       return createUserWithEmailAndPassword(auth, email, password)
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const updateUserProfile = (userInfo) => {
@@ -35,17 +37,35 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             console.log("Current user ", currentUser);
             setUser(currentUser)
+            if (currentUser) {
+                const userInfo = { email: currentUser.email }
+                axiosPublic.post('/jwt', userInfo)
+                    .then(res => {
+                        console.log(res);
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token)
+                        }
+                       
+                    })
+            }
+            else {
+                localStorage.removeItem('access-token')
+            }
+
+
+
+
             setLoading(false)
         })
 
-       return ()=>{
-        return unsubscribe();
-       }
-    },[])
+        return () => {
+            return unsubscribe();
+        }
+    }, [])
 
     const authInfo = {
         user,

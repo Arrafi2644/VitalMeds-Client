@@ -4,6 +4,7 @@ import CategorySection from '../../../components/CategorySection/CategorySection
 import DiscountSection from '../../../components/DiscountSection/DiscountSection';
 import BlogSection from '../../../components/BlogSection/BlogSection';
 import StateSection from '../../../components/StateSection/StateSection';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     return (
@@ -13,6 +14,10 @@ const Home = () => {
            <DiscountSection></DiscountSection>   
            <BlogSection></BlogSection>
            <StateSection></StateSection>
+           <Helmet>
+           <title>VitalMeds | Home</title>
+
+           </Helmet>
         </div>
     );
 };

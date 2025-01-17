@@ -1,10 +1,15 @@
 
 
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { FaList } from 'react-icons/fa';
 import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
+
+    let isAdmin = true;
+    let isSeller = false;
+    let isUser = false;
 
     const adminLinks = <>
         <li><Link to='/dashboard/adminHome' className='block py-1 px-4 hover:bg-white'>Admin Home</Link></li>
@@ -21,15 +26,30 @@ const Dashboard = () => {
         <li><Link className='block py-1 px-4 hover:bg-white'>Payment History</Link></li>
         <li><Link className='block py-1 px-4 hover:bg-white'>Ask For Advertise</Link></li>
     </>
+    const userLinks = <>
+        <li><Link className='block py-1 px-4 hover:bg-white'>User Home</Link></li>
+        <li><Link className='block py-1 px-4 hover:bg-white'>Carts</Link></li>
+        <li><Link className='block py-1 px-4 hover:bg-white'>Payment History</Link></li>
+    </>
 
     return (
+
         <div className='container mx-auto grid grid-cols-1 lg:grid-cols-5'>
             <div className='bg-background min-h-screen hidden lg:block pt-4'>
                 <ul className='text-sm '>
-                    {adminLinks}
+                    {
+                        isAdmin && adminLinks
+                    }
+                    {
+                        isSeller && sellerLinks
+                    }
+                    {
+                        isUser && userLinks
+                    }
+
                 </ul>
             </div>
-            
+
             <div className="drawer lg:hidden z-10">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
@@ -51,6 +71,10 @@ const Dashboard = () => {
                     </Outlet>
                 </div>
             </div>
+            <Helmet>
+                <title>VitalMeds | Dashboard</title>
+
+            </Helmet>
         </div>
     );
 };

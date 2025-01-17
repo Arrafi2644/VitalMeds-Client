@@ -3,6 +3,7 @@ import useUsers from '../../../hooks/useUsers';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const ManageUsers = () => {
     const [users, refetch] = useUsers()
@@ -49,6 +50,7 @@ const ManageUsers = () => {
     console.log(users);
     return (
         <div>
+         
             <div>
                 <h2 className='text-3xl font-bold'>Total Users: {users.length}</h2>
             </div>
@@ -107,6 +109,9 @@ const ManageUsers = () => {
                     </table>
                 </div>
             </div>
+            <Helmet>
+                <title>VitalMeds | Dashboard | Manage User</title>
+            </Helmet>
         </div>
     );
 };

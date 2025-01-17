@@ -7,6 +7,7 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const imageHostingKey = import.meta.env.VITE_image_hosting_key;
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`
@@ -198,6 +199,10 @@ const Signup = () => {
                     </div>
                 </div>
             </div >
+            <Helmet>
+                <title>VitalMeds | Signup</title>
+
+            </Helmet>
         </div >
     );
 };

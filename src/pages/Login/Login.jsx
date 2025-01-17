@@ -8,6 +8,7 @@ import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
   const { loginUser, signinWithGoogle } = useAuth()
@@ -117,6 +118,10 @@ const Login = () => {
           </div>
         </div>
       </div>
+                <Helmet>
+                      <title>VitalMeds | Login</title>
+      
+                  </Helmet>
     </div>
   );
 };
