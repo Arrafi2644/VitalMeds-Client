@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import useMedicines from '../../hooks/useMedicines';
 import { FaCartPlus, FaEye } from 'react-icons/fa';
 import { TbCurrencyTaka } from 'react-icons/tb';
+import useAuth from '../../hooks/useAuth';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 const Shop = () => {
     const [medicines] = useMedicines();
     const [showDetails, setShowDetails] = useState({})
+    const {user} = useAuth()
+    const axiosSecure = useAxiosSecure()
 
 
     const handleDetails = (medicine) => {
@@ -13,7 +18,41 @@ const Shop = () => {
         document.getElementById('my_modal_3').showModal()
     }
 
-    console.log(showDetails);
+    // console.log(showDetails);
+
+    const handleAddToCart = (medicine) => {
+        console.log("To cart ", medicine);
+        console.log(user.email);
+
+        const medicineInfo = {
+            name: medicine.name,
+            genericName: medicine.genericName,
+            category: medicine.category,
+            company: medicine.company,
+            description: medicine.description,
+            discount: parseFloat(medicine.discount),
+            price: parseFloat(medicine.price),
+            power: parseFloat(medicine.power),
+            missUnit: medicine.massUnit,
+            image: medicine.image,
+            userEmail: medicine.email
+
+        }
+
+        axiosSecure.post('/carts', medicineInfo)
+        .then(res => {
+            if(res.data.insertedId){
+                toast.success("Medicine add to your cart successfully!")
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            toast.error("Something went wrong! Please try again.")
+        })
+
+    }
+
+
 
 
     return (
@@ -57,7 +96,7 @@ const Shop = () => {
                                     <td>
                                         <div className='flex gap-3 items-center text-lg'>
                                             <button onClick={() => handleDetails(medicine)} className='text-primary hover:text-secondary'><FaEye></FaEye></button>
-                                            <button className='text-primary hover:text-secondary'><FaCartPlus></FaCartPlus></button>
+                                            <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary'><FaCartPlus></FaCartPlus></button>
                                         </div>
                                     </td>
                                 </tr>)
