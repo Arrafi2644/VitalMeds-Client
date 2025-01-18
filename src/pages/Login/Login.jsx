@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import loginAnimation from '../../assets/animations/registration-animation.json'
 // import loginAnimation from '../../assets/animations/login-animation.json'
 import Lottie from 'lottie-react';
@@ -6,13 +6,14 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
-import { FaGoogle } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
   const { loginUser, signinWithGoogle } = useAuth()
   const axiosPublic = useAxiosPublic()
+   const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -100,12 +101,16 @@ const Login = () => {
                 <input name='email' {...register("email", { required: true })} type="email" placeholder="email" className="input input-bordered" />
                 {errors.email && <span className='text-red-500 text-sm mt-1'>Email filed is required!</span>}
               </div>
-              <div className="form-control">
+              <div className="form-control relative">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input name='password' {...register("password", { required: true })} type="password" placeholder="password" className="input input-bordered" />
+                <input name='password' {...register("password", { required: true })} type={showPassword ? 'text' : 'password'} placeholder="password" className=" input input-bordered" />
                 {errors.password && <span className='text-red-500 text-sm mt-1'>Password filed is required!</span>}
+                <div className='absolute top-[52px] right-6'>
+                  <span className='text-lg cursor-pointer' onClick={() => setShowPassword(!showPassword)}> {!showPassword ? <FaEye></FaEye> :
+                    <FaEyeSlash></FaEyeSlash>}</span>
+                </div>
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                 </label>
@@ -118,10 +123,10 @@ const Login = () => {
           </div>
         </div>
       </div>
-                <Helmet>
-                      <title>VitalMeds | Login</title>
-      
-                  </Helmet>
+      <Helmet>
+        <title>VitalMeds | Login</title>
+
+      </Helmet>
     </div>
   );
 };

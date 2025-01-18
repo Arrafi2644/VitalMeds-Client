@@ -1,14 +1,25 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, NavLink, redirect } from 'react-router-dom';
 
 import logo from '../../assets/images/logo/logo5.png'
 import { IoCartOutline } from 'react-icons/io5';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
+import useAdmin from '../../hooks/useAdmin';
+import useSeller from '../../hooks/useSeller';
 
 const Navbar = () => {
   const { user, logoutUser} = useAuth()
   console.log(user);
+  // const [isAdmin] = useAdmin()
+  // const [isSeller] = useSeller()
+
+  // const [redirectLink, setRedirectLink] = useState(isAdmin ? '/dashboard/adminHome' : isSeller ? '/dashboard/sellerHome' : '/dashboard/userHome')
+  // console.log(redirectLink);
+
+  // console.log("admin is ", isAdmin);
+  // console.log("seller is ", isSeller);
+  
   const links = <>
     <li><NavLink to='/'> Home</NavLink></li>
     <li><NavLink to='/shop'> Shop</NavLink></li>
@@ -74,7 +85,7 @@ const Navbar = () => {
 
               <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-md z-[1] w-52 p-2 shadow mt-2">
                 <li className='border-b'><Link> Update Profile</Link></li>
-                <li className='border-b'><Link to='/dashboard/adminHome'> Dashboard</Link></li>
+                <li className='border-b'><Link to='/dashboard'> Dashboard</Link></li>
                 <li><button onClick={handleLogout}>Logout</button></li>
               </ul>
             </div> :

@@ -4,12 +4,26 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaList } from 'react-icons/fa';
 import { Link, Outlet } from 'react-router-dom';
+import useAdmin from '../../../hooks/useAdmin';
+import useSeller from '../../../hooks/useSeller';
 
 const Dashboard = () => {
+    const [isAdmin, adminPending] = useAdmin();
+    const [isSeller, sellerPending] = useSeller();
+    // const [isUser, setIsUser] = useState(false);
 
-    let isAdmin = true;
-    let isSeller = false;
-    let isUser = false;
+    // if (!isAdmin && !isSeller) {
+    //     setIsUser(true)
+    // }
+
+    console.log("Admin:", isAdmin);
+    console.log("Seller: ", isSeller);
+    // console.log("User: ", isUser);
+
+    // let isAdmin = true;
+    // let isSeller = false;
+    // let isUser = false;
+
 
     const adminLinks = <>
         <li><Link to='/dashboard/adminHome' className='block py-1 px-4 hover:bg-white'>Admin Home</Link></li>
@@ -21,13 +35,13 @@ const Dashboard = () => {
     </>
 
     const sellerLinks = <>
-        <li><Link className='block py-1 px-4 hover:bg-white'>Seller Home</Link></li>
-        <li><Link className='block py-1 px-4 hover:bg-white'>Manage Medicines</Link></li>
+        <li><Link to='/dashboard/sellerHome' className='block py-1 px-4 hover:bg-white'>Seller Home</Link></li>
+        <li><Link to='/dashboard/manageMedicine' className='block py-1 px-4 hover:bg-white'>Manage Medicines</Link></li>
         <li><Link className='block py-1 px-4 hover:bg-white'>Payment History</Link></li>
         <li><Link className='block py-1 px-4 hover:bg-white'>Ask For Advertise</Link></li>
     </>
     const userLinks = <>
-        <li><Link className='block py-1 px-4 hover:bg-white'>User Home</Link></li>
+        <li><Link to='/dashboard/userHome' className='block py-1 px-4 hover:bg-white'>User Home</Link></li>
         <li><Link className='block py-1 px-4 hover:bg-white'>Carts</Link></li>
         <li><Link className='block py-1 px-4 hover:bg-white'>Payment History</Link></li>
     </>
@@ -37,15 +51,11 @@ const Dashboard = () => {
         <div className='container mx-auto grid grid-cols-1 lg:grid-cols-5'>
             <div className='bg-background min-h-screen hidden lg:block pt-4'>
                 <ul className='text-sm '>
-                    {
-                        isAdmin && adminLinks
-                    }
-                    {
-                        isSeller && sellerLinks
-                    }
-                    {
-                        isUser && userLinks
-                    }
+                 
+                  {
+                    isAdmin ? adminLinks : isSeller ? sellerLinks : userLinks
+                  }
+
 
                 </ul>
             </div>
@@ -60,7 +70,9 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-background text-base-content min-h-full w-72">
                         {/* Sidebar content here */}
-                        {adminLinks}
+                        {
+                    isAdmin ? adminLinks : isSeller ? sellerLinks : userLinks
+                  }
                     </ul>
                 </div>
             </div>

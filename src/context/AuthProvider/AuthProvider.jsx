@@ -7,9 +7,10 @@ export const AuthContext = createContext({})
 
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState()
     const [loading, setLoading] = useState(true)
     const axiosPublic = useAxiosPublic()
+    const [userRole , setUserRole] = useState("")
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -48,18 +49,16 @@ const AuthProvider = ({ children }) => {
                         console.log(res);
                         if (res.data.token) {
                             localStorage.setItem('access-token', res.data.token)
+                            setLoading(false)
                         }
                        
                     })
             }
             else {
                 localStorage.removeItem('access-token')
+                setLoading(false)
             }
 
-
-
-
-            setLoading(false)
         })
 
         return () => {
@@ -74,7 +73,9 @@ const AuthProvider = ({ children }) => {
         updateUserProfile,
         loginUser,
         signinWithGoogle,
-        logoutUser
+        logoutUser,
+        userRole,
+        setUserRole
     }
 
     return (
