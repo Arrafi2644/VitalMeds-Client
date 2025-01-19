@@ -153,7 +153,7 @@ const Signup = () => {
                                 </label>
                                 <select
                                     name="role"
-                                    {...register("category", { required: true })}
+                                    {...register("role", { required: true })}
                                     className="select select-bordered w-full"
                                 >
                                     {/* <option disabled defaultValue="">

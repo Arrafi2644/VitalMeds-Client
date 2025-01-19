@@ -7,7 +7,7 @@ const useMedicinesBySeller = () => {
     const axiosSecure = useAxiosSecure()
     const {user} = useAuth()
 
-    const {data: medicines=[]} = useQuery({
+    const {data: medicines=[], refetch} = useQuery({
         queryKey: [user.email ,'medicines'],
         queryFn: async()=>{
             const res = await axiosSecure.get(`/medicines/${user.email}`)
@@ -15,7 +15,7 @@ const useMedicinesBySeller = () => {
         }
     })
 
-    return [medicines]
+    return [medicines, refetch]
 };
 
 export default useMedicinesBySeller;

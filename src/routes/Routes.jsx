@@ -11,6 +11,7 @@ import SellerHome from "../pages/Dashboard/SellerHome.jsx/SellerHome";
 import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import ManageMedicines from "../pages/Dashboard/ManageMedicines/ManageMedicines";
 import Shop from "../pages/Shop/Shop";
+import Cart from "../pages/Dashboard/Cart/Cart";
 
 
 const router = createBrowserRouter([
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
               path: 'userHome',
               element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
             },
+            {
+              path: 'cart',
+              element: <PrivateRoute><Cart></Cart></PrivateRoute>
+            }
           ]
         },
         {

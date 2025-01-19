@@ -5,7 +5,7 @@ import useAxiosSecure from './useAxiosSecure';
 const useMedicines = () => {
     const axiosSecure = useAxiosSecure()
 
-    const {data: medicines=[]} = useQuery({
+    const {data: medicines=[], refetch} = useQuery({
         queryKey: ['medicines'],
         queryFn: async()=>{
             const res = await axiosSecure.get('/medicines')
@@ -13,7 +13,7 @@ const useMedicines = () => {
         }
     })
 
-    return [medicines]
+    return [medicines, refetch]
 };
 
 export default useMedicines;

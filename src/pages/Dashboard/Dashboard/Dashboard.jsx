@@ -2,10 +2,16 @@
 
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { FaList } from 'react-icons/fa';
+import { FaHome, FaList, FaUser } from 'react-icons/fa';
 import { Link, Outlet } from 'react-router-dom';
 import useAdmin from '../../../hooks/useAdmin';
 import useSeller from '../../../hooks/useSeller';
+import { MdOutlinePayment } from 'react-icons/md';
+import { IoCartOutline } from 'react-icons/io5';
+import { TbReportSearch } from 'react-icons/tb';
+import { RiAdvertisementLine } from 'react-icons/ri';
+import { BiCategory } from 'react-icons/bi';
+import { GiMedicines } from 'react-icons/gi';
 
 const Dashboard = () => {
     const [isAdmin, adminPending] = useAdmin();
@@ -26,24 +32,24 @@ const Dashboard = () => {
 
 
     const adminLinks = <>
-        <li><Link to='/dashboard/adminHome' className='block py-1 px-4 hover:bg-white'>Admin Home</Link></li>
-        <li><Link to='/dashboard/manageUsers' className='block py-1 px-4 hover:bg-white'>Manage Users</Link></li>
-        <li><Link className='block py-1 px-4 hover:bg-white'>Manage Category</Link></li>
-        <li><Link className='block py-1 px-4 hover:bg-white'>Payment Management</Link></li>
-        <li><Link className='block py-1 px-4 hover:bg-white'>Sales Report</Link></li>
-        <li><Link className='block py-1 px-4 hover:bg-white'>Manage Banner Advertise</Link></li>
+        <li><Link to='/dashboard/adminHome' className='block py-1 px-4 hover:bg-white'><span><FaHome></FaHome></span> Admin Home</Link></li>
+        <li><Link to='/dashboard/manageUsers' className='block py-1 px-4 hover:bg-white'><span><FaUser></FaUser></span> Manage Users</Link></li>
+        <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><BiCategory></BiCategory></span> Manage Category</Link></li>
+        <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span> <MdOutlinePayment></MdOutlinePayment></span> Payment Management</Link></li>
+        <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><TbReportSearch></TbReportSearch></span> Sales Report</Link></li>
+        <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><RiAdvertisementLine></RiAdvertisementLine></span> Manage Banner Advertise</Link></li>
     </>
 
     const sellerLinks = <>
-        <li><Link to='/dashboard/sellerHome' className='block py-1 px-4 hover:bg-white'>Seller Home</Link></li>
-        <li><Link to='/dashboard/manageMedicine' className='block py-1 px-4 hover:bg-white'>Manage Medicines</Link></li>
-        <li><Link className='block py-1 px-4 hover:bg-white'>Payment History</Link></li>
-        <li><Link className='block py-1 px-4 hover:bg-white'>Ask For Advertise</Link></li>
+        <li><Link to='/dashboard/sellerHome' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><FaHome></FaHome></span>Seller Home</Link></li>
+        <li><Link to='/dashboard/manageMedicine' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><GiMedicines></GiMedicines></span> Manage Medicines</Link></li>
+        <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
+        <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><RiAdvertisementLine></RiAdvertisementLine></span> Ask For Advertise</Link></li>
     </>
     const userLinks = <>
-        <li><Link to='/dashboard/userHome' className='block py-1 px-4 hover:bg-white'>User Home</Link></li>
-        <li><Link className='block py-1 px-4 hover:bg-white'>Carts</Link></li>
-        <li><Link className='block py-1 px-4 hover:bg-white'>Payment History</Link></li>
+        <li><Link to='/dashboard/userHome' className='flex items-center gap-2 py-1 px-4 hover:bg-white '><FaHome></FaHome>User Home</Link></li>
+        <li><Link to='/dashboard/cart' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><IoCartOutline></IoCartOutline></span> Carts</Link></li>
+        <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
     </>
 
     return (

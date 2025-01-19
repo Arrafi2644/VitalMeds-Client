@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink, redirect } from 'react-router-dom';
 
 import logo from '../../assets/images/logo/logo5.png'
@@ -7,10 +7,14 @@ import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import useAdmin from '../../hooks/useAdmin';
 import useSeller from '../../hooks/useSeller';
+import useCart from '../../hooks/useCart';
 
 const Navbar = () => {
   const { user, logoutUser} = useAuth()
+  const [carts] = useCart();
   console.log(user);
+
+
   // const [isAdmin] = useAdmin()
   // const [isSeller] = useSeller()
 
@@ -65,12 +69,12 @@ const Navbar = () => {
         </div>
         <div className="navbar-end gap-2">
 
-          <Link className='flex items-center gap-1'>
-            <span className='text-2xl relative'><IoCartOutline></IoCartOutline> <span className='p-1 bg-primary text-white rounded-lg textarea-xs text-xs absolute -top-3 right-0'>1</span></span>
+          <Link to='/dashboard/cart' className='flex items-center gap-1'>
+            <span className='text-2xl relative'><IoCartOutline></IoCartOutline> <span className='p-1 bg-primary text-white rounded-lg textarea-xs text-xs absolute -top-3 -right-1'>{carts.length} </span></span>
             <span className="">Cart</span>
           </Link>
 
-          <select className="select select-bordered">
+          <select className="select select-bordered select-sm">
             <option defaultValue='english'>English</option>
             <option value='bangla'>Bangla</option>
           </select>
