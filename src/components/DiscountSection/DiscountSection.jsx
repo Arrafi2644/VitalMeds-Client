@@ -17,11 +17,17 @@ import { Navigation, Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import useMedicines from '../../hooks/useMedicines';
 import { FaCartPlus } from 'react-icons/fa';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
+import useCart from '../../hooks/useCart';
 
 const DiscountSection = () => {
-
+  const axiosSecure = useAxiosSecure()
   const [medicines] = useMedicines()
   const [showDetails, setShowDetails] = useState({})
+  const {user} = useAuth()
+  const [, refetch] = useCart()
 
   const discountMedicines = medicines.filter(medicine => medicine.discount > 0)
   // console.log("Discount ", discountMedicines);
@@ -31,6 +37,38 @@ const handleShowDetails = (id) => {
   document.getElementById('my_modal_3').showModal()
   const showMedicine = medicines.find(medicine => medicine._id === id)
   setShowDetails(showMedicine)
+}
+
+const handleAddToCart = (medicine) => {
+  console.log("To cart ", medicine);
+  console.log(user.email);
+
+  const medicineInfo = {
+      name: medicine.name,
+      genericName: medicine.genericName,
+      category: medicine.category,
+      company: medicine.company,
+      description: medicine.description,
+      discount: parseFloat(medicine.discount),
+      price: parseFloat(medicine.price),
+      power: parseFloat(medicine.power),
+      massUnit: medicine.massUnit,
+      image: medicine.image,
+      userEmail: user.email
+  }
+
+  axiosSecure.post('/carts', medicineInfo)
+      .then(res => {
+          if (res.data.insertedId) {
+              toast.success("Medicine add to your cart successfully!")
+              refetch()
+          }
+      })
+      .catch(err => {
+          console.log(err);
+          toast.error("Something went wrong! Please try again.")
+      })
+
 }
 
   return (
@@ -111,10 +149,12 @@ const handleShowDetails = (id) => {
                     </div>
 
                     <div className="modal-action">
+                    <button onClick={() => handleAddToCart(showDetails)} className="btn bg-primary hover:bg-secondary text-lg"><FaCartPlus></FaCartPlus></button>
                         <form method="dialog">
 
                        <div className='flex gap-2 items-center'>
-                       <button className="btn bg-primary hover:bg-secondary text-lg"><FaCartPlus></FaCartPlus></button> <button className="btn bg-primary hover:bg-secondary">Close</button>
+                       
+                        <button className="btn bg-primary hover:bg-secondary">Close</button>
                        </div>
                         </form>
                     </div>

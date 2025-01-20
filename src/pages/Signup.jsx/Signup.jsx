@@ -136,7 +136,7 @@ const Signup = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input name='name' {...register("name", { required: true })} type="text" placeholder="name" className="input input-bordered" />
+                                <input name='name' {...register("categoryName", { required: true })} type="text" placeholder="name" className="input input-bordered" />
                                 {errors.name && <span className='text-red-500 mt-1 text-sm'>Name is required</span>}
                             </div>
                             <div className="form-control">

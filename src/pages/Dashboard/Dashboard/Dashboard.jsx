@@ -32,9 +32,9 @@ const Dashboard = () => {
 
 
     const adminLinks = <>
-        <li><Link to='/dashboard/adminHome' className='block py-1 px-4 hover:bg-white'><span><FaHome></FaHome></span> Admin Home</Link></li>
-        <li><Link to='/dashboard/manageUsers' className='block py-1 px-4 hover:bg-white'><span><FaUser></FaUser></span> Manage Users</Link></li>
-        <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><BiCategory></BiCategory></span> Manage Category</Link></li>
+        <li><Link to='/dashboard/adminHome' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><FaHome></FaHome></span> Admin Home</Link></li>
+        <li><Link to='/dashboard/manageUsers' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><FaUser></FaUser></span> Manage Users</Link></li>
+        <li><Link to='/dashboard/manageCategory' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><BiCategory></BiCategory></span> Manage Category</Link></li>
         <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span> <MdOutlinePayment></MdOutlinePayment></span> Payment Management</Link></li>
         <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><TbReportSearch></TbReportSearch></span> Sales Report</Link></li>
         <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><RiAdvertisementLine></RiAdvertisementLine></span> Manage Banner Advertise</Link></li>

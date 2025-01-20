@@ -12,6 +12,7 @@ import UserHome from "../pages/Dashboard/UserHome/UserHome";
 import ManageMedicines from "../pages/Dashboard/ManageMedicines/ManageMedicines";
 import Shop from "../pages/Shop/Shop";
 import Cart from "../pages/Dashboard/Cart/Cart";
+import ManageCategory from "../pages/Dashboard/ManageCategory/ManageCategory";
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             {
               path: 'manageUsers',
               element: <PrivateRoute><ManageUsers></ManageUsers></PrivateRoute>
+            },
+            {
+              path: 'manageCategory',
+              element: <PrivateRoute><ManageCategory></ManageCategory></PrivateRoute>
             },
             
             // seller 
