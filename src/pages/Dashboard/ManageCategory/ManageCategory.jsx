@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 import useCategories from '../../../hooks/useCategories';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 
 const imageHostingKey = import.meta.env.VITE_image_hosting_key;
@@ -73,6 +74,47 @@ console.log(categories);
         // console.log(medicineInfo);
 
     }
+
+  const handleDelete = (category) => {
+        console.log(category);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure.delete(`/categories/${category._id}`)
+                    .then(res => {
+                        console.log(res);
+                        if (res.data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Category has been deleted.",
+                                icon: "success"
+                            });
+                        }
+
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Something went wrong! Try again.",
+                            icon: "error"
+                        });
+                    })
+            }
+        });
+    }
+
+
+
     return (
         <div>
             <div className='flex gap-2 flex-col md:flex-row justify-between'>
@@ -101,7 +143,7 @@ console.log(categories);
                                            <td>
                                                <div className='flex gap-3 items-center text-lg'>
                                                    <button className='text-primary hover:text-secondary'><FaEdit></FaEdit></button>
-                                                   <button className='text-red-500 hover:text-red-400'><FaTrashAlt></FaTrashAlt></button>
+                                                   <button onClick={()=>handleDelete(category)}  className='text-red-500 hover:text-red-400'><FaTrashAlt></FaTrashAlt></button>
                                                </div>
                                            </td>
                                        </tr>)
