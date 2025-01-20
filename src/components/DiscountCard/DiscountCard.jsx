@@ -1,17 +1,17 @@
 import React from 'react';
 import { TbCurrencyTaka } from 'react-icons/tb';
 
-const DiscountCard = () => {
+const DiscountCard = ({medicine}) => {
     return (
         <div className='p-4 shadow-md bg-background'>
         <div className='border p-4 rounded-md' >
-        <img src="https://i.ibb.co.com/yqhCBgz/image.png" alt="" />
+        <img src={medicine.image} alt="" />
         </div>
         <div>
-            <h3>Napa Extend 625mg.</h3>
-            <p>14 Tablets</p>
-            <p className='flex items-center'>MRP <del><span className='flex items-center '><TbCurrencyTaka></TbCurrencyTaka> 30</span></del></p>
-            <p className='flex items-center font-bold gap-1'><span className='flex items-center '><TbCurrencyTaka></TbCurrencyTaka> 30</span> <span className='text-primary font-bold'>(10%)</span></p>
+            <h3>{medicine.name}</h3>
+            <p>1 Tablet</p>
+            <p className='flex items-center'>MRP <del><span className='flex items-center '><TbCurrencyTaka></TbCurrencyTaka> {medicine.price}</span></del></p>
+            <p className='flex items-center font-bold gap-1'><span className='flex items-center '><TbCurrencyTaka></TbCurrencyTaka> {medicine.price - (( medicine.discount/ 100) * medicine.price)}</span> <span className='text-primary font-bold'>({medicine.discount}%)</span></p>
         </div>
     </div>
     );

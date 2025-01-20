@@ -15,27 +15,43 @@ import 'swiper/css/navigation';
 // import required modules
 import { Navigation, Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
+import useMedicines from '../../hooks/useMedicines';
+import { FaCartPlus } from 'react-icons/fa';
 
 const DiscountSection = () => {
-    return (
-        <div className='my-12 md:my-16'>
-            <SectionHeading title='Discount Products'
-            subtitle='Shop this products with discount'
-            ></SectionHeading>
-            {/* <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6'> */}
-              
-            {/* </div> */}
 
-           {/* slider  */}
+  const [medicines] = useMedicines()
+  const [showDetails, setShowDetails] = useState({})
 
-           <Swiper
+  const discountMedicines = medicines.filter(medicine => medicine.discount > 0)
+  // console.log("Discount ", discountMedicines);
+
+const handleShowDetails = (id) => {
+  // console.log("Show details ", id);
+  document.getElementById('my_modal_3').showModal()
+  const showMedicine = medicines.find(medicine => medicine._id === id)
+  setShowDetails(showMedicine)
+}
+
+  return (
+    <div className='my-12 md:my-16'>
+      <SectionHeading title='Discount Products'
+        subtitle='Shop this products with discount'
+      ></SectionHeading>
+      {/* <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6'> */}
+
+      {/* </div> */}
+
+      {/* slider  */}
+
+      <Swiper
         slidesPerView={4}
         centeredSlides={false}
         spaceBetween={30}
         grabCursor={false}
-        
+
         navigation={true}
-        
+
         modules={[Pagination, Navigation]}
         className="mySwiper bottom-0"
 
@@ -63,22 +79,50 @@ const DiscountSection = () => {
         }}
 
       >
-        <SwiperSlide><Link to='/details'><DiscountCard></DiscountCard></Link></SwiperSlide>
-        <SwiperSlide><Link to='/details'><DiscountCard></DiscountCard></Link></SwiperSlide>
-        <SwiperSlide><Link to='/details'><DiscountCard></DiscountCard></Link></SwiperSlide>
-        <SwiperSlide><Link to='/details'><DiscountCard></DiscountCard></Link></SwiperSlide>
-        <SwiperSlide><Link to='/details'><DiscountCard></DiscountCard></Link></SwiperSlide>
-        <SwiperSlide><Link to='/details'><DiscountCard></DiscountCard></Link></SwiperSlide>
-        <SwiperSlide><Link to='/details'><DiscountCard></DiscountCard></Link></SwiperSlide>
-        <SwiperSlide><Link to='/details'><DiscountCard></DiscountCard></Link></SwiperSlide>
-        <SwiperSlide><Link to='/details'><DiscountCard></DiscountCard></Link></SwiperSlide>
-        <SwiperSlide><Link to='/details'><DiscountCard></DiscountCard></Link></SwiperSlide>
-        
+
+
+        {
+          discountMedicines.map(medicine => <SwiperSlide><Link onClick={()=>handleShowDetails(medicine._id)} ><DiscountCard medicine={medicine}></DiscountCard></Link></SwiperSlide>)
+        }
+
       </Swiper>
 
 
-        </div>
-    );
+
+            {/* <button className="btn" onClick={()=>document.getElementById('my_modal_3').showModal()}>open modal</button> */}
+            <dialog id="my_modal_3" className="modal">
+                <div className="modal-box">
+
+                    <div className='flex flex-col md:flex-row gap-6'>
+                        <div className=''>
+                            <img className='w-40 h-40 p-4 border object-cover rounded-md' src={showDetails.image} alt="" />
+                        </div>
+                        <div>
+                            <h3 className='text-xl font-semibold'>{showDetails.name}</h3>
+                            <div className='flex justify-between gap-6'>
+                                <p className='text-sm'>{showDetails.power} {showDetails.massUnit}</p>
+                                <p className='flex items-center text-lg'><TbCurrencyTaka></TbCurrencyTaka> {showDetails.price}/unit</p>
+                            </div>
+                            <p>{showDetails.category}</p>
+                            <p>Company: {showDetails.company}</p>
+                            <p className='flex items-center gap-1'>Discount:{showDetails.discount > 0 ? <p> {showDetails.discount}%</p> : <p>None</p>}</p>
+                            <p>{showDetails.description}</p>
+                        </div>
+                    </div>
+
+                    <div className="modal-action">
+                        <form method="dialog">
+
+                       <div className='flex gap-2 items-center'>
+                       <button className="btn bg-primary hover:bg-secondary text-lg"><FaCartPlus></FaCartPlus></button> <button className="btn bg-primary hover:bg-secondary">Close</button>
+                       </div>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+
+    </div>
+  );
 };
 
 export default DiscountSection;

@@ -7,10 +7,10 @@ const CartCard = ({ cart }) => {
 
     const [quantity, setQuantity] = useState(1)
 
-   const handleSetQuantity = (e)=> {
+    const handleSetQuantity = (e) => {
         console.log(e.target.value);
         console.log(quantity);
-   }
+    }
 
     return (
         <div className='flex flex-col md:flex-row gap-4 shadow-md p-4'>
@@ -43,7 +43,7 @@ const CartCard = ({ cart }) => {
                         </div>
                     </div> */}
                     <div>
-                        <input type="number" value={quantity} onChange={(e)=>handleSetQuantity(e)} className='border p-2 w-12' name="quantity" id="" />
+                        <input type="number" value={quantity} onChange={(e) => handleSetQuantity(e)} className='border p-2 w-12' name="quantity" id="" />
                     </div>
                     <div className='flex justify-between gap-2'>
                         <button className="btn btn-sm">Place order</button>
