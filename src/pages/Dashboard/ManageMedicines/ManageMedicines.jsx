@@ -9,6 +9,8 @@ import useAuth from '../../../hooks/useAuth';
 import useMedicines from '../../../hooks/useMedicines';
 import useMedicinesBySeller from '../../../hooks/useMedicinesBySeller';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import { mergeConfig } from 'axios';
+import Swal from 'sweetalert2';
 
 const imageHostingKey = import.meta.env.VITE_image_hosting_key;
 const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`
@@ -17,7 +19,7 @@ const ManageMedicines = () => {
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
-    const [medicines] = useMedicinesBySeller()
+    const [medicines, refetch] = useMedicinesBySeller()
 
     const {
         register,
@@ -71,6 +73,44 @@ const ManageMedicines = () => {
 
     }
 
+       const handleDelete = (medicine) => {
+            console.log(medicine);
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+    
+                    axiosSecure.delete(`/medicines/${medicine._id}`)
+                        .then(res => {
+                            console.log(res);
+                            if (res.data.deletedCount > 0) {
+                                refetch()
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Medicine has been deleted.",
+                                    icon: "success"
+                                });
+                            }
+    
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Something went wrong! Try again.",
+                                icon: "error"
+                            });
+                        })
+                }
+            });
+        }
+
     console.log(medicines);
 
     return (
@@ -116,7 +156,7 @@ const ManageMedicines = () => {
                                     <td>
                                         <div className='flex gap-3 items-center text-lg'>
                                             <button className='text-primary hover:text-secondary'><FaEdit></FaEdit></button>
-                                            <button className='text-red-500 hover:text-red-400'><FaTrashAlt></FaTrashAlt></button>
+                                            <button onClick={()=>handleDelete(medicine)} className='text-red-500 hover:text-red-400'><FaTrashAlt></FaTrashAlt></button>
                                         </div>
                                     </td>
                                 </tr>)
