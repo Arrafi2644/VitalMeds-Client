@@ -120,7 +120,7 @@ const handleAddToCart = (medicine) => {
 
 
         {
-          discountMedicines.map(medicine => <SwiperSlide><Link onClick={()=>handleShowDetails(medicine._id)} ><DiscountCard medicine={medicine}></DiscountCard></Link></SwiperSlide>)
+          discountMedicines.map(medicine => <SwiperSlide key={medicine._id} ><Link onClick={()=>handleShowDetails(medicine._id)} ><DiscountCard medicine={medicine}></DiscountCard></Link></SwiperSlide>)
         }
 
       </Swiper>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IoIosAddCircle } from 'react-icons/io';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
@@ -18,18 +18,11 @@ const ManageCategory = () => {
     const axiosPublic = useAxiosPublic()
     const axiosSecure = useAxiosSecure()
 
-//     const {data:categories = []} = useQuery({
-//         queryKey: ['categories'],
-//         queryFn: async()=>{
-//             const res = await axiosSecure.get('/categories');
-//             console.log(res.data);
-//             return res.data;
-//         }
-//     })
 
-const [categories, refetch] = useCategories()
+    const [categories, refetch] = useCategories()
+    const [updateCategory, setUpdateCategory] = useState({})
 
-console.log(categories);
+    console.log(categories);
 
     const {
         register,
@@ -75,7 +68,37 @@ console.log(categories);
 
     }
 
-  const handleDelete = (category) => {
+    const handleUpdate =(category)=>{
+        // axiosSecure.put(`/categories/${category._id}`)
+        // .then(res => {
+        //     console.log(res);
+        //     if (res.data.deletedCount > 0) {
+        //         refetch()
+        //         Swal.fire({
+        //             title: "Deleted!",
+        //             text: "Category updated successfully!",
+        //             icon: "success"
+        //         });
+        //     }
+
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        //     Swal.fire({
+        //         title: "Error!",
+        //         text: "Something went wrong! Try again.",
+        //         icon: "error"
+        //     });
+        // })
+        
+        setUpdateCategory(category)
+        document.getElementById('my_modal_10').showModal()
+         
+        
+    }
+    
+    console.log(updateCategory);
+    const handleDelete = (category) => {
         console.log(category);
         Swal.fire({
             title: "Are you sure?",
@@ -121,46 +144,82 @@ console.log(categories);
                 <h2 className='text-3xl font-bold '>Total Categories: {categories.length}</h2>
                 <button onClick={() => document.getElementById('my_modal_3').showModal()} className="btn bg-primary hover:bg-secondary"><span className='text-xl '><IoIosAddCircle></IoIosAddCircle></span>Add Medicine</button>
             </div>
-         <div className='mt-6'>
-                       <div className="overflow-x-auto">
-                           <table className="table">
-                               {/* head */}
-                               <thead>
-                                   <tr>
-                                       <th>Sl.</th>
-                                       <th>Category Image</th>
-                                       <th>Category Name</th>
-                                       <th>Action</th>
-                                   </tr>
-                               </thead>
-                               <tbody>
-       
-                                   {
-                                       categories.map((category, index) => <tr key={category._id}>
-                                           <td>{index + 1}</td>
-                                           <td><img className='w-8 h-8 object-cover' src={category.image} alt="medicine" /></td>
-                                            <td>{category.categoryName}</td>
-                                           <td>
-                                               <div className='flex gap-3 items-center text-lg'>
-                                                   <button className='text-primary hover:text-secondary'><FaEdit></FaEdit></button>
-                                                   <button onClick={()=>handleDelete(category)}  className='text-red-500 hover:text-red-400'><FaTrashAlt></FaTrashAlt></button>
-                                               </div>
-                                           </td>
-                                       </tr>)
-                                   }
-       
-                               </tbody>
-                           </table>
-                       </div>
-                   </div>
+            <div className='mt-6'>
+                <div className="overflow-x-auto">
+                    <table className="table">
+                        {/* head */}
+                        <thead>
+                            <tr>
+                                <th>Sl.</th>
+                                <th>Category Image</th>
+                                <th>Category Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {
+                                categories.map((category, index) => <tr key={category._id}>
+                                    <td>{index + 1}</td>
+                                    <td><img className='w-8 h-8 object-cover' src={category.image} alt="medicine" /></td>
+                                    <td>{category.categoryName}</td>
+                                    <td>
+                                        <div className='flex gap-3 items-center text-lg'>
+                                            <button onClick={()=> handleUpdate(category)} className='text-primary hover:text-secondary'><FaEdit></FaEdit></button>
+                                            <button onClick={() => handleDelete(category)} className='text-red-500 hover:text-red-400'><FaTrashAlt></FaTrashAlt></button>
+                                        </div>
+                                    </td>
+                                </tr>)
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
 
-                {/* modal  */}
+            {/* modal  */}
             {/* You can open the modal using document.getElementById('ID').showModal() method */}
             {/* <button className="btn" onClick={() => document.getElementById('my_modal_3').showModal()}>open modal</button> */}
             <dialog id="my_modal_3" className="modal">
                 <div className="modal-box ">
                     <h3 className="font-bold text-xl text-center">Add Category</h3>
+                    <form onSubmit={handleSubmit(onSubmit)} className="card-body pt-0">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Category Name</span>
+                            </label>
+                            <input name='categoryName' {...register("categoryName", { required: true })} type="text" placeholder="Category name" className="input input-bordered" />
+                            {errors.categoryName && <span className='text-red-500 mt-1 text-sm'>Category name is required</span>}
+                        </div>
+                        <div className='form-control'>
+                            <label className="label">
+                                <span className="label-text">Pick A Category Photo</span>
+                            </label>
+                            <input name="photo" {...register("photo", { required: true })} type="file" className="file-input file-input-bordered w-full" />
+                            {errors.photo && <span className='text-red-500 mt-1 text-sm'>Photo is required</span>}
+                        </div>
+
+                        <div className="form-control mt-6">
+                            <button className="btn bg-primary hover:bg-secondary">Add Category</button>
+                        </div>
+
+                    </form>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            {/* if there is a button, it will close the modal */}
+                            <button className="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+
+                {/* modal  */}
+            {/* You can open the modal using document.getElementById('ID').showModal() method */}
+            {/* <button className="btn" onClick={() => document.getElementById('my_modal_3').showModal()}>open modal</button> */}
+            <dialog id="my_modal_10" className="modal">
+                <div className="modal-box ">
+                    <h3 className="font-bold text-xl text-center">Update Category</h3>
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body pt-0">
                         <div className="form-control">
                             <label className="label">
