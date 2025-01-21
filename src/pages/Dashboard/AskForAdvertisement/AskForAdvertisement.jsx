@@ -5,6 +5,9 @@ import { IoIosAddCircle } from 'react-icons/io';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import useAuth from '../../../hooks/useAuth';
+import useAdvertisementsBySeller from '../../../hooks/useAdvertisementsBySeller';
+import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 
 const imageHostingKey = import.meta.env.VITE_image_hosting_key;
@@ -13,6 +16,8 @@ const imageHostingApi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
 const AskForAdvertisement = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
+    const [advertisements, refetch] = useAdvertisementsBySeller();
+    const { user } = useAuth();
 
     const {
         register,
@@ -40,7 +45,8 @@ const AskForAdvertisement = () => {
             name: data.name,
             description: data.description,
             image: image,
-            status: "Pending"
+            status: "Pending",
+            email: user?.email
         }
 
         axiosSecure.post('/advertisements', advertiseInfo)
@@ -61,17 +67,55 @@ const AskForAdvertisement = () => {
     return (
         <div>
             <div className='flex gap-2 flex-col md:flex-row justify-between'>
-                <h2 className='text-3xl font-bold '>Total Advertise: </h2>
+                <h2 className='text-3xl font-bold '>Total Advertise: {advertisements.length}</h2>
                 <button onClick={() => document.getElementById('my_modal_4').showModal()} className="btn bg-primary hover:bg-secondary"><span className='text-xl '><IoIosAddCircle></IoIosAddCircle></span>Add Medicine</button>
             </div>
-            <div></div>
+            <div className='mt-6'>
+                <div className="overflow-x-auto">
+                    <table className="table">
+                        {/* head */}
+                        <thead>
+                            <tr>
+                                <th>Sl.</th>
+                                <th>Medicine Image</th>
+                                <th>Medicine Name</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {
+                                advertisements.map((advertise, index) => <tr key={advertise._id}>
+                                    <td>{index + 1}</td>
+                                    <td><img className='w-8 h-8 object-cover' src={advertise.image} alt="medicine" /></td>
+                                    <td>
+                                        {advertise.name} <br /> <span className='text-xs'>{advertise.name}</span>
+                                    </td>
+                                  
+                                    <td>{advertise.description}</td>
+                                    <td>{advertise.status}</td>
+                                    <td>
+                                        <div className='flex gap-3 items-center text-lg'>
+                                            <button className='text-primary hover:text-secondary'><FaEdit></FaEdit></button>
+                                            <button onClick={() => handleDelete(medicine)} className='text-red-500 hover:text-red-400'><FaTrashAlt></FaTrashAlt></button>
+                                        </div>
+                                    </td>
+                                </tr>)
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
             {/* modal  */}
             {/* You can open the modal using document.getElementById('ID').showModal() method */}
             {/* <button className="btn" onClick={() => document.getElementById('my_modal_4').showModal()}>open modal</button> */}
             <dialog id="my_modal_4" className="modal">
                 <div className="modal-box w-11/12 max-w-5xl">
-                    <h3 className="font-bold text-xl">Add Medicine</h3>
+                    <h3 className="font-bold text-xl text-center">Add Advertisement Banner</h3>
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body pt-0">
                         <div className="form-control">
                             <label className="label">
@@ -98,7 +142,7 @@ const AskForAdvertisement = () => {
 
 
                         <div className="form-control mt-6">
-                            <button className="btn bg-primary hover:bg-secondary">Ask To Add</button>
+                            <button className="btn bg-primary hover:bg-secondary">Add Advertisement</button>
                         </div>
 
                     </form>

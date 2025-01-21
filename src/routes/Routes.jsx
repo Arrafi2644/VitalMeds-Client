@@ -14,6 +14,7 @@ import Shop from "../pages/Shop/Shop";
 import Cart from "../pages/Dashboard/Cart/Cart";
 import ManageCategory from "../pages/Dashboard/ManageCategory/ManageCategory";
 import AskForAdvertisement from "../pages/Dashboard/AskForAdvertisement/AskForAdvertisement";
+import ManageAdvertise from "../pages/Dashboard/ManageAdvertise/ManageAdvertise";
 
 
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             {
               path: 'manageCategory',
               element: <PrivateRoute><ManageCategory></ManageCategory></PrivateRoute>
+            },
+            {
+              path: 'manageAdvertise',
+              element: <PrivateRoute><ManageAdvertise></ManageAdvertise></PrivateRoute>
             },
             
             // seller 
