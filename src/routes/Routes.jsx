@@ -13,6 +13,7 @@ import ManageMedicines from "../pages/Dashboard/ManageMedicines/ManageMedicines"
 import Shop from "../pages/Shop/Shop";
 import Cart from "../pages/Dashboard/Cart/Cart";
 import ManageCategory from "../pages/Dashboard/ManageCategory/ManageCategory";
+import AskForAdvertisement from "../pages/Dashboard/AskForAdvertisement/AskForAdvertisement";
 
 
 const router = createBrowserRouter([
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
             {
               path: 'manageMedicine',
               element: <PrivateRoute><ManageMedicines></ManageMedicines></PrivateRoute>
+            },
+            {
+              path: 'advertisement',
+              element: <AskForAdvertisement></AskForAdvertisement>
             },
             
             // user 
