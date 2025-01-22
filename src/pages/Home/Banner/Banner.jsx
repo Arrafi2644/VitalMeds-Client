@@ -10,68 +10,64 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import bannerBg from '../../../assets/images/slider/slider1.jpg'
+import usePostedAdvertisements from '../../../hooks/usePostedAdvertisements';
 
 
 const Banner = () => {
-    const progressCircle = useRef(null);
-    const progressContent = useRef(null);
-    const onAutoplayTimeLeft = (s, time, progress) => {
-      progressCircle?.current?.style?.setProperty('--progress', 1 - progress);
-      progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
-    };
+  const [advertises] = usePostedAdvertisements()
+  console.log(advertises);
 
- 
+  return (
+    <div className='my-12 md:my-16'>
 
+      <Swiper
+        // slidesPerView={2.2}
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
+        }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
 
-    return (
-      <>
-        <Swiper
-          
-          spaceBetween={30}
-          centeredSlides={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          modules={[ Pagination, Navigation]}
-          onAutoplayTimeLeft={onAutoplayTimeLeft}
-          className="mySwiper"
-        >
-          <SwiperSlide style={{ backgroundImage: `url(https://i.ibb.co/1JbfskB/slider1.jpg)`, backgroundSize: "cover", backgroundPosition: "center", height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <div className='bg-[#00000062] w-full h-full text-white flex justify-center items-center text-center flex-col gap-2'>
-               <h2 className='text-3xl md:text-4xl font-bold text-[#309578]'>Your Trusted Online Pharmacy</h2>
-               <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
-               <button className="btn bg-primary">Shop Now</button>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide style={{ backgroundImage: `url(https://i.ibb.co/1JbfskB/slider1.jpg)`, backgroundSize: "cover", backgroundPosition: "center", height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <div className='bg-[#00000062] w-full h-full text-white flex justify-center items-center text-center flex-col gap-2'>
-               <h2 className='text-3xl md:text-4xl font-bold text-[#309578]'>Your Trusted Online Pharmacy</h2>
-               <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
-               <button className="btn bg-primary">Shop Now</button>
-            </div>
-
-          </SwiperSlide>
-          <SwiperSlide style={{ backgroundImage: `url(https://i.ibb.co/1JbfskB/slider1.jpg)`, backgroundSize: "cover", backgroundPosition: "center", height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <div className='bg-[#00000062] w-full h-full text-white flex justify-center items-center text-center flex-col gap-2'>
-               <h2 className='text-3xl md:text-4xl font-bold text-[#309578]'>Your Trusted Online Pharmacy</h2>
-               <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
-               <button className="btn bg-primary hover:bg-secondary">Shop Now</button>
-            </div>
-          </SwiperSlide>
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 1.3,
+            spaceBetween: 25,
+          },
+          1024: {
+            slidesPerView: 2.2,
+            spaceBetween: 30,
+          },
+        }}
+      >
         
-          <div className="autoplay-progress" slot="container-end">
-           
-            <span ref={progressContent}></span>
+    
+       {
+        advertises.map(advertise => <SwiperSlide key={advertise._id} >
+          <div className='bg-primary rounded-md p-10 w-full text-white flex justify-center items-center gap-2'>
+            <img className='w-32 h-32 object-cover rounded-md' src={advertise.image} alt="" />
+            <div>
+              <h2 className='font-bold text-xl'>{advertise.name}</h2>
+              <p>{advertise.description}</p>
+            </div>
           </div>
-        </Swiper>
-      </>
-    );
+        </SwiperSlide>
+
+        )
+       }
+
+
+      </Swiper>
+    </div>
+  );
 };
 
 export default Banner;
