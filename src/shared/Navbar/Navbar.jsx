@@ -75,8 +75,8 @@ const Navbar = () => {
           </Link>
 
           <select className="select select-bordered select-sm">
-            <option defaultValue='english'>English</option>
-            <option value='bangla'>Bangla</option>
+            <option defaultValue='english'>Eng</option>
+            <option value='bangla'>Ban</option>
           </select>
 
           {

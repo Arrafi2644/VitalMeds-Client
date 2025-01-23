@@ -52,7 +52,7 @@ const Banner = () => {
     
        {
         advertises.map(advertise => <SwiperSlide key={advertise._id} >
-          <div className='bg-primary rounded-md p-10 w-full text-white flex justify-center items-center gap-2'>
+          <div className='bg-primary rounded-md p-10 w-full h-72 text-white flex flex-col md:flex-row justify-center items-center gap-2'>
             <img className='w-32 h-32 object-cover rounded-md' src={advertise.image} alt="" />
             <div>
               <h2 className='font-bold text-xl'>{advertise.name}</h2>
