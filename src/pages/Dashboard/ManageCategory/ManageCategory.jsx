@@ -142,7 +142,7 @@ const ManageCategory = () => {
         <div>
             <div className='flex gap-2 flex-col md:flex-row justify-between'>
                 <h2 className='text-3xl font-bold '>Total Categories: {categories.length}</h2>
-                <button onClick={() => document.getElementById('my_modal_3').showModal()} className="btn bg-primary hover:bg-secondary"><span className='text-xl '><IoIosAddCircle></IoIosAddCircle></span>Add Medicine</button>
+                <button onClick={() => document.getElementById('my_modal_3').showModal()} className="btn bg-primary hover:bg-secondary"><span className='text-xl '><IoIosAddCircle></IoIosAddCircle></span>Add Category</button>
             </div>
             <div className='mt-6'>
                 <div className="overflow-x-auto">
