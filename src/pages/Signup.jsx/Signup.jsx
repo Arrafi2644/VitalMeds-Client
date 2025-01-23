@@ -2,7 +2,7 @@ import Lottie from 'lottie-react';
 import loginAnimation from '../../assets/animations/registration-animation.json'
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
@@ -15,7 +15,7 @@ const Signup = () => {
     const { createUser, updateUserProfile, signinWithGoogle } = useAuth()
     const axiosPublic = useAxiosPublic();
     const [showPassword, setShowPassword] = useState(false);
-
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -59,6 +59,7 @@ const Signup = () => {
                                 console.log(res.data);
                                 if (res.data.insertedId) {
                                     toast.success("User created successfully!")
+                                    navigate('/')
                                 }
                             })
 
@@ -97,6 +98,7 @@ const Signup = () => {
                         console.log(res);
                         if (res.data.insertedId) {
                             toast.success("User created successfully!")
+                            navigate('/')
                         }
                         else {
                             toast.success("Login successful!")

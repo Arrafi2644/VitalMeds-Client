@@ -45,7 +45,7 @@ const Banner = () => {
           1024: {
             slidesPerView: 2.2,
             spaceBetween: 30,
-          },
+          },  
         }}
       >
         

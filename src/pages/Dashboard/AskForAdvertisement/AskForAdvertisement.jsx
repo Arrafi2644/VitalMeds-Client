@@ -7,7 +7,8 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import useAuth from '../../../hooks/useAuth';
 import useAdvertisementsBySeller from '../../../hooks/useAdvertisementsBySeller';
-import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import { FaCircle, FaEdit, FaTrashAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 
 const imageHostingKey = import.meta.env.VITE_image_hosting_key;
@@ -18,6 +19,7 @@ const AskForAdvertisement = () => {
     const axiosSecure = useAxiosSecure();
     const [advertisements, refetch] = useAdvertisementsBySeller();
     const { user } = useAuth();
+    const navigate = useNavigate()
 
     const {
         register,
@@ -53,7 +55,10 @@ const AskForAdvertisement = () => {
             .then(res => {
                 if (res.data.insertedId) {
                     toast.success("Requested successfully for advertisement!")
+                    refetch();
+                    navigate('/dashboard/advertisement')
                 }
+                
             })
             .catch(err => {
                 toast.error("Something went wrong! Please try again.")
@@ -68,7 +73,7 @@ const AskForAdvertisement = () => {
         <div>
             <div className='flex gap-2 flex-col md:flex-row justify-between'>
                 <h2 className='text-3xl font-bold '>Total Advertise: {advertisements.length}</h2>
-                <button onClick={() => document.getElementById('my_modal_4').showModal()} className="btn bg-primary hover:bg-secondary"><span className='text-xl '><IoIosAddCircle></IoIosAddCircle></span>Add Medicine</button>
+                <button onClick={() => document.getElementById('my_modal_4').showModal()} className="btn bg-primary hover:bg-secondary"><span className='text-xl '><IoIosAddCircle></IoIosAddCircle></span>Add Advertise</button>
             </div>
             <div className='mt-6'>
                 <div className="overflow-x-auto">
@@ -95,11 +100,14 @@ const AskForAdvertisement = () => {
                                     </td>
                                   
                                     <td>{advertise.description}</td>
-                                    <td>{advertise.status}</td>
+                                    <td >
+                                                                            <div className='flex items-center gap-1'>
+                                                                            {advertise.status === "Active" && <span className=' text-sm text-green-500'><FaCircle></FaCircle></span>}{advertise.status}
+                                                                                </div> </td>
                                     <td>
                                         <div className='flex gap-3 items-center text-lg'>
-                                            <button className='text-primary hover:text-secondary'><FaEdit></FaEdit></button>
-                                            <button onClick={() => handleDelete(medicine)} className='text-red-500 hover:text-red-400'><FaTrashAlt></FaTrashAlt></button>
+                                            <button className='btn btn-sm text-primary hover:text-secondary'><FaEdit></FaEdit></button>
+                                            <button onClick={() => handleDelete(medicine)} className='btn btn-sm text-red-500 hover:text-red-400'><FaTrashAlt></FaTrashAlt></button>
                                         </div>
                                     </td>
                                 </tr>)

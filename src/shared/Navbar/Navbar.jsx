@@ -69,7 +69,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end gap-2">
 
-          <Link to='/dashboard/cart' className='flex items-center gap-1'>
+          <Link to='/cart' className='flex items-center gap-1'>
             <span className='text-2xl relative'><IoCartOutline></IoCartOutline> <span className='p-1 bg-primary text-white rounded-lg textarea-xs text-xs absolute -top-3 -right-1'>{carts.length} </span></span>
             <span className="">Cart</span>
           </Link>

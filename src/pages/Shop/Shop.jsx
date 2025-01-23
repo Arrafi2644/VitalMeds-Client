@@ -7,6 +7,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import useCart from '../../hooks/useCart';
 import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const Shop = () => {
     const [medicines] = useMedicines();
@@ -66,7 +67,7 @@ const Shop = () => {
     return (
         <div className='mx-4 my-12 lg:my-16'>
             <div>
-                <h2 className='text-3xl font-bold'>Total Medicine({location.state? medicinesByCategory.length : medicines.length})</h2>
+                <h2 className='text-3xl font-bold'>Total Medicine({location.state ? medicinesByCategory.length : medicines.length})</h2>
             </div>
             <div className='mt-6'>
                 <div className="overflow-x-auto">
@@ -88,28 +89,28 @@ const Shop = () => {
                         <tbody>
 
                             {
-                              location.state ? medicinesByCategory.map((medicine, index) => 
-                                <tr key={medicine._id}>
-                              <td>{index + 1}</td>
-                              <td><img className='w-8 h-8 object-cover' src={medicine.image} alt="medicine" /></td>
-                              <td>
-                                  {medicine.name} <br /> <span className='text-xs'>{medicine.genericName}</span>
-                              </td>
-                              <td>{medicine.category}</td>
-                              <td>
-                                  {medicine.power}{medicine.massUnit}
-                              </td>
-                              <td>{medicine.company}</td>
-                              <td>{medicine.price}</td>
-                              <td>{medicine.discount}</td>
-                              <td>
-                                  <div className='flex gap-3 items-center text-lg'>
-                                      <button onClick={() => handleDetails(medicine)} className='text-primary hover:text-secondary'><FaEye></FaEye></button>
-                                      <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary'><FaCartPlus></FaCartPlus></button>
-                                  </div>
-                              </td>
-                          </tr>
-                              ) : medicines.map((medicine, index) => <tr key={medicine._id}>
+                                location.state ? medicinesByCategory.map((medicine, index) =>
+                                    <tr key={medicine._id}>
+                                        <td>{index + 1}</td>
+                                        <td><img className='w-8 h-8 object-cover' src={medicine.image} alt="medicine" /></td>
+                                        <td>
+                                            {medicine.name} <br /> <span className='text-xs'>{medicine.genericName}</span>
+                                        </td>
+                                        <td>{medicine.category}</td>
+                                        <td>
+                                            {medicine.power}{medicine.massUnit}
+                                        </td>
+                                        <td>{medicine.company}</td>
+                                        <td>{medicine.price}</td>
+                                        <td>{medicine.discount}</td>
+                                        <td>
+                                            <div className='flex gap-3 items-center text-lg'>
+                                                <button onClick={() => handleDetails(medicine)} className='text-primary hover:text-secondary'><FaEye></FaEye></button>
+                                                <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary'><FaCartPlus></FaCartPlus></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ) : medicines.map((medicine, index) => <tr key={medicine._id}>
                                     <td>{index + 1}</td>
                                     <td><img className='w-8 h-8 object-cover' src={medicine.image} alt="medicine" /></td>
                                     <td>
@@ -168,6 +169,11 @@ const Shop = () => {
                     </div>
                 </div>
             </dialog>
+
+            <Helmet>
+                <title>VitalMeds | Shop</title>
+
+            </Helmet>
         </div>
     );
 };

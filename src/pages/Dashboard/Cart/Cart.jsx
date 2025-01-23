@@ -7,7 +7,7 @@ import CartCard from '../../../components/CartCard/CartCard';
 const Cart = () => {
     const [carts, refetch] = useCart()
     return (
-        <div className=' mt-8'>
+        <div className=' mt-8 px-4 container mx-auto'>
             <div className='flex justify-between gap-2 flex-col md:flex-row'>
                 <h2 className='text-3xl font-bold'>Total cart: {carts.length}</h2>
                 <div className='flex items-center gap-2'>
@@ -21,7 +21,7 @@ const Cart = () => {
                 }
             </div>
             <Helmet>
-                <title>VitalMeds | Dashboard | Cart</title>
+                <title>VitalMeds | Cart</title>
 
             </Helmet>
         </div>

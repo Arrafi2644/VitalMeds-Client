@@ -15,6 +15,7 @@ import Cart from "../pages/Dashboard/Cart/Cart";
 import ManageCategory from "../pages/Dashboard/ManageCategory/ManageCategory";
 import AskForAdvertisement from "../pages/Dashboard/AskForAdvertisement/AskForAdvertisement";
 import ManageAdvertise from "../pages/Dashboard/ManageAdvertise/ManageAdvertise";
+import AdminRoute from "./AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -37,19 +38,19 @@ const router = createBrowserRouter([
             // admin 
             {
               path: 'adminHome',
-              element: <PrivateRoute><AdminHome></AdminHome></PrivateRoute>
+              element: <PrivateRoute><AdminRoute><AdminHome></AdminHome></AdminRoute></PrivateRoute>
             },
             {
               path: 'manageUsers',
-              element: <PrivateRoute><ManageUsers></ManageUsers></PrivateRoute>
+              element: <PrivateRoute><AdminRoute><ManageUsers></ManageUsers></AdminRoute></PrivateRoute>
             },
             {
               path: 'manageCategory',
-              element: <PrivateRoute><ManageCategory></ManageCategory></PrivateRoute>
+              element: <PrivateRoute><AdminRoute><ManageCategory></ManageCategory></AdminRoute></PrivateRoute>
             },
             {
               path: 'manageAdvertise',
-              element: <PrivateRoute><ManageAdvertise></ManageAdvertise></PrivateRoute>
+              element: <PrivateRoute><AdminRoute><ManageAdvertise></ManageAdvertise></AdminRoute></PrivateRoute>
             },
             
             // seller 
@@ -71,11 +72,12 @@ const router = createBrowserRouter([
               path: 'userHome',
               element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
             },
-            {
-              path: 'cart',
-              element: <PrivateRoute><Cart></Cart></PrivateRoute>
-            }
+           
           ]
+        },
+        {
+          path: 'cart',
+          element: <PrivateRoute><Cart></Cart></PrivateRoute>
         },
         {
           path: 'login',
