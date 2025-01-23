@@ -1,19 +1,19 @@
-# MediKart
+# VitalMeds
 
 ## Short Description
-**MediKart** is a modern multi-vendor e-commerce platform specializing in medicines and healthcare products. Built with the MERN stack, it offers a seamless experience for buyers, sellers, and admins. Users can browse categories, manage carts, and securely checkout using Stripe, while sellers can list products and track sales. Admins oversee users, payments, and reports with advanced tools. Featuring responsive design, real-time updates, and robust authentication, MediKart ensures a secure and efficient platform for healthcare shopping.
+**VitalMeds** is a modern multi-vendor e-commerce platform specializing in medicines and healthcare products. Built with the MERN stack, it offers a seamless experience for buyers, sellers, and admins. Users can browse categories, manage carts, and securely checkout using Stripe, while sellers can list products and track sales. Admins oversee users, payments, and reports with advanced tools. Featuring responsive design, real-time updates, and robust authentication, VitalMeds ensures a secure and efficient platform for healthcare shopping.
 
 ---
 
 ## Website Name
-**MediKart**
+**VitalMeds**
 
 ### Admin Access:
-- **Username:** admin@example.com  
-- **Password:** admin123
+- **Username:** fayez@gmail.com  
+- **Password:** Fayez12
 
 ### Live Site URL:
- ### https://vital-meds-server.vercel.app
+ ### https://vitalmeds-2834f.web.app
 ---
 
 ## Features
