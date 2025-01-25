@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useCart from '../../../hooks/useCart';
 import { FaJediOrder, FaTrashAlt } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
@@ -7,30 +7,12 @@ import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { Link } from 'react-router-dom';
-import toast from 'react-hot-toast';
 
 const Cart = () => {
     const [carts, refetch] = useCart()
     const {user} = useAuth()
-    const [quantity, setQuantity] = useState(1);
     const axiosSecure = useAxiosSecure()
     const totalPrice = carts.reduce((total, item) => total + item.price, 0 )
-
-        const handleIncrement = () => {
-            console.log("increment", quantity);
-            setQuantity(quantity + 1)
-        }
-    
-        const handleDecrement = () => {
-            console.log("decrement", quantity);
-    
-            if(quantity > 1){
-                setQuantity(quantity - 1)
-            }
-            else{
-                return toast.error("You cannot decrease less than 1")
-            }
-        }
 
         const handleDeleteAll = (product) => {
             console.log(product);
@@ -82,7 +64,7 @@ const Cart = () => {
             </div>
             <div className='mt-6 grid grid-cols-2 gap-4'>
                 {
-                    carts.map(cart => <CartCard key={cart._id} cart={cart} quantity={quantity} handleIncrement={handleIncrement} handleDecrement={handleDecrement}></CartCard>)
+                    carts.map(cart => <CartCard key={cart._id} cart={cart}></CartCard>)
                 }
             </div>
             <Helmet>

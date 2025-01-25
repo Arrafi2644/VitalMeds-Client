@@ -6,12 +6,26 @@ import useCart from '../../hooks/useCart';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 
-const CartCard = ({ cart, quantity, handleIncrement, handleDecrement }) => {
+const CartCard = ({ cart }) => {
     const [carts, refetch] = useCart();
-
+    const [quantity, setQuantity] = useState(1);
     const axiosSecure = useAxiosSecure();
     
+    const handleIncrement = () => {
+        console.log("increment", quantity);
+        setQuantity(quantity + 1)
+    }
 
+    const handleDecrement = () => {
+        console.log("decrement", quantity);
+
+        if(quantity > 1){
+            setQuantity(quantity - 1)
+        }
+        else{
+            return toast.error("You cannot decrease less than 1")
+        }
+    }
 
      const handleDelete = (product) => {
             console.log(product);
@@ -52,7 +66,7 @@ const CartCard = ({ cart, quantity, handleIncrement, handleDecrement }) => {
         }
 
 
-
+        
     return (
         <div className='flex flex-col md:flex-row gap-4 shadow-md p-4'>
             <div>
