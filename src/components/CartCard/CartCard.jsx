@@ -1,16 +1,57 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { FaTrashAlt } from 'react-icons/fa';
 import { TbCurrencyTaka } from 'react-icons/tb';
+import useCart from '../../hooks/useCart';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
-const CartCard = ({ cart }) => {
-    console.log(cart);
+const CartCard = ({ cart, quantity, handleIncrement, handleDecrement }) => {
+    const [carts, refetch] = useCart();
 
-    const [quantity, setQuantity] = useState(1)
+    const axiosSecure = useAxiosSecure();
+    
 
-    const handleSetQuantity = (e) => {
-        console.log(e.target.value);
-        console.log(quantity);
-    }
+
+     const handleDelete = (product) => {
+            console.log(product);
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axiosSecure.delete(`/carts/${product._id}`)
+                        .then(res => {
+                            console.log(res);
+                            if (res.data.deletedCount > 0) {
+                                refetch()
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Medicine has been deleted.",
+                                    icon: "success"
+                                });
+                                refetch();
+                            }
+    
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Something went wrong! Try again.",
+                                icon: "error"
+                            });
+                        })
+                }
+            });
+        }
+
+
 
     return (
         <div className='flex flex-col md:flex-row gap-4 shadow-md p-4'>
@@ -35,19 +76,16 @@ const CartCard = ({ cart }) => {
                 </div>
 
                 <div className='flex justify-between gap-2 items-end justify-items-end bottom-0'>
-                    {/* <div className='flex '>
-                        <input name='quantity' type="text" readOnly placeholder="Quantity" defaultValue={value} className="input input-bordered w-12 rounded-r-none border-primary" />
+                    <div className='flex '>
+                        <span className='border p-2 border-primary'>{quantity}</span>
                         <div className="join join-vertical rounded-l-none border-primary">
                             <button onClick={handleIncrement} className="btn join-item btn-xs text-base btn-outline border-primary">+</button>
                             <button onClick={handleDecrement} className="btn join-item btn-xs text-base btn-outline border-primary">-</button>
                         </div>
-                    </div> */}
-                    <div>
-                        <input type="number" value={quantity} onChange={(e) => handleSetQuantity(e)} className='border p-2 w-12' name="quantity" id="" />
                     </div>
                     <div className='flex justify-between gap-2'>
                         <button className="btn btn-sm">Place order</button>
-                        <button className="btn btn-sm flex gap-2 items-center"><FaTrashAlt></FaTrashAlt></button>
+                        <button onClick={()=>handleDelete(cart)} className="btn btn-sm flex gap-2 items-center"><FaTrashAlt></FaTrashAlt></button>
                     </div>
                 </div>
             </div>
