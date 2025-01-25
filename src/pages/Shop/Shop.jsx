@@ -44,7 +44,8 @@ const Shop = () => {
             power: parseFloat(medicine.power),
             massUnit: medicine.massUnit,
             image: medicine.image,
-            userEmail: user.email
+            userEmail: user.email,
+            quantity: 1
         }
 
         axiosSecure.post('/carts', medicineInfo)

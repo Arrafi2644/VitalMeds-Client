@@ -7,12 +7,14 @@ import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { Link } from 'react-router-dom';
+import useCartTotalPrice from '../../../hooks/useCartTotalPrice';
 
 const Cart = () => {
     const [carts, refetch] = useCart()
     const {user} = useAuth()
     const axiosSecure = useAxiosSecure()
-    const totalPrice = carts.reduce((total, item) => total + item.price, 0 )
+    // const totalPrice = carts.reduce((total, item) => total + item.price, 0 )
+    const [totalPrice, totalPriceRefetch] = useCartTotalPrice()
 
         const handleDeleteAll = (product) => {
             console.log(product);

@@ -5,31 +5,48 @@ import { TbCurrencyTaka } from 'react-icons/tb';
 import useCart from '../../hooks/useCart';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useCartTotalPrice from '../../hooks/useCartTotalPrice';
+
 
 const CartCard = ({ cart }) => {
     const [carts, refetch] = useCart();
     const [quantity, setQuantity] = useState(1);
     const axiosSecure = useAxiosSecure();
+    const [totalPrice, totalPriceRefetch] = useCartTotalPrice()
     
-    const handleIncrement = () => {
-        console.log("increment", quantity);
-        setQuantity(quantity + 1)
+    const handleIncrement = (cart) => {
+        console.log("increment cart", cart);
+        axiosSecure.patch(`/carts/increment/${cart._id}`)
+        .then(res => {
+            console.log(res);
+            refetch()
+            totalPriceRefetch()
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }
 
-    const handleDecrement = () => {
-        console.log("decrement", quantity);
-
-        if(quantity > 1){
-            setQuantity(quantity - 1)
+    const handleDecrement = (cart) => {
+        if(cart.quantity > 1){
+            axiosSecure.patch(`/carts/decrement/${cart._id}`)
+            .then(res => {
+                console.log(res);
+                refetch()
+                totalPriceRefetch()
+            })
+            .catch(err => {
+                console.log(err);
+            })
         }
         else{
             return toast.error("You cannot decrease less than 1")
         }
     }
-
-     const handleDelete = (product) => {
-            console.log(product);
-            Swal.fire({
+    
+    const handleDelete = (product) => {
+        console.log(product);
+        Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
                 icon: "warning",
@@ -50,6 +67,7 @@ const CartCard = ({ cart }) => {
                                     icon: "success"
                                 });
                                 refetch();
+                                totalPriceRefetch()
                             }
     
                         })
@@ -91,10 +109,10 @@ const CartCard = ({ cart }) => {
 
                 <div className='flex justify-between gap-2 items-end justify-items-end bottom-0'>
                     <div className='flex '>
-                        <span className='border p-2 border-primary'>{quantity}</span>
+                        <span className='border p-2 border-primary'>{cart.quantity}</span>
                         <div className="join join-vertical rounded-l-none border-primary">
-                            <button onClick={handleIncrement} className="btn join-item btn-xs text-base btn-outline border-primary">+</button>
-                            <button onClick={handleDecrement} className="btn join-item btn-xs text-base btn-outline border-primary">-</button>
+                            <button onClick={()=>handleIncrement(cart)} className="btn join-item btn-xs text-base btn-outline border-primary">+</button>
+                            <button onClick={()=>handleDecrement(cart)} className="btn join-item btn-xs text-base btn-outline border-primary">-</button>
                         </div>
                     </div>
                     <div className='flex justify-between gap-2'>
