@@ -9,6 +9,7 @@ import useAuth from '../../../hooks/useAuth';
 import useAdvertisementsBySeller from '../../../hooks/useAdvertisementsBySeller';
 import { FaCircle, FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 const imageHostingKey = import.meta.env.VITE_image_hosting_key;
@@ -48,7 +49,8 @@ const AskForAdvertisement = () => {
             description: data.description,
             image: image,
             status: "Pending",
-            email: user?.email
+            email: user?.email,
+            isActivated: false
         }
 
         axiosSecure.post('/advertisements', advertiseInfo)
@@ -58,7 +60,7 @@ const AskForAdvertisement = () => {
                     refetch();
                     navigate('/dashboard/advertisement')
                 }
-                
+
             })
             .catch(err => {
                 toast.error("Something went wrong! Please try again.")
@@ -68,6 +70,69 @@ const AskForAdvertisement = () => {
         console.log(advertiseInfo);
 
     }
+
+    const handleDelete = (advertise) => {
+        console.log(advertise);
+        Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axiosSecure.delete(`/advertisements/${advertise._id}`)
+                        .then(res => {
+                            console.log(res);
+                            if (res.data.deletedCount > 0) {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Advertise has been deleted.",
+                                    icon: "success"
+                                });
+                                refetch();
+
+                            }
+    
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Something went wrong! Try again.",
+                                icon: "error"
+                            });
+                        })
+
+                        // delete advertise from postedAdvertises
+                        
+                        axiosSecure.delete(`/postedAdvertisements/${advertise._id}`)
+                        .then(res => {
+                            console.log(res);
+                            if (res.data.deletedCount > 0) {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Advertise has been deleted from Advertise banner.",
+                                    icon: "success"
+                                });
+                                refetch();
+
+                            }
+    
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Something went wrong! Try again.",
+                                icon: "error"
+                            });
+                        })
+                }
+            });
+        }
 
     return (
         <div>
@@ -96,18 +161,18 @@ const AskForAdvertisement = () => {
                                     <td>{index + 1}</td>
                                     <td><img className='w-8 h-8 object-cover' src={advertise.image} alt="medicine" /></td>
                                     <td>
-                                        {advertise.name} <br /> <span className='text-xs'>{advertise.name}</span>
+                                        {advertise.name}
                                     </td>
-                                  
+
                                     <td>{advertise.description}</td>
                                     <td >
-                                                                            <div className='flex items-center gap-1'>
-                                                                            {advertise.status === "Active" && <span className=' text-sm text-green-500'><FaCircle></FaCircle></span>}{advertise.status}
-                                                                                </div> </td>
+                                        <div className='flex items-center gap-1'>
+                                            {advertise.status === "Active" && <span className=' text-sm text-green-500'><FaCircle></FaCircle></span>}{advertise.status}
+                                        </div> </td>
                                     <td>
                                         <div className='flex gap-3 items-center text-lg'>
-                                            <button className='btn btn-sm text-primary hover:text-secondary'><FaEdit></FaEdit></button>
-                                            <button onClick={() => handleDelete(medicine)} className='btn btn-sm text-red-500 hover:text-red-400'><FaTrashAlt></FaTrashAlt></button>
+
+                                            <button onClick={() => handleDelete(advertise)} className='btn btn-sm text-red-500 hover:text-red-400'><FaTrashAlt></FaTrashAlt></button>
                                         </div>
                                     </td>
                                 </tr>)

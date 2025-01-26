@@ -16,8 +16,6 @@ const useCartTotalPrice = () => {
             return res.data[0].grandTotal;
         }
     })
-
-
     return [totalPrice, totalPriceRefetch]
 };
 

@@ -13,7 +13,6 @@ const Cart = () => {
     const [carts, refetch] = useCart()
     const {user} = useAuth()
     const axiosSecure = useAxiosSecure()
-    // const totalPrice = carts.reduce((total, item) => total + item.price, 0 )
     const [totalPrice, totalPriceRefetch] = useCartTotalPrice()
 
         const handleDeleteAll = (product) => {
@@ -32,13 +31,15 @@ const Cart = () => {
                         .then(res => {
                             console.log(res);
                             if (res.data.deletedCount > 0) {
-                                refetch()
+                                console.log(totalPriceRefetch);
+                                totalPriceRefetch()
                                 Swal.fire({
                                     title: "Deleted!",
                                     text: "All cart products has been deleted.",
                                     icon: "success"
                                 });
-                                refetch();
+                                refetch()
+                                
                             }
     
                         })
