@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "title": "Take Healthy Food, Live with Healthy",
+        "description": "Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.",
+        "image": "https://i.ibb.co.com/dcLzzv0/image.png"
+    },
+    {
+        "id": 2,
+        "title": "Stay Fit, Stay Active",
+        "description": "Discover easy ways to incorporate exercise into your daily routine and enjoy the benefits of an active lifestyle.",
+        "image": "https://i.ibb.co.com/F3wtT5s/image.png"
+    },
+    {
+        "id": 3,
+        "title": "Boost Your Immunity Naturally",
+        "description": "Learn how to strengthen your immune system with a balanced diet, adequate sleep, and regular exercise.",
+        "image": "https://i.ibb.co.com/3sTP5MR/image.png"
+    },
+    {
+        "id": 4,
+        "title": "Healthy Mind, Healthy Life",
+        "description": "Explore mindfulness techniques, stress management tips, and mental health practices for overall wellness.",
+        "image": "https://i.ibb.co.com/vCWGFvv/image.png"
+    },
+    {
+        "id": 5,
+        "title": "Stay Hydrated for Optimal Health",
+        "description": "Understand the role of water in your body and discover tips for staying hydrated throughout the day.",
+        "image": "https://i.ibb.co.com/YTcXNGh/image.png"
+    },
+    {
+        "id": 6,
+        "title": "The Role of Sleep in Health",
+        "description": "Learn why quality sleep is essential for health and how to create a sleep-friendly environment.",
+        "image": "https://i.ibb.co.com/vXFbZ1S/image.png"
+    },
+    {
+        "id": 7,
+        "title": "Power Foods for a Healthy Body",
+        "description": "Discover the top superfoods and how they can help improve your energy, digestion, and overall health.",
+        "image": "https://i.ibb.co.com/yYcMZgS/image.png"
+    },
+    {
+        "id": 8,
+        "title": "The Benefits of Regular Health Checkups",
+        "description": "Learn why regular health screenings are important and how they can help prevent serious illnesses.",
+        "image": "https://i.ibb.co.com/Km5dqyC/image.png"
+    }
+]

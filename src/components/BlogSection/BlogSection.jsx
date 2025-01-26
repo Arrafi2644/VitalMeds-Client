@@ -1,6 +1,6 @@
 
 import SectionHeading from '../SectionHeading/SectionHeading';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -12,6 +12,16 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
 const BlogSection = () => {
+
+    const [blogs, setBlogs] = useState([])
+
+    useEffect(()=>{
+        fetch('blogs.json')
+        .then(res => res.json())
+        .then(data => setBlogs(data))
+    })
+
+    console.log(blogs);
   
     return (
         <div className='my-12 md:my-16'>
@@ -46,91 +56,22 @@ const BlogSection = () => {
                         },
                       }}
                 >
-                    <SwiperSlide >
-                       <div className='p-4 border rounded-md'>
-                       <img src="https://i.ibb.co.com/ScC3rgR/healthy-5506822-1280.jpg" alt="" />
-                        <div className=''>
-                            <h2 className='text-lg font-bold text-[#2f7662]'>Take healthy food, live with healthy</h2>
-                            <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
-                        
-                        </div>
-                       </div>
-                    </SwiperSlide>
 
-                    <SwiperSlide >
-                       <div className='p-4 border rounded-md'>
-                       <img src="https://i.ibb.co.com/ScC3rgR/healthy-5506822-1280.jpg" alt="" />
-                        <div className=''>
-                            <h2 className='text-lg font-bold text-[#2f7662]'>Take healthy food, live with healthy</h2>
-                            <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
-                        
-                        </div>
-                       </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide >
-                       <div className='p-4 border rounded-md'>
-                       <img src="https://i.ibb.co.com/ScC3rgR/healthy-5506822-1280.jpg" alt="" />
-                        <div className=''>
-                            <h2 className='text-lg font-bold text-[#2f7662]'>Take healthy food, live with healthy</h2>
-                            <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
-                        
-                        </div>
-                       </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide >
-                       <div className='p-4 border rounded-md'>
-                       <img src="https://i.ibb.co.com/ScC3rgR/healthy-5506822-1280.jpg" alt="" />
-                        <div className=''>
-                            <h2 className='text-lg font-bold text-[#2f7662]'>Take healthy food, live with healthy</h2>
-                            <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
-                        
-                        </div>
-                       </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide >
-                       <div className='p-4 border rounded-md'>
-                       <img src="https://i.ibb.co.com/ScC3rgR/healthy-5506822-1280.jpg" alt="" />
-                        <div className=''>
-                            <h2 className='text-lg font-bold text-[#2f7662]'>Take healthy food, live with healthy</h2>
-                            <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
-                        
-                        </div>
-                       </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide >
-                       <div className='p-4 border rounded-md'>
-                       <img src="https://i.ibb.co.com/ScC3rgR/healthy-5506822-1280.jpg" alt="" />
-                        <div className=''>
-                            <h2 className='text-lg font-bold text-[#2f7662]'>Take healthy food, live with healthy</h2>
-                            <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
-                        
-                        </div>
-                       </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide >
-                       <div className='p-4 border rounded-md'>
-                       <img src="https://i.ibb.co.com/ScC3rgR/healthy-5506822-1280.jpg" alt="" />
-                        <div className=''>
-                            <h2 className='text-lg font-bold text-[#2f7662]'>Take healthy food, live with healthy</h2>
-                            <p>Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.</p>
-                        
-                        </div>
-                       </div>
-                    </SwiperSlide>
+                    {
+                        blogs.map(blog =>  <SwiperSlide >
+                            <div className='p-4 border rounded-md w-full min-h-[400px]'>
+                            <img className='w-full h-40 object-cover mb-4' src={blog.image} alt="" />
+                             <div className=''>
+                                 <h2 className='text-lg font-bold text-[#2f7662]'>{blog.title}</h2>
+                                 <p>{blog.description}</p>                   
+                             </div>
+                            </div>
+                         </SwiperSlide>
+                         )
+                    }
+                   
                 </Swiper>
             </>
-
-             <div>
-                <div>
-                    <img src="" alt="" />
-                </div>
-             </div>
-            
         </div>
     );
 };
