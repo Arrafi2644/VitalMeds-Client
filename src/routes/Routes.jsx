@@ -19,6 +19,7 @@ import AdminRoute from "./AdminRoute";
 import Checkout from "../pages/Dashboard/Checkout/Checkout";
 import Invoice from "../pages/Dashboard/Invoice/Invoice";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import ManagePayments from "../pages/Dashboard/ManagePayments/ManagePayments";
 
 
 const router = createBrowserRouter([
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
               path: 'manageAdvertise',
               element: <PrivateRoute><AdminRoute><ManageAdvertise></ManageAdvertise></AdminRoute></PrivateRoute>
             },
+            {
+              path: 'managePayment',
+              element: <PrivateRoute><ManagePayments></ManagePayments></PrivateRoute>
+            },
             
             // seller 
             {
@@ -76,6 +81,7 @@ const router = createBrowserRouter([
               path: 'userHome',
               element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
             },
+          
            
           ]
         },

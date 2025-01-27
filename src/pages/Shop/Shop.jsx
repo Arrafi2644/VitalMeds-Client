@@ -63,12 +63,12 @@ const Shop = () => {
     }
 
 
-
-
     return (
         <div className='mx-4 my-12 lg:my-16'>
-            <div>
+            <div className='flex flex-col md:flex-row gap-6 justify-between items-center'>
                 <h2 className='text-3xl font-bold'>Total Medicine({location.state ? medicinesByCategory.length : medicines.length})</h2>
+                
+
             </div>
             <div className='mt-6'>
                 <div className="overflow-x-auto">

@@ -18,26 +18,17 @@ const Dashboard = () => {
     const [isSeller, sellerPending] = useSeller();
     // const [isUser, setIsUser] = useState(false);
 
-    // if (!isAdmin && !isSeller) {
-    //     setIsUser(true)
-    // }
-
     console.log("Admin:", isAdmin);
     console.log("Seller: ", isSeller);
-    // console.log("User: ", isUser);
-
-    // let isAdmin = true;
-    // let isSeller = false;
-    // let isUser = false;
 
 
     const adminLinks = <>
         <li><Link to='/dashboard/adminHome' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><FaHome></FaHome></span> Admin Home</Link></li>
         <li><Link to='/dashboard/manageUsers' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><FaUser></FaUser></span> Manage Users</Link></li>
         <li><Link to='/dashboard/manageCategory' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><BiCategory></BiCategory></span> Manage Category</Link></li>
-        <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span> <MdOutlinePayment></MdOutlinePayment></span> Payment Management</Link></li>
+        <li><Link to='/dashboard/managePayment' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span> <MdOutlinePayment></MdOutlinePayment></span> Payment Management</Link></li>
         <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><TbReportSearch></TbReportSearch></span> Sales Report</Link></li>
-        <li><Link  to='/dashboard/manageAdvertise' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><RiAdvertisementLine></RiAdvertisementLine></span> Manage Banner Advertise</Link></li>
+        <li><Link to='/dashboard/manageAdvertise' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><RiAdvertisementLine></RiAdvertisementLine></span> Manage Banner Advertise</Link></li>
     </>
 
     const sellerLinks = <>
@@ -45,7 +36,7 @@ const Dashboard = () => {
         <li><Link to='/dashboard/manageMedicine' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><GiMedicines></GiMedicines></span> Manage Medicines</Link></li>
         <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
         <li><Link to='/dashboard/advertisement' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><RiAdvertisementLine></RiAdvertisementLine></span> Ask For Advertise</Link></li>
-    </>  
+    </>
     const userLinks = <>
         <li><Link to='/dashboard/userHome' className='flex items-center gap-2 py-1 px-4 hover:bg-white '><FaHome></FaHome>User Home</Link></li>
         <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
@@ -56,10 +47,9 @@ const Dashboard = () => {
         <div className='container mx-auto grid grid-cols-1 lg:grid-cols-5'>
             <div className='bg-background min-h-screen hidden lg:block pt-4'>
                 <ul className='text-sm '>
-                 
-                  {
-                    isAdmin ? adminLinks : isSeller ? sellerLinks : userLinks
-                  }
+                    {
+                        isAdmin ? adminLinks : isSeller ? sellerLinks : userLinks
+                    }
 
 
                 </ul>
@@ -76,8 +66,8 @@ const Dashboard = () => {
                     <ul className="menu bg-background text-base-content min-h-full w-72">
                         {/* Sidebar content here */}
                         {
-                    isAdmin ? adminLinks : isSeller ? sellerLinks : userLinks
-                  }
+                            isAdmin ? adminLinks : isSeller ? sellerLinks : userLinks
+                        }
                     </ul>
                 </div>
             </div>
