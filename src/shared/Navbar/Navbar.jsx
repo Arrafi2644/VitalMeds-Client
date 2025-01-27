@@ -13,16 +13,7 @@ const Navbar = () => {
   const { user, logoutUser} = useAuth()
   const [carts] = useCart();
   console.log(user);
-
-
-  // const [isAdmin] = useAdmin()
-  // const [isSeller] = useSeller()
-
-  // const [redirectLink, setRedirectLink] = useState(isAdmin ? '/dashboard/adminHome' : isSeller ? '/dashboard/sellerHome' : '/dashboard/userHome')
-  // console.log(redirectLink);
-
-  // console.log("admin is ", isAdmin);
-  // console.log("seller is ", isSeller);
+  console.log(carts);
   
   const links = <>
     <li><NavLink to='/'> Home</NavLink></li>
