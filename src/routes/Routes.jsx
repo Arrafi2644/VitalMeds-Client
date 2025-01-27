@@ -18,12 +18,14 @@ import ManageAdvertise from "../pages/Dashboard/ManageAdvertise/ManageAdvertise"
 import AdminRoute from "./AdminRoute";
 import Checkout from "../pages/Dashboard/Checkout/Checkout";
 import Invoice from "../pages/Dashboard/Invoice/Invoice";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout></MainLayout>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
           path: '/',
