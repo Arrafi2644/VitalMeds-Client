@@ -3,10 +3,23 @@ import usePayments from '../../../hooks/usePayments';
 import { Helmet } from 'react-helmet-async';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
+import useAuth from '../../../hooks/useAuth';
 
 const ManagePayments = () => {
     const axiosSecure = useAxiosSecure()
-    const [payments, refetch] = usePayments()
+    const {user} = useAuth()
+    // const [payments, refetch] = usePayments()
+
+    const {data: payments = [], refetch} = useQuery({
+        queryKey: [ user?.email,'payments'],
+        queryFn: async()=>{
+            const res = await axiosSecure.get(`/payments/admin/${user?.email}`)
+            return res.data
+        }
+    })
+
+
     console.log(payments);
 
     const handlePayment = (payment) => {

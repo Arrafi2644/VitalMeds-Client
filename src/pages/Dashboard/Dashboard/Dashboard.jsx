@@ -39,7 +39,7 @@ const Dashboard = () => {
     </>
     const userLinks = <>
         <li><Link to='/dashboard/userHome' className='flex items-center gap-2 py-1 px-4 hover:bg-white '><FaHome></FaHome>User Home</Link></li>
-        <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
+        <li><Link to='/dashboard/paymentHistory' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
     </>
 
     return (

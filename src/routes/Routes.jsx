@@ -20,6 +20,7 @@ import Checkout from "../pages/Dashboard/Checkout/Checkout";
 import Invoice from "../pages/Dashboard/Invoice/Invoice";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import ManagePayments from "../pages/Dashboard/ManagePayments/ManagePayments";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 
 
 const router = createBrowserRouter([
@@ -81,7 +82,10 @@ const router = createBrowserRouter([
               path: 'userHome',
               element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
             },
-          
+            {
+              path: 'paymentHistory',
+              element: <PaymentHistory></PaymentHistory>
+            }
            
           ]
         },

@@ -116,7 +116,6 @@ const CartCard = ({ cart }) => {
                         </div>
                     </div>
                     <div className='flex justify-between gap-2'>
-                        <button className="btn btn-sm">Place order</button>
                         <button onClick={()=>handleDelete(cart)} className="btn btn-sm flex gap-2 items-center"><FaTrashAlt></FaTrashAlt></button>
                     </div>
                 </div>
