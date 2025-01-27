@@ -21,6 +21,7 @@ import Invoice from "../pages/Dashboard/Invoice/Invoice";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import ManagePayments from "../pages/Dashboard/ManagePayments/ManagePayments";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import SalesReport from "../pages/Dashboard/SalesReport/SalesReport";
 
 
 const router = createBrowserRouter([
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
             {
               path: 'managePayment',
               element: <PrivateRoute><ManagePayments></ManagePayments></PrivateRoute>
+            },
+            {
+              path: 'salesReport',
+              element: <PrivateRoute><SalesReport></SalesReport></PrivateRoute>
             },
             
             // seller 

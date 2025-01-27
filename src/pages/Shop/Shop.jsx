@@ -45,6 +45,7 @@ const Shop = () => {
             massUnit: medicine.massUnit,
             image: medicine.image,
             userEmail: user.email,
+            sellerEmail: medicine.sellerEmail,
             quantity: 1
         }
 

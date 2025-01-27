@@ -27,7 +27,7 @@ const Dashboard = () => {
         <li><Link to='/dashboard/manageUsers' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><FaUser></FaUser></span> Manage Users</Link></li>
         <li><Link to='/dashboard/manageCategory' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><BiCategory></BiCategory></span> Manage Category</Link></li>
         <li><Link to='/dashboard/managePayment' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span> <MdOutlinePayment></MdOutlinePayment></span> Payment Management</Link></li>
-        <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><TbReportSearch></TbReportSearch></span> Sales Report</Link></li>
+        <li><Link to='/dashboard/salesReport' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><TbReportSearch></TbReportSearch></span> Sales Report</Link></li>
         <li><Link to='/dashboard/manageAdvertise' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><RiAdvertisementLine></RiAdvertisementLine></span> Manage Banner Advertise</Link></li>
     </>
 

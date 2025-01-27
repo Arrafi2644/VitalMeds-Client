@@ -37,6 +37,7 @@ const handleShowDetails = (id) => {
   document.getElementById('my_modal_3').showModal()
   const showMedicine = medicines.find(medicine => medicine._id === id)
   setShowDetails(showMedicine)
+  console.log( "Show medicine ", showMedicine);
 }
 
 const handleAddToCart = (medicine) => {
@@ -54,7 +55,9 @@ const handleAddToCart = (medicine) => {
       power: parseFloat(medicine.power),
       massUnit: medicine.massUnit,
       image: medicine.image,
-      userEmail: user.email
+      userEmail: user.email,
+      sellerEmail: medicine.sellerEmail,
+      quantity: 1
   }
 
   axiosSecure.post('/carts', medicineInfo)
