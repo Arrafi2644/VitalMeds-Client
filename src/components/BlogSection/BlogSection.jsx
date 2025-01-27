@@ -19,7 +19,7 @@ const BlogSection = () => {
         fetch('blogs.json')
         .then(res => res.json())
         .then(data => setBlogs(data))
-    })
+    }, [])
 
     console.log(blogs);
   
@@ -58,7 +58,7 @@ const BlogSection = () => {
                 >
 
                     {
-                        blogs.map(blog =>  <SwiperSlide >
+                        blogs.map(blog =>  <SwiperSlide key={blog.id}>
                             <div className='p-4 border rounded-md w-full min-h-[400px]'>
                             <img className='w-full h-40 object-cover mb-4' src={blog.image} alt="" />
                              <div className=''>

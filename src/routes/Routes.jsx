@@ -17,6 +17,7 @@ import AskForAdvertisement from "../pages/Dashboard/AskForAdvertisement/AskForAd
 import ManageAdvertise from "../pages/Dashboard/ManageAdvertise/ManageAdvertise";
 import AdminRoute from "./AdminRoute";
 import Checkout from "../pages/Dashboard/Checkout/Checkout";
+import Invoice from "../pages/Dashboard/Invoice/Invoice";
 
 
 const router = createBrowserRouter([
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
         {
           path: 'checkout',
           element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
+        },
+        {
+          path: 'invoice',
+          element: <PrivateRoute><Invoice></Invoice></PrivateRoute>
         },
         {
           path: 'login',
