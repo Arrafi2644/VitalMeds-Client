@@ -94,19 +94,15 @@ const Navbar = () => {
                   (user && isSeller) && <li className='border-b'><Link to='/dashboard/sellerHome'> Dashboard</Link></li>
                 }
 
-{
+                {
                   (user && !isSeller && !isAdmin) && <li className='border-b'><Link to='/dashboard/userHome'> Dashboard</Link></li>
                 }
-
-
-                {/* dashboard  */}
 
                 <li><button onClick={handleLogout}>Logout</button></li>
               </ul>
             </div> :
               <Link to='/login'><button className="btn bg-primary hover:bg-secondary">Join Us</button></Link>
           }
-
 
         </div>
       </div>
