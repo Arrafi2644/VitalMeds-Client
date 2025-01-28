@@ -10,11 +10,15 @@ import useSeller from '../../hooks/useSeller';
 import useCart from '../../hooks/useCart';
 
 const Navbar = () => {
-  const { user, logoutUser} = useAuth()
+  const { user, logoutUser } = useAuth()
   const [carts] = useCart();
-  console.log(user);
-  console.log(carts);
-  
+  const [isAdmin] = useAdmin()
+  const [isSeller] = useSeller()
+  // console.log(user);
+  // console.log(carts);
+  console.log("is admin", isAdmin);
+  console.log("is seller", isSeller);
+
   const links = <>
     <li><NavLink to='/'> Home</NavLink></li>
     <li><NavLink to='/shop'> Shop</NavLink></li>
@@ -80,7 +84,23 @@ const Navbar = () => {
 
               <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-md z-[1] w-52 p-2 shadow mt-2">
                 <li className='border-b'><Link> Update Profile</Link></li>
-                <li className='border-b'><Link to='/dashboard'> Dashboard</Link></li>
+
+                {/* dashboard  */}
+                {
+                  (user && isAdmin) && <li className='border-b'><Link to='/dashboard/adminHome'> Dashboard</Link></li>
+                }
+
+                {
+                  (user && isSeller) && <li className='border-b'><Link to='/dashboard/sellerHome'> Dashboard</Link></li>
+                }
+
+{
+                  (user && !isSeller && !isAdmin) && <li className='border-b'><Link to='/dashboard/userHome'> Dashboard</Link></li>
+                }
+
+
+                {/* dashboard  */}
+
                 <li><button onClick={handleLogout}>Logout</button></li>
               </ul>
             </div> :
