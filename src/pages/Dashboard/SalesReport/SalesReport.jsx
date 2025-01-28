@@ -22,7 +22,7 @@ const SalesReport = () => {
     // console.log(payments);
 
     return (
-        <div className='my-8'>
+        <div className=''>
             <div className='flex gap-2 flex-col md:flex-row justify-between'>
                 <h2 className='text-3xl font-bold '>Sales Report: {payments.length}</h2>
 
