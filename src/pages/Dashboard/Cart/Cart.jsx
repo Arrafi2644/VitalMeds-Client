@@ -61,7 +61,10 @@ const Cart = () => {
                 <h2 className='text-3xl font-bold'>Total cart: {carts.length}</h2>
                 <div className='flex items-center gap-2'>
                 <h3>Total Price: {totalPrice}</h3>
-                <Link to='/checkout' className="btn bg-primary hover:bg-secondary">Checkout</Link>
+                {carts.length > 0 && <Link to='/checkout' className="btn bg-primary hover:bg-secondary">Checkout</Link>}
+                {carts.length < 1 && <button disabled className="btn bg-primary hover:bg-secondary">Checkout</button>}
+            
+
                 <button onClick={handleDeleteAll} className="btn flex items-center gap-1 bg-white btn-outline hover:bg-red-500">Clear All <FaTrashAlt></FaTrashAlt></button>
                 </div>
             </div>

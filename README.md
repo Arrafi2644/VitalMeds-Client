@@ -1,71 +1,80 @@
-# VitalMeds
 
-## Short Description
-**VitalMeds** is a modern multi-vendor e-commerce platform specializing in medicines and healthcare products. Built with the MERN stack, it offers a seamless experience for buyers, sellers, and admins. Users can browse categories, manage carts, and securely checkout using Stripe, while sellers can list products and track sales. Admins oversee users, payments, and reports with advanced tools. Featuring responsive design, real-time updates, and robust authentication, VitalMeds ensures a secure and efficient platform for healthcare shopping.
+# VitalMeds - Multi-Vendor Medicine Selling E-commerce Platform
 
----
-
-## Website Name
-**VitalMeds**
+**VitalMeds** is a feature-rich multi-vendor e-commerce platform designed for buying and selling medicines and healthcare products. Built using the MERN stack, the platform provides a seamless user experience, ensuring efficient management for admins, sellers, and users alike.
 
 ### Admin Access:
 - **Username:** fayez@gmail.com  
 - **Password:** Fayez12
 
+### Seller Access:
+- **Username:** bil@gates.com  
+- **Password:** Bilgates12
+
 ### Live Site URL:
  ### https://vitalmeds-2834f.web.app
----
 
-## Features
+## 🌟 Features
 
-1. **Multi-Role System**:
-   - Users can register as Buyers or Sellers.
-   - Admins have advanced control over users, categories, and transactions.
+1. **Home Page**
+   - Navbar with logo, website name, navigation links, cart icon, language dropdown, and user profile or Join Us button.
+   - Slider showcasing advertised products (managed by admin).
+   - Category section with clickable cards displaying medicine categories.
+   - Discounted product section featuring a draggable multiple-card slider.
+   - A blogs section.
+   - A state section.
+   - Responsive footer.
 
-2. **User-Friendly Interface**:
-   - Intuitive and responsive design optimized for mobile, tablet, and desktop views.
-   - Dynamic dashboards tailored to the role (Admin, Seller, User).
+2. **Authentication**
+   - User registration with roles (user/seller).
+   - Social login (Google, GitHub) with default role assignment as user.
+   - Password-protected login and authentication.
 
-3. **Homepage**:
-   - Professional Navbar with language support and user-specific options.
-   - Interactive Slider showcasing advertised medicines.
-   - Category cards with medicine count and direct navigation to category-specific pages.
-   - Discounted product carousel using Swiper.js for easy navigation.
-   - Additional informative sections like health tips or featured sellers.
+3. **Shop Page**
+   - View all medicines in a tabular format.
+   - "Eye" button to view detailed information in a modal.
+   - "Select" button to add medicine to the cart.
 
-4. **Shop Functionality**:
-   - Comprehensive listing of medicines with "View Details" (modal) and "Add to Cart" options.
-   - Filtering, sorting, and searching capabilities.
+4. **Category Details Medicine Page**
+   - View medicines filtered by category.
+   - Modal for detailed medicine information.
+   - Add to cart functionality.
 
-5. **Secure User Authentication**:
-   - Email/password authentication with social login support (Google).
-   - Role-based navigation and private routes protected with JWT.
+5. **Cart Management**
+   - View selected medicines with details.
+   - Adjust quantity, remove items, or clear cart.
+   - Checkout with Stripe payment integration.
 
-6. **Admin Panel**:
-   - Manage Users: Promote or demote roles.
-   - Manage Categories: Add, update, or delete categories via modal forms.
-   - Banner Management: Control advertised products on the homepage slider.
+6. **Invoice Page**
+   - Displays user and purchase information with the option to print/download as PDF.
 
-7. **Seller Dashboard**:
-   - Add, edit, and manage medicine listings with detailed fields.
-   - Request product advertisement for the homepage slider.
+7. **Admin Dashboard**
+   - Manage users, categories, banners, and payments.
+   <!-- - View and download sales reports with filters and data export options. -->
+   - Add/remove products to/from the homepage slider.
 
-8. **User Dashboard**:
+8. **Seller Dashboard**
+   - Manage medicines with detailed forms for adding/editing.
    - View payment history.
+   - Request advertisement for specific products.
 
-10. **Performance Features**:
-    - CRUD operations with SweetAlert/Toast notifications.
-    - Responsive dashboards and layouts for all user types.
+9. **User Dashboard**
+   - View payment history with transaction details.
 
----
+10. **Advanced Features**
+    <!-- - Pagination, sorting, and search functionality for all medicine tables. -->
+    - Secure API calls with JWT-based token storage in local storage.
+    <!-- - Sales report export in multiple formats (PDF, Excel, CSV). -->
+    <!-- - Date range filters for sales reports. -->
+    - Integrated notifications using Sweet Alert for CRUD operations and authentication.
+    - Responsive design for mobile, tablet, and desktop.
 
-## Technologies Used
-- **Frontend:** React.js, React Router, Tailwind CSS, DaisyUI, React Helmet.
-- **Backend:** Node.js, Express.js.
-- **Database:** MongoDB (Atlas).
-- **Authentication:** Firebase, JWT.
-- **State Management:** React Query (TanStack).
-- **Utilities:** React Hook Form, Swiper.js.
-
+## 🛠️ Technology Stack
+- **Frontend**: React.js, Tailwind CSS, React Router, React Hook Form, TanStack Query, React Helmet, SwiperJS
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Authentication**: Firebase, JSON Web Tokens (JWT)
+- **Payment**: Stripe
+- **Version Control**: Git, GitHub
 
 
