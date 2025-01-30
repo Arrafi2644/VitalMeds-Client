@@ -6,6 +6,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 import useAuth from "../../hooks/useAuth";
 import useCartTotalPrice from "../../hooks/useCartTotalPrice";
+import toast from "react-hot-toast";
 
 
 const CheckoutForm = () => {
@@ -21,6 +22,7 @@ const CheckoutForm = () => {
     const [totalPrice, totalPriceRefetch] = useCartTotalPrice()
 
     console.log(user);
+    console.log(cart);
 
     useEffect(() => {
         if (totalPrice > 0) {
@@ -91,9 +93,11 @@ const CheckoutForm = () => {
                     cartIds: cart.map(item => item._id),
                     status: 'pending',
                     sellersEmail:cart.map(item => item.sellerEmail),
-                    medicineName: cart.map(item => item.name)
+                    medicineName: cart.map(item => item.name),
+                    products: cart
                 }
 
+                console.log(cart);
 
 
                 const res = await axiosSecure.post('/payments', payment);
@@ -107,9 +111,15 @@ const CheckoutForm = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    totalPriceRefetch()
                     navigate('/invoice', {state: payment})
                 }
 
+                const salesProductsRes = await axiosSecure.post('/sales', cart)
+                console.log("sales products are ", salesProductsRes.data);
+                if(salesProductsRes?.data?.insertedId){
+                    toast.success("Sales products added to sales list")
+                }
             }
         }
 

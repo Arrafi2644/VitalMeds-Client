@@ -60,7 +60,7 @@ const Cart = () => {
             <div className='flex justify-between gap-2 flex-col md:flex-row'>
                 <h2 className='text-3xl font-bold'>Total cart: {carts.length}</h2>
                 <div className='flex items-center gap-2'>
-                <h3>Total Price: {totalPrice}</h3>
+                <h3 className='text-xl font-bold'>Total Price: {totalPrice}</h3>
                 {carts.length > 0 && <Link to='/checkout' className="btn bg-primary hover:bg-secondary">Checkout</Link>}
                 {carts.length < 1 && <button disabled className="btn bg-primary hover:bg-secondary">Checkout</button>}
             

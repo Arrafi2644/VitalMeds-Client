@@ -23,7 +23,6 @@ const PaymentHistory = () => {
                                 <th>Transaction Id</th>
                                 <th>Data & Time</th>
                                 <th>Payment status</th>
-
                             </tr>
                         </thead>
                         <tbody>

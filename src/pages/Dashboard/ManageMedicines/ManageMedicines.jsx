@@ -62,6 +62,7 @@ const ManageMedicines = () => {
             .then(res => {
                 if (res.data.insertedId) {
                     toast.success("Medicine added successfully!")
+                    refetch()
                 }
             })
             .catch(err => {
@@ -114,7 +115,7 @@ const ManageMedicines = () => {
     console.log(medicines);
 
     return (
-        <div className='my-8'>
+        <div className=''>
             <div className='flex gap-2 flex-col md:flex-row justify-between'>
                 <h2 className='text-3xl font-bold '>Total Medicine: {medicines.length}</h2>
                 <button onClick={() => document.getElementById('my_modal_4').showModal()} className="btn bg-primary hover:bg-secondary"><span className='text-xl '><IoIosAddCircle></IoIosAddCircle></span>Add Medicine</button>
@@ -178,7 +179,7 @@ const ManageMedicines = () => {
                             <label className="label">
                                 <span className="label-text">Medicine Name</span>
                             </label>
-                            <input name='name' {...register("categoryName", { required: true })} type="text" placeholder="Medicine name" className="input input-bordered" />
+                            <input name='name' {...register("name", { required: true })} type="text" placeholder="Medicine name" className="input input-bordered" />
                             {errors.name && <span className='text-red-500 mt-1 text-sm'>Name is required</span>}
                         </div>
                         <div className="form-control">
@@ -219,6 +220,7 @@ const ManageMedicines = () => {
                                 <option value="Syrup">Syrup</option>
                                 <option value="Cream">Cream</option>
                                 <option value="Powder">Powder</option>
+                                <option value="Injection">Injection</option>
                             </select>
                             {errors.category && <span className="text-red-500 mt-1 text-sm">Category is required</span>}
                         </div>

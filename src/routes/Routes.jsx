@@ -22,6 +22,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import ManagePayments from "../pages/Dashboard/ManagePayments/ManagePayments";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import SalesReport from "../pages/Dashboard/SalesReport/SalesReport";
+import SellerPaymentHistory from "../pages/Dashboard/SellerPaymentHistory/SellerPaymentHistory";
 
 
 const router = createBrowserRouter([
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
             {
               path: 'advertisement',
               element: <AskForAdvertisement></AskForAdvertisement>
+            },
+            {
+              path: 'sellerPaymentHistory',
+              element: <PrivateRoute><SellerPaymentHistory></SellerPaymentHistory></PrivateRoute>
             },
             
             // user 

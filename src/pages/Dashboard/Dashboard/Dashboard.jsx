@@ -34,7 +34,7 @@ const Dashboard = () => {
     const sellerLinks = <>
         <li><Link to='/dashboard/sellerHome' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><FaHome></FaHome></span>Seller Home</Link></li>
         <li><Link to='/dashboard/manageMedicine' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><GiMedicines></GiMedicines></span> Manage Medicines</Link></li>
-        <li><Link className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
+        <li><Link to='/dashboard/sellerPaymentHistory' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
         <li><Link to='/dashboard/advertisement' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><RiAdvertisementLine></RiAdvertisementLine></span> Ask For Advertise</Link></li>
     </>
     const userLinks = <>
