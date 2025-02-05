@@ -77,4 +77,33 @@
 - **Payment**: Stripe
 - **Version Control**: Git, GitHub
 
+## 🛠 Installation
+
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/Arrafi2644/VitalMeds-Client.git
+   cd vitalmeds-client
+
+### Install dependencies:
+ npm install
+### Set up environment variables:
+Create a .env file in the root directory and add the following:
+
+VITE_apiKey=your_api_key
+VITE_authDomain=your_auth_domain
+VITE_projectId=your_project_id
+VITE_storageBucket=your_storage_bucket
+VITE_messagingSenderId=your_messaging_sender_id
+VITE_appId=your_app_id
+VITE_image_hosting_key=your_image_hosting_key
+VITE_Payment_Gateway_PK=your_payment_gateway_key
+
+#### Start the development server:
+npm run dev
+
+#### Build for production (if needed):
+npm run build
+
+#### Preview the production build:
+npm run preview
 
