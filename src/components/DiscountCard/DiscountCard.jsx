@@ -5,7 +5,7 @@ const DiscountCard = ({medicine}) => {
     return (
         <div className='p-4 shadow-md bg-background'>
         <div className='border p-4 rounded-md' >
-        <img src={medicine.image} alt="" />
+        <img className='h-48 w-full object-cover' src={medicine.image} alt="" />
         </div>
         <div>
             <h3>{medicine.name}</h3>

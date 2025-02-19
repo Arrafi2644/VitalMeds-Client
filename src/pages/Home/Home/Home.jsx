@@ -5,6 +5,7 @@ import DiscountSection from '../../../components/DiscountSection/DiscountSection
 import BlogSection from '../../../components/BlogSection/BlogSection';
 import StateSection from '../../../components/StateSection/StateSection';
 import { Helmet } from 'react-helmet-async';
+import LatestMedicines from '../../../components/LatestMedicines/LatestMedicines';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
            <Banner></Banner>
            <CategorySection></CategorySection>
            <DiscountSection></DiscountSection>   
+           <LatestMedicines></LatestMedicines>
            <BlogSection></BlogSection>
            <StateSection></StateSection>
            

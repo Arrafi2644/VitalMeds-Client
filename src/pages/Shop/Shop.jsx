@@ -139,11 +139,16 @@ const Shop = () => {
 
                 </div> */}
                 {
-                    medicines.map(medicine => <div onClick={() => handleDetails(medicine)} className='border p-4 rounded-md cursor-pointer relative' key={medicine._id}>
-                        <img className='h-60 object-cover w-full' src={medicine?.image} alt="" />
+                   location.state ? medicinesByCategory.map(medicine => <div onClick={() => handleDetails(medicine)} className='border p-4 rounded-md cursor-pointer relative' key={medicine._id}>
+                   <img className='h-52 object-cover w-full' src={medicine?.image} alt="" />
+                   <p className='font-semibold'>{medicine.name}</p>
+                   <p className='font-semibold flex items-center'><span><TbCurrencyTaka></TbCurrencyTaka></span> {medicine.price}</p>
+                       <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary text-xl absolute top-4 right-4'><FaCartPlus></FaCartPlus></button>
+               </div>) : medicines.map(medicine => <div onClick={() => handleDetails(medicine)} className='border p-4 rounded-md cursor-pointer relative' key={medicine._id}>
+                        <img className='h-52 object-cover w-full' src={medicine?.image} alt="" />
                         <p className='font-semibold'>{medicine.name}</p>
                         <p className='font-semibold flex items-center'><span><TbCurrencyTaka></TbCurrencyTaka></span> {medicine.price}</p>
-                            <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary text-2xl absolute top-4 right-4'><FaCartPlus></FaCartPlus></button>
+                            <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary text-xl absolute top-4 right-4'><FaCartPlus></FaCartPlus></button>
                     </div>
                     )
                 }

@@ -8,6 +8,8 @@ import toast from 'react-hot-toast';
 import useAdmin from '../../hooks/useAdmin';
 import useSeller from '../../hooks/useSeller';
 import useCart from '../../hooks/useCart';
+import useSales from '../../hooks/useSales';
+import useMedicines from '../../hooks/useMedicines';
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth()
@@ -18,6 +20,10 @@ const Navbar = () => {
   // console.log(carts);
   console.log("is admin", isAdmin);
   console.log("is seller", isSeller);
+  // const [sales] = useSales()
+  // console.log( "sales his", sales);
+  const [medicines] = useMedicines()
+  console.log("Medis are ", medicines.slice(-6));
 
   const links = <>
     <li><NavLink to='/'> Home</NavLink></li>
@@ -29,8 +35,10 @@ const Navbar = () => {
     toast.success("Logout successful!")
   }
 
+  
+
   return (
-    <div className='  bg-primary px-4 sticky top-0 left-0 z-20 shadow-xl'>
+    <div className=' bg-primary px-4 sticky top-0 left-0 z-20 shadow-xl'>
       <div className="navbar container mx-auto p-0 py-4 font-medium ">
         <div className="navbar-start">
           <div className="dropdown">
