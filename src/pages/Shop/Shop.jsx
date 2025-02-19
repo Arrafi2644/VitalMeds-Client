@@ -68,13 +68,13 @@ const Shop = () => {
         <div className='mx-4 my-12 lg:my-16'>
             <div className='flex flex-col md:flex-row gap-6 justify-between items-center'>
                 <h2 className='text-3xl font-bold'>Total Medicine({location.state ? medicinesByCategory.length : medicines.length})</h2>
-                
+
 
             </div>
-            <div className='mt-6'>
-                <div className="overflow-x-auto">
+            <div className='mt-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4'>
+                {/* <div className="overflow-x-auto">
                     <table className="table">
-                        {/* head */}
+                       
                         <thead>
                             <tr>
                                 <th>Sl.</th>
@@ -136,7 +136,18 @@ const Shop = () => {
 
                         </tbody>
                     </table>
-                </div>
+
+                </div> */}
+                {
+                    medicines.map(medicine => <div onClick={() => handleDetails(medicine)} className='border p-4 rounded-md cursor-pointer relative' key={medicine._id}>
+                        <img className='h-60 object-cover w-full' src={medicine?.image} alt="" />
+                        <p className='font-semibold'>{medicine.name}</p>
+                        <p className='font-semibold flex items-center'><span><TbCurrencyTaka></TbCurrencyTaka></span> {medicine.price}</p>
+                            <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary text-2xl absolute top-4 right-4'><FaCartPlus></FaCartPlus></button>
+                    </div>
+                    )
+                }
+
             </div>
 
             {/* Modal  */}
