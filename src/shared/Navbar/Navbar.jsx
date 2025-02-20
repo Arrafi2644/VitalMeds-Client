@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, redirect } from 'react-router-dom';
 
-import logo from '../../assets/images/logo/logo5.png'
+import logo from '../../assets/images/logo/logo1.png'
 import { IoCartOutline } from 'react-icons/io5';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
@@ -38,8 +38,8 @@ const Navbar = () => {
   
 
   return (
-    <div className=' bg-primary px-4 sticky top-0 left-0 z-20 shadow-xl'>
-      <div className="navbar container mx-auto p-0 py-4 font-medium ">
+    <div className=' bg-primary text-white px-4 sticky top-0 left-0 z-20 shadow-xl'>
+      <div className="navbar container mx-auto p-0 py-0 font-medium ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn pl-0 btn-ghost lg:hidden">
@@ -70,27 +70,27 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <div className="navbar-end gap-2">
+        <div className="navbar-end gap-2 items-center">
 
           <Link to='/cart' className='flex items-center gap-1'>
-            <span className='text-2xl relative'><IoCartOutline></IoCartOutline> <span className='p-1 bg-primary text-white rounded-lg textarea-xs text-xs absolute -top-3 -right-1'>{carts.length} </span></span>
+            <span className='text-2xl relative'><IoCartOutline></IoCartOutline> <span className='p-1 bg-primary  rounded-lg textarea-xs text-xs absolute -top-3 -right-1'>{carts.length} </span></span>
             <span className="">Cart</span>
           </Link>
 
-          <select className="select select-bordered select-sm">
-            <option defaultValue='english'>Eng</option>
-            <option value='bangla'>Ban</option>
+          <select className="select select-bordered bg-transparent bg-primary border-white select-sm">
+            <option className='bg-primary' defaultValue='english'>Eng</option>
+            <option className='bg-primary' value='bangla'>Ban</option>
           </select>
 
           {
-            user ? <div className="dropdown dropdown-end">
-              <div tabIndex={0} role="button" className="btn border btn-circle avatar">
+            user ? <div className="dropdown dropdown-end bg-primary">
+              <div tabIndex={0} role="button" className="btn min-h-0 h-auto p-0 rounded-full w-auto border btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img referrerPolicy='no-referrer' src={user.photoURL} alt="User" />
                 </div>
               </div>
 
-              <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-md z-[1] w-52 p-2 shadow mt-2">
+              <ul tabIndex={0} className="dropdown-content menu bg-primary rounded-md z-[1] w-52 p-2 shadow mt-2">
                 <li className='border-b'><Link> Update Profile</Link></li>
 
                 {/* dashboard  */}
@@ -109,7 +109,7 @@ const Navbar = () => {
                 <li><button onClick={handleLogout}>Logout</button></li>
               </ul>
             </div> :
-              <Link to='/login'><button className="btn bg-primary hover:bg-secondary">Join Us</button></Link>
+              <Link to='/login'><button className="btn  bg-primary hover:bg-secondary">Join Us</button></Link>
           }
 
         </div>
