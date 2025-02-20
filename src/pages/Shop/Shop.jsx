@@ -148,7 +148,8 @@ const Shop = () => {
                         <img className='h-52 object-cover w-full' src={medicine?.image} alt="" />
                         <p className='font-semibold'>{medicine.name}</p>
                         <p className='font-semibold flex items-center'><span><TbCurrencyTaka></TbCurrencyTaka></span> {medicine.price}</p>
-                            <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary text-xl absolute top-4 right-4'><FaCartPlus></FaCartPlus></button>
+                            <button  onClick={(e) => {
+        e.stopPropagation(); handleAddToCart(medicine)}} className='text-primary hover:text-secondary text-xl absolute top-4 right-4 z-10'><FaCartPlus></FaCartPlus></button>
                     </div>
                     )
                 }
@@ -160,11 +161,11 @@ const Shop = () => {
             {/* You can open the modal using document.getElementById('ID').showModal() method */}
             {/* <button className="btn" onClick={()=>document.getElementById('my_modal_4').showModal()}>open modal</button> */}
             <dialog id="my_modal_3" className="modal">
-                <div className="modal-box">
+                <div className="modal-box ">
 
-                    <div className='flex flex-col md:flex-row gap-6'>
-                        <div className=''>
-                            <img className='w-40 h-40 p-4 border object-cover rounded-md' src={showDetails.image} alt="" />
+                    <div className='flex flex-col md:flex-row gap-6 overflow-x-scroll'>
+                        <div className='w-40 h-40'>
+                            <img className='w-full h-full p-4 border object-cover rounded-md' src={showDetails.image} alt="" />
                         </div>
                         <div>
                             <h3 className='text-xl font-semibold'>{showDetails.name}</h3>
