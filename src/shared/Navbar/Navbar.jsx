@@ -110,7 +110,7 @@ const Navbar = () => {
                 <li><button onClick={handleLogout}>Logout</button></li>
               </ul>
             </div> :
-              <Link to='/login'><button className="btn  bg-primary hover:bg-secondary">Join Us</button></Link>
+              <Link to='/login'><button className="btn btn-sm text-white bg-primary hover:bg-secondary">Join Us</button></Link>
           }
 
         </div>
