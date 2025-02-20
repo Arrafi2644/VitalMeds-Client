@@ -3,48 +3,112 @@
         "id": 1,
         "title": "Take Healthy Food, Live with Healthy",
         "description": "Access a wide range of medicines and health products delivered to your doorstep. Convenience and care, all in one place.",
-        "image": "https://i.ibb.co.com/dcLzzv0/image.png"
+        "image": "https://i.ibb.co.com/dcLzzv0/image.png",
+        "date": "2025-02-20"
     },
     {
         "id": 2,
         "title": "Stay Fit, Stay Active",
         "description": "Discover easy ways to incorporate exercise into your daily routine and enjoy the benefits of an active lifestyle.",
-        "image": "https://i.ibb.co.com/F3wtT5s/image.png"
+        "image": "https://i.ibb.co.com/F3wtT5s/image.png",
+        "date": "2025-02-19"
     },
     {
         "id": 3,
         "title": "Boost Your Immunity Naturally",
         "description": "Learn how to strengthen your immune system with a balanced diet, adequate sleep, and regular exercise.",
-        "image": "https://i.ibb.co.com/3sTP5MR/image.png"
+        "image": "https://i.ibb.co.com/3sTP5MR/image.png",
+        "date": "2025-02-18"
     },
     {
         "id": 4,
         "title": "Healthy Mind, Healthy Life",
         "description": "Explore mindfulness techniques, stress management tips, and mental health practices for overall wellness.",
-        "image": "https://i.ibb.co.com/vCWGFvv/image.png"
+        "image": "https://i.ibb.co.com/vCWGFvv/image.png",
+        "date": "2025-02-17"
     },
     {
         "id": 5,
         "title": "Stay Hydrated for Optimal Health",
         "description": "Understand the role of water in your body and discover tips for staying hydrated throughout the day.",
-        "image": "https://i.ibb.co.com/YTcXNGh/image.png"
+        "image": "https://i.ibb.co.com/YTcXNGh/image.png",
+        "date": "2025-02-16"
     },
     {
         "id": 6,
         "title": "The Role of Sleep in Health",
         "description": "Learn why quality sleep is essential for health and how to create a sleep-friendly environment.",
-        "image": "https://i.ibb.co.com/vXFbZ1S/image.png"
+        "image": "https://i.ibb.co.com/vXFbZ1S/image.png",
+        "date": "2025-02-15"
     },
     {
         "id": 7,
         "title": "Power Foods for a Healthy Body",
         "description": "Discover the top superfoods and how they can help improve your energy, digestion, and overall health.",
-        "image": "https://i.ibb.co.com/yYcMZgS/image.png"
+        "image": "https://i.ibb.co.com/yYcMZgS/image.png",
+        "date": "2025-02-14"
     },
     {
         "id": 8,
         "title": "The Benefits of Regular Health Checkups",
         "description": "Learn why regular health screenings are important and how they can help prevent serious illnesses.",
-        "image": "https://i.ibb.co.com/Km5dqyC/image.png"
+        "image": "https://i.ibb.co.com/Km5dqyC/image.png",
+        "date": "2025-02-13"
+    },
+    {
+        "id": 9,
+        "title": "The Power of Meditation",
+        "description": "Discover how meditation can improve mental clarity, reduce stress, and enhance overall well-being.",
+        "image": "https://i.ibb.co.com/SD0cJp6j/image.png",
+        "date": "2025-02-12"
+    },
+    {
+        "id": 10,
+        "title": "How to Build a Balanced Diet",
+        "description": "Learn the essential components of a balanced diet and how to create meal plans for optimal health.",
+        "image": "https://i.ibb.co.com/zzcSxMm/image.png",
+        "date": "2025-02-11"
+    },
+    {
+        "id": 11,
+        "title": "Mental Health Awareness",
+        "description": "Understand the importance of mental health and how to support yourself and others in times of need.",
+        "image": "https://i.ibb.co.com/Sw9ywdhG/image.png",
+        "date": "2025-02-10"
+    },
+    {
+        "id": 12,
+        "title": "Effective Stress Management Tips",
+        "description": "Explore techniques for managing stress effectively and maintaining emotional well-being.",
+        "image": "https://i.ibb.co.com/TBSMsTmJ/image.png",
+        "date": "2025-02-09"
+    },
+    {
+        "id": 13,
+        "title": "The Importance of Gut Health",
+        "description": "Learn why gut health matters and how a healthy gut impacts digestion, immunity, and mood.",
+        "image": "https://i.ibb.co.com/Qv66GrDV/image.png",
+        "date": "2025-02-08"
+    },
+    {
+        "id": 14,
+        "title": "Daily Habits for Longevity",
+        "description": "Discover key daily habits that can help you live a longer and healthier life.",
+        "image": "https://i.ibb.co.com/0RxBYQkd/image.png",
+        "date": "2025-02-07"
+    },
+    {
+        "id": 15,
+        "title": "How to Improve Your Posture",
+        "description": "Learn practical tips for maintaining good posture and preventing back pain.",
+        "image": "https://i.ibb.co.com/N66gbp5J/image.png",
+        "date": "2025-02-06"
+    },
+    {
+        "id": 16,
+        "title": "Healthy Morning Routines",
+        "description": "Start your day right with a morning routine that promotes energy and productivity.",
+        "image": "https://i.ibb.co.com/2Y1CDgZb/image.png",
+        "date": "2025-02-05"
     }
 ]

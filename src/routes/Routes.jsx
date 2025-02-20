@@ -23,6 +23,7 @@ import ManagePayments from "../pages/Dashboard/ManagePayments/ManagePayments";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import SalesReport from "../pages/Dashboard/SalesReport/SalesReport";
 import SellerPaymentHistory from "../pages/Dashboard/SellerPaymentHistory/SellerPaymentHistory";
+import Blog from "../pages/Blog/Blog";
 
 
 const router = createBrowserRouter([
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
         {
           path: 'shop',
           element: <Shop></Shop>
+        },
+        {
+         path: 'blog',
+         element: <Blog></Blog>
         },
         {
           path: 'dashboard',
