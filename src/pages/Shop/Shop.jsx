@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useMedicines from '../../hooks/useMedicines';
 import { FaCartPlus, FaEye } from 'react-icons/fa';
 import { TbCurrencyTaka } from 'react-icons/tb';
@@ -15,6 +15,12 @@ const Shop = () => {
     const [, refetch] = useCart()
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
+    const [allMedicines, setAllMedicines] = useState([])
+
+    
+useEffect(() => {
+    setAllMedicines(medicines);
+}, [medicines]);
 
     const handleDetails = (medicine) => {
         setShowDetails(medicine);
@@ -24,7 +30,7 @@ const Shop = () => {
     const location = useLocation()
     console.log(location);
 
-    const medicinesByCategory = medicines.filter(medicine => medicine.category === location.state)
+    const medicinesByCategory = allMedicines.filter(medicine => medicine.category === location.state)
 
     console.log(medicinesByCategory);
     // console.log(showDetails);
@@ -63,12 +69,36 @@ const Shop = () => {
 
     }
 
+    const handleSort = (e) => {
+        const sortOrder = e.target.value;
+        console.log(sortOrder);
+    
+        let sortedMedicines = [...allMedicines]; // Create a new array to avoid mutating the original
+    
+        if (sortOrder === "ascending") {
+            sortedMedicines.sort((a, b) => a.price - b.price);
+        } else if (sortOrder === "descending") {
+            sortedMedicines.sort((a, b) => b.price - a.price);
+        } 
+    
+        setAllMedicines(sortedMedicines); // Update state with sorted medicines
+    };
+    
+
 
     return (
         <div className='mx-4 my-12 lg:my-16'>
             <div className='flex flex-col md:flex-row gap-6 justify-between items-center'>
                 <h2 className='text-3xl font-bold'>Total Medicine({location.state ? medicinesByCategory.length : medicines.length})</h2>
 
+                <div className='flex items-center border rounded-md'>
+                    <button className="btn btn-sm bg-primary rounded-r-none text-white">Sort by</button>
+                    <select onChange={(e) => handleSort(e)} className="select select-sm">
+                        <option className='' value='select'>Select</option>
+                        <option className='' value='ascending'>Ascending</option>
+                        <option className='' value='descending'>Descending</option>
+                    </select>
+                </div>
 
             </div>
             <div className='mt-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4'>
@@ -139,17 +169,18 @@ const Shop = () => {
 
                 </div> */}
                 {
-                   location.state ? medicinesByCategory.map(medicine => <div onClick={() => handleDetails(medicine)} className='border p-4 rounded-md cursor-pointer relative' key={medicine._id}>
-                   <img className='h-52 object-cover w-full' src={medicine?.image} alt="" />
-                   <p className='font-semibold'>{medicine.name}</p>
-                   <p className='font-semibold flex items-center'><span><TbCurrencyTaka></TbCurrencyTaka></span> {medicine.price}</p>
-                       <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary text-xl absolute top-4 right-4'><FaCartPlus></FaCartPlus></button>
-               </div>) : medicines.map(medicine => <div onClick={() => handleDetails(medicine)} className='border p-4 rounded-md cursor-pointer relative' key={medicine._id}>
+                    location.state ? medicinesByCategory.map(medicine => <div onClick={() => handleDetails(medicine)} className='border p-4 rounded-md cursor-pointer relative' key={medicine._id}>
                         <img className='h-52 object-cover w-full' src={medicine?.image} alt="" />
                         <p className='font-semibold'>{medicine.name}</p>
                         <p className='font-semibold flex items-center'><span><TbCurrencyTaka></TbCurrencyTaka></span> {medicine.price}</p>
-                            <button  onClick={(e) => {
-        e.stopPropagation(); handleAddToCart(medicine)}} className='text-primary hover:text-secondary text-xl absolute top-4 right-4 z-10'><FaCartPlus></FaCartPlus></button>
+                        <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary text-xl absolute top-4 right-4'><FaCartPlus></FaCartPlus></button>
+                    </div>) : allMedicines.map(medicine => <div onClick={() => handleDetails(medicine)} className='border p-4 rounded-md cursor-pointer relative' key={medicine._id}>
+                        <img className='h-52 object-cover w-full' src={medicine?.image} alt="" />
+                        <p className='font-semibold'>{medicine.name}</p>
+                        <p className='font-semibold flex items-center'><span><TbCurrencyTaka></TbCurrencyTaka></span> {medicine.price}</p>
+                        <button onClick={(e) => {
+                            e.stopPropagation(); handleAddToCart(medicine)
+                        }} className='text-primary hover:text-secondary text-xl absolute top-4 right-4 z-10'><FaCartPlus></FaCartPlus></button>
                     </div>
                     )
                 }
