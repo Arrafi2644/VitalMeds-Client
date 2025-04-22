@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
 import useCart from '../../hooks/useCart';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 const Shop = () => {
@@ -16,11 +16,12 @@ const Shop = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
     const [allMedicines, setAllMedicines] = useState([])
+    const navigate = useNavigate()
 
-    
-useEffect(() => {
-    setAllMedicines(medicines);
-}, [medicines]);
+
+    useEffect(() => {
+        setAllMedicines(medicines);
+    }, [medicines]);
 
     const handleDetails = (medicine) => {
         setShowDetails(medicine);
@@ -37,7 +38,10 @@ useEffect(() => {
 
     const handleAddToCart = (medicine) => {
         console.log("To cart ", medicine);
-        console.log(user.email);
+
+        if(!user){
+            navigate('/login')
+        }
 
         const medicineInfo = {
             name: medicine.name,
@@ -72,18 +76,18 @@ useEffect(() => {
     const handleSort = (e) => {
         const sortOrder = e.target.value;
         console.log(sortOrder);
-    
+
         let sortedMedicines = [...allMedicines]; // Create a new array to avoid mutating the original
-    
+
         if (sortOrder === "ascending") {
             sortedMedicines.sort((a, b) => a.price - b.price);
         } else if (sortOrder === "descending") {
             sortedMedicines.sort((a, b) => b.price - a.price);
-        } 
-    
+        }
+
         setAllMedicines(sortedMedicines); // Update state with sorted medicines
     };
-    
+
 
 
     return (

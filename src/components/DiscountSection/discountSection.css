@@ -1,0 +1,25 @@
+
+.swiper-wrapper{
+    position: relative;
+}
+
+.swiper-button-prev, .swiper-button-next{
+    padding: 36px 24px;
+    background: white;
+    color: #50B498;
+    border: 1px solid gainsboro;  
+    position: absolute;  
+}
+
+.swiper-button-prev{
+    left: 0;
+}
+
+.swiper-button-next{
+    right: 0;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after{
+    font-size: 24px;
+}

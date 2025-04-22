@@ -11,10 +11,11 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
+import './discountSection.css'
 
 // import required modules
 import { Navigation, Pagination } from 'swiper/modules';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useMedicines from '../../hooks/useMedicines';
 import { FaCartPlus } from 'react-icons/fa';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
@@ -28,6 +29,7 @@ const DiscountSection = () => {
   const [showDetails, setShowDetails] = useState({})
   const {user} = useAuth()
   const [, refetch] = useCart()
+  const navigate = useNavigate()
 
   const discountMedicines = medicines.filter(medicine => medicine.discount > 0)
   // console.log("Discount ", discountMedicines);
@@ -42,7 +44,10 @@ const handleShowDetails = (id) => {
 
 const handleAddToCart = (medicine) => {
   console.log("To cart ", medicine);
-  console.log(user.email);
+
+  if(!user){
+    navigate('/login')
+  }
 
   const medicineInfo = {
       name: medicine.name,
@@ -86,7 +91,7 @@ const handleAddToCart = (medicine) => {
       {/* slider  */}
 
       <Swiper
-        slidesPerView={4}
+        slidesPerView={5}
         centeredSlides={false}
         spaceBetween={30}
         grabCursor={false}
@@ -105,17 +110,17 @@ const handleAddToCart = (medicine) => {
           // when window width is >= 640px
           640: {
             slidesPerView: 2,
-            spaceBetween: 20,
+            spaceBetween: 15,
           },
           // when window width is >= 768px
           768: {
             slidesPerView: 3,
-            spaceBetween: 25,
+            spaceBetween: 15,
           },
           // when window width is >= 1024px
           1024: {
-            slidesPerView: 4,
-            spaceBetween: 30,
+            slidesPerView: 5,
+            spaceBetween: 15,
           },
         }}
 
@@ -138,7 +143,7 @@ const handleAddToCart = (medicine) => {
                         <div className=''>
                             <img className='w-40 h-40 p-4 border object-cover rounded-md' src={showDetails.image} alt="" />
                         </div>
-                        <div>
+                        <div className='pt-2'>
                             <h3 className='text-xl font-semibold'>{showDetails.name}</h3>
                             <div className='flex justify-between gap-6'>
                                 <p className='text-sm'>{showDetails.power} {showDetails.massUnit}</p>

@@ -16,7 +16,7 @@ const StateSection = () => {
     console.log(stateCount);
     return (
         <div className='my-8 md:16'>
-            <SectionHeading title='Why Chose Us' subtitle=''></SectionHeading>
+            <SectionHeading title='Serving You Better: Our Pharmacy Impact' subtitle=''></SectionHeading>
             <div className="stats stats-vertical lg:stats-horizontal shadow w-full">
                 <div className="stat flex gap-2">
                     <img className='w-16 h-16 object-cover' src="https://i.ibb.co.com/r4VMKcR/icons8-user-80.png" alt="" />
