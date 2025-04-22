@@ -9,7 +9,7 @@ const Invoice = () => {
     console.log(paymentInfo.date);
     const formattedDate = new Date(paymentInfo.date).toLocaleString()
     return (
-        <div className='px-4 container mx-auto my-12 md:my-16'>
+        <div className='px-4 container mx-auto my-8 '>
             <div className='max-w-[600px] space-y-4 h-auto mx-auto bg-primary p-6 rounded-md text-white'>
                 <nav className='flex items-center justify-center'>
                     <img className='h-20 w-20 object-cover rounded-full' src="https://i.ibb.co.com/LtqR8jk/logo5-removebg-preview.png" alt="" />

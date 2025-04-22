@@ -15,7 +15,7 @@ const StateSection = () => {
 
     console.log(stateCount);
     return (
-        <div className='my-12 md:16'>
+        <div className='my-8 md:16'>
             <SectionHeading title='Why Chose Us' subtitle=''></SectionHeading>
             <div className="stats stats-vertical lg:stats-horizontal shadow w-full">
                 <div className="stat flex gap-2">

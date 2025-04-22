@@ -75,7 +75,7 @@ const handleAddToCart = (medicine) => {
 }
 
   return (
-    <div className='my-12 md:my-16'>
+    <div className='my-8 '>
       <SectionHeading title='Discount Products'
         subtitle='Shop this products with discount'
       ></SectionHeading>

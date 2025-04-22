@@ -6,7 +6,7 @@ import useCategories from '../../../hooks/useCategories';
 const CategorySection = () => {
     const [categories, refetch] = useCategories();
     return (
-        <div className='my-12 md:my-16'>
+        <div className='my-8 '>
             <SectionHeading title='Shop By Category'
                 subtitle='Click on you category and get'
             ></SectionHeading>

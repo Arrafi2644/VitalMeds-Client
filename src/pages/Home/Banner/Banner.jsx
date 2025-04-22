@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import './banner.css'
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -18,7 +20,7 @@ const Banner = () => {
   console.log(advertises);
 
   return (
-    <div className='my-12 md:my-16'>
+    <div className='my-8'>
 
       <Swiper
         // slidesPerView={2.2}

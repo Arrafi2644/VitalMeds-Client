@@ -24,7 +24,7 @@ const BlogSection = () => {
     console.log(blogs);
   
     return (
-        <div className='my-12 md:my-16'>
+        <div className='my-8 '>
             <SectionHeading title="Health Articles" subtitle="Get up-to-date on our latest health updates"></SectionHeading>
 
             <>
