@@ -10,7 +10,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 const Shop = () => {
-    const [medicines] = useMedicines();
+    const location = useLocation()
+    const [category, setCategory] = useState(location?.state || "")
+    const [search, setSearch] = useState("")
+    const [sort, setSort] = useState("")
+    const [medicines, , isLoading] = useMedicines(category, search, sort);
     const [showDetails, setShowDetails] = useState({})
     const [, refetch] = useCart()
     const { user } = useAuth()
@@ -18,6 +22,13 @@ const Shop = () => {
     const [allMedicines, setAllMedicines] = useState([])
     const navigate = useNavigate()
 
+
+
+    // console.log("category is ", category);
+    // console.log("search is ", search)
+    // console.log("sort is ", sort)
+    // 
+    console.log("all medicines are ", medicines)
 
     useEffect(() => {
         setAllMedicines(medicines);
@@ -28,18 +39,16 @@ const Shop = () => {
         document.getElementById('my_modal_3').showModal()
     }
 
-    const location = useLocation()
-    console.log(location);
 
-    const medicinesByCategory = allMedicines.filter(medicine => medicine.category === location.state)
+    // const medicinesByCategory = allMedicines.filter(medicine => medicine.category === location.state)
 
-    console.log(medicinesByCategory);
+    // console.log(medicinesByCategory);
     // console.log(showDetails);
 
     const handleAddToCart = (medicine) => {
         console.log("To cart ", medicine);
 
-        if(!user){
+        if (!user) {
             navigate('/login')
         }
 
@@ -91,105 +100,65 @@ const Shop = () => {
 
 
     return (
-        <div className='mx-4 my-8 lg:my-8'>
+        <div className='container mx-auto my-8 lg:my-8'>
             <div className='flex flex-col md:flex-row gap-6 justify-between items-center'>
-                <h2 className='text-3xl font-bold'>Total Medicine({location.state ? medicinesByCategory.length : medicines.length})</h2>
+                <h2 className='text-3xl font-bold'>Total Medicine  ({medicines.length})</h2>
 
-                <div className='flex items-center border rounded-md'>
-                    <button className="btn btn-sm bg-primary rounded-r-none text-white">Sort by</button>
-                    <select onChange={(e) => handleSort(e)} className="select select-sm">
-                        <option className='' value='select'>Select</option>
-                        <option className='' value='ascending'>Ascending</option>
-                        <option className='' value='descending'>Descending</option>
+
+                <div className='flex items-center justify-between gap-4 flex-wrap'>
+                    {/* search  */}
+                    <label className="input border flex items-center gap-2 border-gray-400">
+                        <svg className="h-[1em]  opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                strokeLinejoin="round"
+                                strokeLinecap="round"
+                                strokeWidth="2.5"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+                        <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" className="grow" placeholder="Search" />
+
+                    </label>
+
+                    {/* sort  */}
+                    <select value={sort} onChange={(e) => setSort(e.target.value)} className="select border border-gray-400">
+                        <option disabled value="">Sort by price</option>
+                        <option value="asc">Price (Lowest to highest)</option>
+                        <option value="desc">Price (Highest to lowest)</option>
                     </select>
+
+                    {/* reset */}
+                    <button onClick={() => { setCategory(""), setSort(""); setSearch("") }} className="btn">Reset</button>
                 </div>
-
             </div>
-            <div className='mt-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4'>
-                {/* <div className="overflow-x-auto">
-                    <table className="table">
-                       
-                        <thead>
-                            <tr>
-                                <th>Sl.</th>
-                                <th>Medicine Image</th>
-                                <th>Medicine Name</th>
-                                <th>Medicine Category</th>
-                                <th>Mass Unit</th>
-                                <th>Company</th>
-                                <th>Price</th>
-                                <th>Discount</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            {
-                                location.state ? medicinesByCategory.map((medicine, index) =>
-                                    <tr key={medicine._id}>
-                                        <td>{index + 1}</td>
-                                        <td><img className='w-8 h-8 object-cover' src={medicine.image} alt="medicine" /></td>
-                                        <td>
-                                            {medicine.name} <br /> <span className='text-xs'>{medicine.genericName}</span>
-                                        </td>
-                                        <td>{medicine.category}</td>
-                                        <td>
-                                            {medicine.power}{medicine.massUnit}
-                                        </td>
-                                        <td>{medicine.company}</td>
-                                        <td>{medicine.price}</td>
-                                        <td>{medicine.discount}</td>
-                                        <td>
-                                            <div className='flex gap-3 items-center text-lg'>
-                                                <button onClick={() => handleDetails(medicine)} className='text-primary hover:text-secondary'><FaEye></FaEye></button>
-                                                <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary'><FaCartPlus></FaCartPlus></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ) : medicines.map((medicine, index) => <tr key={medicine._id}>
-                                    <td>{index + 1}</td>
-                                    <td><img className='w-8 h-8 object-cover' src={medicine.image} alt="medicine" /></td>
-                                    <td>
-                                        {medicine.name} <br /> <span className='text-xs'>{medicine.genericName}</span>
-                                    </td>
-                                    <td>{medicine.category}</td>
-                                    <td>
-                                        {medicine.power}{medicine.massUnit}
-                                    </td>
-                                    <td>{medicine.company}</td>
-                                    <td>{medicine.price}</td>
-                                    <td>{medicine.discount}</td>
-                                    <td>
-                                        <div className='flex gap-3 items-center text-lg'>
-                                            <button onClick={() => handleDetails(medicine)} className='text-primary hover:text-secondary'><FaEye></FaEye></button>
-                                            <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary'><FaCartPlus></FaCartPlus></button>
-                                        </div>
-                                    </td>
-                                </tr>)
-                            }
-
-                        </tbody>
-                    </table>
-
-                </div> */}
-                {
-                    location.state ? medicinesByCategory.map(medicine => <div onClick={() => handleDetails(medicine)} className='border p-4 rounded-md cursor-pointer relative' key={medicine._id}>
-                        <img className='h-52 object-cover w-full' src={medicine?.image} alt="" />
-                        <p className='font-semibold'>{medicine.name}</p>
-                        <p className='font-semibold flex items-center'><span><TbCurrencyTaka></TbCurrencyTaka></span> {medicine.price}</p>
-                        <button onClick={() => handleAddToCart(medicine)} className='text-primary hover:text-secondary text-xl absolute top-4 right-4'><FaCartPlus></FaCartPlus></button>
-                    </div>) : allMedicines.map(medicine => <div onClick={() => handleDetails(medicine)} className='border p-4 rounded-md cursor-pointer relative' key={medicine._id}>
-                        <img className='h-52 object-cover w-full' src={medicine?.image} alt="" />
-                        <p className='font-semibold'>{medicine.name}</p>
-                        <p className='font-semibold flex items-center'><span><TbCurrencyTaka></TbCurrencyTaka></span> {medicine.price}</p>
-                        <button onClick={(e) => {
-                            e.stopPropagation(); handleAddToCart(medicine)
-                        }} className='text-primary hover:text-secondary text-xl absolute top-4 right-4 z-10'><FaCartPlus></FaCartPlus></button>
+            {
+                isLoading ?
+                    <div className='flex items-center justify-center'>
+                        <span className="loading loading-spinner loading-xl mt-8"></span>
                     </div>
-                    )
-                }
+                    :
+                    <div className='mt-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4'>
 
-            </div>
+                        {
+                            medicines.length > 0 ? medicines.map(medicine => <div onClick={() => handleDetails(medicine)} className='border p-4 rounded-md cursor-pointer relative' key={medicine._id}>
+                                <img className='h-52 object-cover w-full' src={medicine?.image} alt="" />
+                                <p className='font-semibold'>{medicine.name}</p>
+                                <p className='font-semibold flex items-center'><span><TbCurrencyTaka></TbCurrencyTaka></span> {medicine.price}</p>
+                                <button onClick={(e) => {
+                                    e.stopPropagation(); handleAddToCart(medicine)
+                                }} className='text-primary hover:text-secondary text-xl absolute top-4 right-4 z-10'><FaCartPlus></FaCartPlus></button>
+                            </div>
+                            ) : <div className='col-span-12 mt-6'>
+                                <h3 className='text-xl font-bold text-center'>Medicine not found</h3>
+                            </div>
+                        }
+
+                    </div>
+            }
 
             {/* Modal  */}
 

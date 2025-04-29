@@ -25,7 +25,10 @@ import useCart from '../../hooks/useCart';
 
 const DiscountSection = () => {
   const axiosSecure = useAxiosSecure()
-  const [medicines] = useMedicines()
+  const [category, setCategory] = useState("")
+  const [search, setSearch] = useState("")
+  const [sort, setSort] = useState("")
+  const [medicines] = useMedicines(category, search, sort)
   const [showDetails, setShowDetails] = useState({})
   const {user} = useAuth()
   const [, refetch] = useCart()

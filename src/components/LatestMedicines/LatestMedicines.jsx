@@ -24,7 +24,10 @@ import useCart from '../../hooks/useCart';
 
 const LatestMedicines = () => {
   const axiosSecure = useAxiosSecure()
-  const [medicines] = useMedicines()
+  const [category, setCategory] = useState("")
+  const [search, setSearch] = useState("")
+  const [sort, setSort] = useState("")
+  const [medicines] = useMedicines(category, search, sort)
   const [showDetails, setShowDetails] = useState({})
   const [showLatestDetails, setShowLatestDetails] = useState({})
   const {user} = useAuth()
