@@ -12,7 +12,7 @@ const useCartTotalPrice = () => {
         queryKey: [user.email, "total"],
         queryFn: async() => {
             const res = await axiosSecure.get(`/carts/totalPrice/${user.email}`)
-            console.log(res.data[0].grandTotal);
+            // console.log(res.data[0].grandTotal);
             return res.data[0].grandTotal;
         }
     })

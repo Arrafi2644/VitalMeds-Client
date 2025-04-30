@@ -20,14 +20,14 @@ const ManagePayments = () => {
     })
 
 
-    console.log(payments);
+    // console.log(payments);
 
     const handlePayment = (payment) => {
-        console.log(payment);
+        // console.log(payment);
         
         axiosSecure.patch(`/payments/${payment._id}`)
         .then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             if(res.data.modifiedCount > 0){
                 toast.success("Payment accepted.")
                 refetch();
@@ -35,7 +35,7 @@ const ManagePayments = () => {
             
         })
         .catch(err =>{
-           console.log(err);
+        //    console.log(err);
            toast.error("Something went wrong! Please try again.")
         })
 

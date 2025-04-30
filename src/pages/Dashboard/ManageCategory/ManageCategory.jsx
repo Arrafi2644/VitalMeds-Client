@@ -22,7 +22,7 @@ const ManageCategory = () => {
     const [categories, refetch] = useCategories()
     const [updateCategory, setUpdateCategory] = useState({})
 
-    console.log(categories);
+    // console.log(categories);
 
     const {
         register,
@@ -32,9 +32,9 @@ const ManageCategory = () => {
 
     const onSubmit = async (data) => {
 
-        console.log(data);
+        // console.log(data);
         const imageFile = { image: data.photo[0] }
-        console.log(imageFile);
+        // console.log(imageFile);
 
         const res = await axiosPublic.post(imageHostingApi, imageFile, {
             headers: {
@@ -42,9 +42,9 @@ const ManageCategory = () => {
             }
         })
 
-        console.log(res.data);
+        // console.log(res.data);
         const image = res.data.data.display_url
-        console.log(image);
+        // console.log(image);
 
         const categoryInfo = {
             categoryName: data.categoryName,
@@ -54,7 +54,7 @@ const ManageCategory = () => {
         axiosSecure.post('/categories', categoryInfo)
             .then(res => {
                 if (res.data.insertedId) {
-                    console.log(res.data);
+                    // console.log(res.data);
                     toast.success("New medicine category added successfully!")
                     refetch()
                 }
@@ -97,9 +97,9 @@ const ManageCategory = () => {
         
     }
     
-    console.log(updateCategory);
+    // console.log(updateCategory);
     const handleDelete = (category) => {
-        console.log(category);
+        // console.log(category);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -113,7 +113,7 @@ const ManageCategory = () => {
 
                 axiosSecure.delete(`/categories/${category._id}`)
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
                         if (res.data.deletedCount > 0) {
                             refetch()
                             Swal.fire({
@@ -125,7 +125,7 @@ const ManageCategory = () => {
 
                     })
                     .catch(err => {
-                        console.log(err);
+                        // console.log(err);
                         Swal.fire({
                             title: "Error!",
                             text: "Something went wrong! Try again.",

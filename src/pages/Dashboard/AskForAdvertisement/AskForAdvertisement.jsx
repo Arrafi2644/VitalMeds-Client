@@ -30,9 +30,9 @@ const AskForAdvertisement = () => {
 
     const onSubmit = async (data) => {
 
-        console.log(data);
+        // console.log(data);
         const imageFile = { image: data.photo[0] }
-        console.log(imageFile);
+        // console.log(imageFile);
 
         const res = await axiosPublic.post(imageHostingApi, imageFile, {
             headers: {
@@ -40,9 +40,9 @@ const AskForAdvertisement = () => {
             }
         })
 
-        console.log(res.data);
+        // console.log(res.data);
         const image = res.data.data.display_url
-        console.log(image);
+        // console.log(image);
 
         const advertiseInfo = {
             name: data.name,
@@ -67,12 +67,12 @@ const AskForAdvertisement = () => {
 
             })
 
-        console.log(advertiseInfo);
+        // console.log(advertiseInfo);
 
     }
 
     const handleDelete = (advertise) => {
-        console.log(advertise);
+        // console.log(advertise);
         Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
@@ -85,7 +85,7 @@ const AskForAdvertisement = () => {
                 if (result.isConfirmed) {
                     axiosSecure.delete(`/advertisements/${advertise._id}`)
                         .then(res => {
-                            console.log(res);
+                            // console.log(res);
                             if (res.data.deletedCount > 0) {
                                 Swal.fire({
                                     title: "Deleted!",
@@ -98,7 +98,7 @@ const AskForAdvertisement = () => {
     
                         })
                         .catch(err => {
-                            console.log(err);
+                            // console.log(err);
                             Swal.fire({
                                 title: "Error!",
                                 text: "Something went wrong! Try again.",
@@ -110,7 +110,7 @@ const AskForAdvertisement = () => {
                         
                         axiosSecure.delete(`/postedAdvertisements/${advertise._id}`)
                         .then(res => {
-                            console.log(res);
+                            // console.log(res);
                             if (res.data.deletedCount > 0) {
                                 Swal.fire({
                                     title: "Deleted!",
@@ -123,7 +123,7 @@ const AskForAdvertisement = () => {
     
                         })
                         .catch(err => {
-                            console.log(err);
+                            // console.log(err);
                             Swal.fire({
                                 title: "Error!",
                                 text: "Something went wrong! Try again.",

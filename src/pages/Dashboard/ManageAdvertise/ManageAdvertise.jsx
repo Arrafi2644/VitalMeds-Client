@@ -15,10 +15,10 @@ const ManageAdvertise = () => {
 
 
     const handleManageBanner = (advertise, e) => {
-        console.log(advertise);
+        // console.log(advertise);
 
 
-        console.log(advertise.isActivated);
+        // console.log(advertise.isActivated);
         const activateInfo = {
             isActivated: (!advertise.isActivated),
             _id: advertise._id
@@ -27,18 +27,18 @@ const ManageAdvertise = () => {
         axiosSecure.patch(`/advertisements/${advertise._id}`, activateInfo)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
-                    console.log(res?.data);
+                    // console.log(res?.data);
                 }
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
                 // alert("error huiche")
             })
 
 
         let advertiseStatus = activateInfo.isActivated ? "Active" : "Pending";
 
-        console.log(advertiseStatus);
+        // console.log(advertiseStatus);
         const advertiseInfo = {
             advertiseId: advertise._id,
             name: advertise.name,
@@ -105,52 +105,52 @@ const ManageAdvertise = () => {
         if (activateInfo.isActivated) {
             axiosSecure.post('/postedAdvertisements', advertiseInfo)
                 .then(res => {
-                    console.log(res);
+                    // console.log(res);
                     if (res.data.insertedId) {
 
                         axiosSecure.patch('/advertisements', advertiseInfo)
                             .then(res => {
-                                console.log(res.data);
+                                // console.log(res.data);
                                 if (res.data.modifiedCount > 0) {
                                     toast.success("Banner activated successfully!")
                                     refetch()
                                 }
                             })
                             .catch(error => {
-                                console.log(error);
+                                // console.log(error);
                                 toast.error("Something went wrong! please try again.")
                             })
 
                     }
                 })
                 .catch(err => {
-                    console.log(err);
+                    // console.log(err);
                     toast.error("Something went wrong! please try again.")
                 })
         }
         else {
             axiosSecure.delete(`/postedAdvertisements/${advertise._id}`)
                 .then(res => {
-                    console.log(res);
+                    // console.log(res);
                     if (res.data.deletedCount > 0) {
 
                         axiosSecure.patch('/advertisements', advertiseInfo)
                             .then(res => {
-                                console.log(res.data);
+                                // console.log(res.data);
                                 if (res.data.modifiedCount > 0) {
                                     toast.success("Banner deactivated successfully!")
                                     refetch()
                                 }
                             })
                             .catch(error => {
-                                console.log(error);
+                                // console.log(error);
                                 toast.error("Something went wrong! please try again.")
                             })
 
                     }
                 })
                 .catch(err => {
-                    console.log(err);
+                    // console.log(err);
                     toast.error("Something went wrong! please try again.")
                 })
 

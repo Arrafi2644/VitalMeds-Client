@@ -11,7 +11,7 @@ const ManageUsers = () => {
     const axiosSecure = useAxiosSecure();
 
     const handleDelete = (user) => {
-        console.log(user);
+        // console.log(user);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -25,7 +25,7 @@ const ManageUsers = () => {
 
                 axiosSecure.delete(`/users/${user._id}`)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         if (res.data.deletedCount > 0) {
                             refetch()
                             Swal.fire({
@@ -37,7 +37,7 @@ const ManageUsers = () => {
 
                     })
                     .catch(err => {
-                        console.log(err);
+                        // console.log(err);
                         Swal.fire({
                             title: "Error!",
                             text: "Something went wrong! Try again.",
@@ -49,8 +49,8 @@ const ManageUsers = () => {
     }
 
     const handleMakeUser = (user, e) => {
-        console.log("Make user ", user);
-        console.log("to role ", e.target.innerText.toLowerCase());
+        // console.log("Make user ", user);
+        // console.log("to role ", e.target.innerText.toLowerCase());
         if(user.role === 'admin'){
             return toast.error("Cannot change admin role")
         }
@@ -73,7 +73,7 @@ const ManageUsers = () => {
                 }
                 axiosSecure.patch(`/users`, userInfo)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     if(res.data.modifiedCount > 0){
 
                         Swal.fire({
@@ -85,7 +85,7 @@ const ManageUsers = () => {
                     }
                 })
                 .catch(err => {
-                    console.log(err);
+                    // console.log(err);
                 })
 
 
@@ -95,7 +95,7 @@ const ManageUsers = () => {
 
     }
     const handleMakeAdmin = (user, e) => {
-        console.log("Make admin ", user);
+        // console.log("Make admin ", user);
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -114,7 +114,7 @@ const ManageUsers = () => {
                 }
                 axiosSecure.patch(`/users`, userInfo)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     if(res.data.modifiedCount > 0){
 
                         Swal.fire({
@@ -126,14 +126,14 @@ const ManageUsers = () => {
                     }
                 })
                 .catch(err => {
-                    console.log(err);
+                    // console.log(err);
                 })
             }
         });
     }
     const handleMakeSeller = (user, e) => {
-        console.log("Make seller ", user);
-        console.log("to role ", e.target.innerText.toLowerCase());
+        // console.log("Make seller ", user);
+        // console.log("to role ", e.target.innerText.toLowerCase());
         if(user.role === 'admin'){
             return toast.error("Cannot change admin role")
         }
@@ -156,7 +156,7 @@ const ManageUsers = () => {
                 }
                 axiosSecure.patch(`/users`, userInfo)
                 .then(res => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     if(res.data.modifiedCount > 0){
 
                         Swal.fire({
@@ -168,7 +168,7 @@ const ManageUsers = () => {
                     }
                 })
                 .catch(err => {
-                    console.log(err);
+                    // console.log(err);
                 })
 
 
@@ -178,7 +178,7 @@ const ManageUsers = () => {
 
     }
 
-    console.log(users);
+    // console.log(users);
     return (
         <div>
          

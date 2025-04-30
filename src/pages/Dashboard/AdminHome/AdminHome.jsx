@@ -14,7 +14,7 @@ const AdminHome = () => {
         }
     })
 
-    console.log(totalPayments);
+    // console.log(totalPayments);
     const paidTotal = totalPayments.find(payment => payment._id  === "paid");
     const pendingTotal = totalPayments.find(payment => payment._id  === "pending");
  

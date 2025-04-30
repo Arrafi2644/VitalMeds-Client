@@ -3,10 +3,10 @@ import { useLocation } from 'react-router-dom';
 
 const Invoice = () => {
     const location = useLocation()
-    console.log(location);
+    // console.log(location);
     const paymentInfo = location.state;
-    console.log(paymentInfo);
-    console.log(paymentInfo.date);
+    // console.log(paymentInfo);
+    // console.log(paymentInfo.date);
     const formattedDate = new Date(paymentInfo.date).toLocaleString()
     return (
         <div className='px-4 container mx-auto my-8 '>

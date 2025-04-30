@@ -21,7 +21,7 @@ const BlogSection = () => {
         .then(data => setBlogs(data))
     }, [])
 
-    console.log(blogs);
+    // console.log(blogs);
   
     return (
         <div className='my-8 '>

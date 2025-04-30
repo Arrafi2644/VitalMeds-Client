@@ -25,7 +25,7 @@ const Signup = () => {
     const onSubmit = async (data) => {
 
         const imageFile = { image: data.photo[0] }
-        console.log(imageFile);
+        // console.log(imageFile);
 
         const res = await axiosPublic.post(imageHostingApi, imageFile, {
             headers: {
@@ -33,18 +33,18 @@ const Signup = () => {
             }
         })
 
-        console.log(res.data);
+        // console.log(res.data);
 
         const name = await data.name;
         const email = await data.email;
         const role = await data.role;
         const photo = res.data.data.display_url;
         const password = await data.password
-        console.log({ name, email, role, photo, password });
+        // console.log({ name, email, role, photo, password });
 
         createUser(email, password)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 updateUserProfile({ displayName: name, photoURL: photo })
                     .then(result => {
 
@@ -56,7 +56,7 @@ const Signup = () => {
                         }
                         axiosPublic.post('/users', user)
                             .then(res => {
-                                console.log(res.data);
+                                // console.log(res.data);
                                 if (res.data.insertedId) {
                                     toast.success("User created successfully!")
                                     navigate('/')
@@ -69,12 +69,12 @@ const Signup = () => {
 
                     })
                     .catch(error => {
-                        console.log(error);
+                        // console.log(error);
                         toast.error("Something went wrong! Please try again.")
                     })
             })
             .catch(error => {
-                console.log(error);
+                // console.log(error);
                 toast.error("Already used this email!")
             })
 
@@ -85,7 +85,7 @@ const Signup = () => {
 
         signinWithGoogle()
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
                 const user = {
                     name: result.user.displayName,
                     email: result.user.email,
@@ -95,7 +95,7 @@ const Signup = () => {
 
                 axiosPublic.post('/users', user)
                     .then(res => {
-                        console.log(res);
+                        // console.log(res);
                         if (res.data.insertedId) {
                             toast.success("User created successfully!")
                             navigate('/')
@@ -105,13 +105,13 @@ const Signup = () => {
                         }
                     })
                     .catch(err => {
-                        console.log(err);
+                        // console.log(err);
                     })
 
             })
             .catch(error => {
                 toast.error("Something went wrong! Try again.")
-                console.log(error);
+                // console.log(error);
             })
     }
 

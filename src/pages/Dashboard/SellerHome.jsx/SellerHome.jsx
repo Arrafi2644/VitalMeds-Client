@@ -19,7 +19,7 @@ const SellerHome = () => {
         }
     })
 
-    console.log(totals);
+    // console.log(totals);
 
 
     return (

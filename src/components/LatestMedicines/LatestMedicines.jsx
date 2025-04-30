@@ -44,8 +44,8 @@ const handleShowDetails = (id) => {
 }
 
 const handleAddToCart = (medicine) => {
-  console.log("To cart ", medicine);
-  console.log(user.email);
+  // console.log("To cart ", medicine);
+  // console.log(user.email);
 
   const medicineInfo = {
       name: medicine.name,
@@ -71,7 +71,7 @@ const handleAddToCart = (medicine) => {
           }
       })
       .catch(err => {
-          console.log(err);
+          // console.log(err);
           toast.error("Something went wrong! Please try again.")
       })
 

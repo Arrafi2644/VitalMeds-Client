@@ -42,11 +42,11 @@ const handleShowDetails = (id) => {
   document.getElementById('my_modal_3').showModal()
   const showMedicine = medicines.find(medicine => medicine._id === id)
   setShowDetails(showMedicine)
-  console.log( "Show medicine ", showMedicine);
+  // console.log( "Show medicine ", showMedicine);
 }
 
 const handleAddToCart = (medicine) => {
-  console.log("To cart ", medicine);
+  // console.log("To cart ", medicine);
 
   if(!user){
     navigate('/login')
@@ -76,7 +76,7 @@ const handleAddToCart = (medicine) => {
           }
       })
       .catch(err => {
-          console.log(err);
+          // console.log(err);
           toast.error("Something went wrong! Please try again.")
       })
 

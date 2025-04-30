@@ -18,12 +18,12 @@ const Navbar = () => {
   const [isSeller] = useSeller()
   // console.log(user);
   // console.log(carts);
-  console.log("is admin", isAdmin);
-  console.log("is seller", isSeller);
+  // console.log("is admin", isAdmin);
+  // console.log("is seller", isSeller);
   // const [sales] = useSales()
   // console.log( "sales his", sales);
   const [medicines] = useMedicines()
-  console.log("Medis are ", medicines.slice(-6));
+  // console.log("Medis are ", medicines.slice(-6));
 
   const links = <>
     <li><NavLink to='/'> Home</NavLink></li>

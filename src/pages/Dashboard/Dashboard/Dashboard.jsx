@@ -18,8 +18,8 @@ const Dashboard = () => {
     const [isSeller, sellerPending] = useSeller();
     // const [isUser, setIsUser] = useState(false);
 
-    console.log("Admin:", isAdmin);
-    console.log("Seller: ", isSeller);
+    // console.log("Admin:", isAdmin);
+    // console.log("Seller: ", isSeller);
 
 
     const adminLinks = <>

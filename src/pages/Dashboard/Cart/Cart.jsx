@@ -16,7 +16,7 @@ const Cart = () => {
     const [totalPrice, totalPriceRefetch] = useCartTotalPrice()
 
         const handleDeleteAll = (product) => {
-            console.log(product);
+            // console.log(product);
             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
@@ -29,9 +29,9 @@ const Cart = () => {
                 if (result.isConfirmed) {
                     axiosSecure.delete(`/carts/clearAll/${user.email}`)
                         .then(res => {
-                            console.log(res);
+                            // console.log(res);
                             if (res.data.deletedCount > 0) {
-                                console.log(totalPriceRefetch);
+                                // console.log(totalPriceRefetch);
                                 totalPriceRefetch()
                                 Swal.fire({
                                     title: "Deleted!",
@@ -44,7 +44,7 @@ const Cart = () => {
     
                         })
                         .catch(err => {
-                            console.log(err);
+                            // console.log(err);
                             Swal.fire({
                                 title: "Error!",
                                 text: "Something went wrong! Try again.",

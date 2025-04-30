@@ -15,15 +15,15 @@ const CartCard = ({ cart }) => {
     const [totalPrice, totalPriceRefetch] = useCartTotalPrice()
     
     const handleIncrement = (cart) => {
-        console.log("increment cart", cart);
+        // console.log("increment cart", cart);
         axiosSecure.patch(`/carts/increment/${cart._id}`)
         .then(res => {
-            console.log(res);
+            // console.log(res);
             refetch()
             totalPriceRefetch()
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
         })
     }
 
@@ -31,12 +31,12 @@ const CartCard = ({ cart }) => {
         if(cart.quantity > 1){
             axiosSecure.patch(`/carts/decrement/${cart._id}`)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 refetch()
                 totalPriceRefetch()
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
             })
         }
         else{
@@ -45,7 +45,7 @@ const CartCard = ({ cart }) => {
     }
     
     const handleDelete = (product) => {
-        console.log(product);
+        // console.log(product);
         Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
@@ -58,7 +58,7 @@ const CartCard = ({ cart }) => {
                 if (result.isConfirmed) {
                     axiosSecure.delete(`/carts/${product._id}`)
                         .then(res => {
-                            console.log(res);
+                            // console.log(res);
                             if (res.data.deletedCount > 0) {
                                 refetch()
                                 Swal.fire({
@@ -72,7 +72,7 @@ const CartCard = ({ cart }) => {
     
                         })
                         .catch(err => {
-                            console.log(err);
+                            // console.log(err);
                             Swal.fire({
                                 title: "Error!",
                                 text: "Something went wrong! Try again.",

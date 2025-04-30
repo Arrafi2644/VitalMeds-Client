@@ -18,7 +18,7 @@ const SellerPaymentHistory = () => {
     })
     
 
-    console.log(payments);
+    // console.log(payments);
 
     return (
         <div className=''>

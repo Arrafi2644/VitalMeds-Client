@@ -17,7 +17,7 @@ import usePostedAdvertisements from '../../../hooks/usePostedAdvertisements';
 
 const Banner = () => {
   const [advertises] = usePostedAdvertisements()
-  console.log(advertises);
+  // console.log(advertises);
 
   return (
     <div className='my-8'>

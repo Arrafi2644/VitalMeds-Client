@@ -10,7 +10,7 @@ const Blog = () => {
             .then(data => setBlogs(data))
         }, [])
     
-        console.log(blogs);
+        // console.log(blogs);
 
     return (
         <div className='container mx-auto  px-4 my-8 lg:my-8'>

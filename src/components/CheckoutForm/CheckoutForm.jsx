@@ -21,15 +21,15 @@ const CheckoutForm = () => {
     const navigate = useNavigate();
     const [totalPrice, totalPriceRefetch] = useCartTotalPrice()
 
-    console.log(user);
-    console.log(cart);
+    // console.log(user);
+    // console.log(cart);
 
     useEffect(() => {
         if (totalPrice > 0) {
             axiosSecure.post('/create-payment-intent', { price: totalPrice })
                 .then(res => {
-                    console.log(res);
-                    console.log(res.data.clientSecret);
+                    // console.log(res);
+                    // console.log(res.data.clientSecret);
                     setClientSecret(res.data.clientSecret);
                 })
         }
@@ -55,11 +55,11 @@ const CheckoutForm = () => {
         })
 
         if (error) {
-            console.log('payment error', error);
+            // console.log('payment error', error);
             setError(error.message);
         }
         else {
-            console.log('payment method', paymentMethod)
+            // console.log('payment method', paymentMethod)
             setError('');
         }
 
@@ -76,12 +76,12 @@ const CheckoutForm = () => {
         })
 
         if (confirmError) {
-            console.log('confirm error', confirmError)
+            // console.log('confirm error', confirmError)
         }
         else {
-            console.log('payment intent', paymentIntent)
+            // console.log('payment intent', paymentIntent)
             if (paymentIntent.status === 'succeeded') {
-                console.log('transaction id', paymentIntent.id);
+                // console.log('transaction id', paymentIntent.id);
                 setTransactionId(paymentIntent.id);
 
                 // now save the payment in the database
@@ -97,11 +97,11 @@ const CheckoutForm = () => {
                     products: cart
                 }
 
-                console.log(cart);
+                // console.log(cart);
 
 
                 const res = await axiosSecure.post('/payments', payment);
-                console.log('payment saved', res.data);
+                // console.log('payment saved', res.data);
                 refetch();
                 if (res.data?.paymentResult?.insertedId) {
                     Swal.fire({
@@ -116,7 +116,7 @@ const CheckoutForm = () => {
                 }
 
                 const salesProductsRes = await axiosSecure.post('/sales', cart)
-                console.log("sales products are ", salesProductsRes.data);
+                // console.log("sales products are ", salesProductsRes.data);
                 if(salesProductsRes?.data?.insertedId){
                     toast.success("Sales products added to sales list")
                 }

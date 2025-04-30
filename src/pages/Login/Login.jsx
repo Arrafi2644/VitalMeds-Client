@@ -32,12 +32,12 @@ const Login = () => {
 
     loginUser(email, password)
       .then(result => {
-        console.log(result);
+        // console.log(result);
         toast.success("Login successful!")
         navigate('/')
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
         toast.error("Something went wrong! Try again.")
       })
 
@@ -48,7 +48,7 @@ const Login = () => {
 
     signinWithGoogle()
       .then(result => {
-        console.log(result.user);
+        // console.log(result.user);
         const user = {
           name: result.user.displayName,
           email: result.user.email,
@@ -58,7 +58,7 @@ const Login = () => {
 
         axiosPublic.post('/users', user)
           .then(res => {
-            console.log(res);
+            // console.log(res);
             if (res.data.insertedId) {
               toast.success("User created successfully!")
               navigate('/')
@@ -69,13 +69,13 @@ const Login = () => {
             }
           })
           .catch(err => {
-            console.log(err);
+            // console.log(err);
           })
 
       })
       .catch(error => {
         toast.error("Something went wrong! Try again.")
-        console.log(error);
+        // console.log(error);
       })
   }
 

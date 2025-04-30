@@ -7,7 +7,7 @@ const PrivateRoute = ({children}) => {
     if(loading){
         return <span className="loading loading-bars loading-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></span>
     }
-    console.log(loading);
+    // console.log(loading);
     if(user){
         return children;
     }

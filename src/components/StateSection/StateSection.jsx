@@ -13,7 +13,7 @@ const StateSection = () => {
         }
     })
 
-    console.log(stateCount);
+    // console.log(stateCount);
     return (
         <div className='my-8 md:16'>
             <SectionHeading title='Serving You Better: Our Pharmacy Impact' subtitle=''></SectionHeading>

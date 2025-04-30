@@ -29,9 +29,9 @@ const ManageMedicines = () => {
 
     const onSubmit = async (data) => {
 
-        console.log(data);
+        // console.log(data);
         const imageFile = { image: data.photo[0] }
-        console.log(imageFile);
+        // console.log(imageFile);
 
         const res = await axiosPublic.post(imageHostingApi, imageFile, {
             headers: {
@@ -39,9 +39,9 @@ const ManageMedicines = () => {
             }
         })
 
-        console.log(res.data);
+        // console.log(res.data);
         const image = res.data.data.display_url
-        console.log(image);
+        // console.log(image);
 
         const medicineInfo = {
             name: data.name,
@@ -70,12 +70,12 @@ const ManageMedicines = () => {
 
             })
 
-        console.log(medicineInfo);
+        // console.log(medicineInfo);
 
     }
 
        const handleDelete = (medicine) => {
-            console.log(medicine);
+            // console.log(medicine);
             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
@@ -89,7 +89,7 @@ const ManageMedicines = () => {
     
                     axiosSecure.delete(`/medicines/${medicine._id}`)
                         .then(res => {
-                            console.log(res);
+                            // console.log(res);
                             if (res.data.deletedCount > 0) {
                                 refetch()
                                 Swal.fire({
@@ -101,7 +101,7 @@ const ManageMedicines = () => {
     
                         })
                         .catch(err => {
-                            console.log(err);
+                            // console.log(err);
                             Swal.fire({
                                 title: "Error!",
                                 text: "Something went wrong! Try again.",
@@ -112,7 +112,7 @@ const ManageMedicines = () => {
             });
         }
 
-    console.log(medicines);
+    // console.log(medicines);
 
     return (
         <div className=''>

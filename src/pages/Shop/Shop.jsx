@@ -28,7 +28,7 @@ const Shop = () => {
     // console.log("search is ", search)
     // console.log("sort is ", sort)
     // 
-    console.log("all medicines are ", medicines)
+    // console.log("all medicines are ", medicines)
 
     useEffect(() => {
         setAllMedicines(medicines);
@@ -46,7 +46,7 @@ const Shop = () => {
     // console.log(showDetails);
 
     const handleAddToCart = (medicine) => {
-        console.log("To cart ", medicine);
+        // console.log("To cart ", medicine);
 
         if (!user) {
             navigate('/login')
@@ -76,7 +76,7 @@ const Shop = () => {
                 }
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
                 toast.error("Something went wrong! Please try again.")
             })
 
@@ -84,7 +84,7 @@ const Shop = () => {
 
     const handleSort = (e) => {
         const sortOrder = e.target.value;
-        console.log(sortOrder);
+        // console.log(sortOrder);
 
         let sortedMedicines = [...allMedicines]; // Create a new array to avoid mutating the original
 
