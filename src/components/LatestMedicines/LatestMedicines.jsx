@@ -117,7 +117,7 @@ const handleAddToCart = (medicine) => {
           },
           // when window width is >= 1024px
           1024: {
-            slidesPerView: 4,
+            slidesPerView: 5,
             spaceBetween: 30,
           },
         }}
@@ -127,7 +127,18 @@ const handleAddToCart = (medicine) => {
 
         {
           LatestMedicines.map(medicine => <SwiperSlide key={medicine._id} ><Link onClick={()=>handleShowDetails(medicine._id)} >
-          <DiscountCard medicine={medicine}></DiscountCard>
+          {/* <DiscountCard medicine={medicine}></DiscountCard> */}
+            <div className='p-4 shadow-md bg-background'>
+                  <div className='border p-4 rounded-md' >
+                  <img className='h-48 w-full object-cover' src={medicine.image} alt="" />
+                  </div>
+                  <div>
+                      <h3>{medicine.name}</h3>
+                      <p>1 {medicine.category}</p>
+                      <p className='flex items-center'>MRP <span className='flex items-center '><TbCurrencyTaka></TbCurrencyTaka> {medicine.price}</span></p>
+                      {/* <p className='flex items-center font-bold gap-1'><span className='flex items-center '><TbCurrencyTaka></TbCurrencyTaka> {medicine.price - (( medicine.discount/ 100) * medicine.price)}</span> <span className='text-primary font-bold'>({medicine.discount}%)</span></p> */}
+                  </div>
+              </div>
           </Link></SwiperSlide>)
         }
 
