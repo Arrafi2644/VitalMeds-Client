@@ -13,7 +13,7 @@ const Blog = () => {
         console.log(blogs);
 
     return (
-        <div className='container mx-auto my-8 lg:my-8'>
+        <div className='container mx-auto  px-4 my-8 lg:my-8'>
         <SectionHeading title="Health Articles" subtitle="Get up-to-date on our latest health updates"></SectionHeading>
 
                 <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4'>

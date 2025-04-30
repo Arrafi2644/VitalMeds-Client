@@ -100,7 +100,7 @@ const Shop = () => {
 
 
     return (
-        <div className='container mx-auto my-8 lg:my-8'>
+        <div className='container mx-auto px-4 my-8 lg:my-8'>
             <div className='flex flex-col md:flex-row gap-6 justify-between items-center'>
                 <h2 className='text-3xl font-bold'>Total Medicine  ({medicines.length})</h2>
 
