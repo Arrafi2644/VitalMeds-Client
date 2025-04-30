@@ -14,8 +14,8 @@ const Home = () => {
            <CategorySection></CategorySection>
            <DiscountSection></DiscountSection>   
            <LatestMedicines></LatestMedicines>
-           <BlogSection></BlogSection>
            <StateSection></StateSection>
+           <BlogSection></BlogSection>
            
            <Helmet>
            <title>VitalMeds | Home</title>

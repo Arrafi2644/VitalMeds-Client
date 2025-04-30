@@ -9,6 +9,7 @@
     color: #50B498;
     border: 1px solid gainsboro;  
     position: absolute;  
+    border: 1px solid #50B498;
 }
 
 .swiper-button-prev{

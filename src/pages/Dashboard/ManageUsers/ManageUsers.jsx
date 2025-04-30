@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
 
 const ManageUsers = () => {
-    const [users, refetch] = useUsers()
+    const [users, refetch, isLoading] = useUsers()
     const axiosSecure = useAxiosSecure();
 
     const handleDelete = (user) => {

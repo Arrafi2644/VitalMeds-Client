@@ -89,7 +89,7 @@ const handleAddToCart = (medicine) => {
       {/* slider  */}
 
       <Swiper
-        slidesPerView={4}
+        slidesPerView={5}
         centeredSlides={false}
         spaceBetween={30}
         grabCursor={false}
@@ -126,7 +126,9 @@ const handleAddToCart = (medicine) => {
 
 
         {
-          LatestMedicines.map(medicine => <SwiperSlide key={medicine._id} ><Link onClick={()=>handleShowDetails(medicine._id)} ><DiscountCard medicine={medicine}></DiscountCard></Link></SwiperSlide>)
+          LatestMedicines.map(medicine => <SwiperSlide key={medicine._id} ><Link onClick={()=>handleShowDetails(medicine._id)} >
+          <DiscountCard medicine={medicine}></DiscountCard>
+          </Link></SwiperSlide>)
         }
 
       </Swiper>
