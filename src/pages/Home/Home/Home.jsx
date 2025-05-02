@@ -6,22 +6,30 @@ import BlogSection from '../../../components/BlogSection/BlogSection';
 import StateSection from '../../../components/StateSection/StateSection';
 import { Helmet } from 'react-helmet-async';
 import LatestMedicines from '../../../components/LatestMedicines/LatestMedicines';
+import usePostedAdvertisements from '../../../hooks/usePostedAdvertisements';
 
 const Home = () => {
+    const [advertises, isLoading] = usePostedAdvertisements()
     return (
-        <div className='container mx-auto px-4'>
-           <Banner></Banner>
-           <CategorySection></CategorySection>
-           <DiscountSection></DiscountSection>   
-           <LatestMedicines></LatestMedicines>
-           <StateSection></StateSection>
-           <BlogSection></BlogSection>
-           
-           <Helmet>
-           <title>VitalMeds | Home</title>
+        isLoading ?
+            <div className='flex items-center justify-center'>
+                <span className="loading loading-spinner loading-xl mt-12"></span>
+            </div>
+            :
 
-           </Helmet>
-        </div>
+            <div className='container mx-auto px-4'>
+                <Banner></Banner>
+                <CategorySection></CategorySection>
+                <DiscountSection></DiscountSection>
+                <LatestMedicines></LatestMedicines>
+                <StateSection></StateSection>
+                <BlogSection></BlogSection>
+
+                <Helmet>
+                    <title>VitalMeds | Home</title>
+
+                </Helmet>
+            </div>
     );
 };
 

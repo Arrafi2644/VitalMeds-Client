@@ -6,14 +6,14 @@ import { useQuery } from '@tanstack/react-query';
 const usePostedAdvertisements = () => {
     const axiosPublic = useAxiosPublic();
 
-    const {data: advertises=[]} = useQuery({
+    const {data: advertises=[], isLoading} = useQuery({
         queryKey: ["advertises"],
         queryFn: async()=> {
             const res = await axiosPublic.get('/postedAdvertisements')
             return res.data;
         }
     })
-    return [advertises]
+    return [advertises, isLoading]
 };
 
 export default usePostedAdvertisements;
