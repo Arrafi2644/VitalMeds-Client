@@ -1,17 +1,16 @@
 
-
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaHome, FaList, FaUser } from 'react-icons/fa';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../../../hooks/useAdmin';
 import useSeller from '../../../hooks/useSeller';
 import { MdOutlinePayment } from 'react-icons/md';
-import { IoCartOutline } from 'react-icons/io5';
 import { TbReportSearch } from 'react-icons/tb';
 import { RiAdvertisementLine } from 'react-icons/ri';
 import { BiCategory } from 'react-icons/bi';
 import { GiMedicines } from 'react-icons/gi';
+import "./dashboard.css"
 
 const Dashboard = () => {
     const [isAdmin, adminPending] = useAdmin();
@@ -23,23 +22,23 @@ const Dashboard = () => {
 
 
     const adminLinks = <>
-        <li><Link to='/dashboard/adminHome' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><FaHome></FaHome></span> Admin Home</Link></li>
-        <li><Link to='/dashboard/manageUsers' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><FaUser></FaUser></span> Manage Users</Link></li>
-        <li><Link to='/dashboard/manageCategory' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><BiCategory></BiCategory></span> Manage Category</Link></li>
-        <li><Link to='/dashboard/managePayment' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span> <MdOutlinePayment></MdOutlinePayment></span> Payment Management</Link></li>
-        <li><Link to='/dashboard/salesReport' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><TbReportSearch></TbReportSearch></span> Sales Report</Link></li>
-        <li><Link to='/dashboard/manageAdvertise' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><RiAdvertisementLine></RiAdvertisementLine></span> Manage Banner Advertise</Link></li>
+        <li><NavLink to='/dashboard/adminHome' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><FaHome></FaHome></span> Admin Home</NavLink></li>
+        <li><NavLink to='/dashboard/manageUsers' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><FaUser></FaUser></span> Manage Users</NavLink></li>
+        <li><NavLink to='/dashboard/manageCategory' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><BiCategory></BiCategory></span> Manage Category</NavLink></li>
+        <li><NavLink to='/dashboard/managePayment' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span> <MdOutlinePayment></MdOutlinePayment></span> Payment Management</NavLink></li>
+        <li><NavLink to='/dashboard/salesReport' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><TbReportSearch></TbReportSearch></span> Sales Report</NavLink></li>
+        <li><NavLink to='/dashboard/manageAdvertise' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><RiAdvertisementLine></RiAdvertisementLine></span> Manage Banner Advertise</NavLink></li>
     </>
 
     const sellerLinks = <>
-        <li><Link to='/dashboard/sellerHome' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><FaHome></FaHome></span>Seller Home</Link></li>
-        <li><Link to='/dashboard/manageMedicine' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><GiMedicines></GiMedicines></span> Manage Medicines</Link></li>
-        <li><Link to='/dashboard/sellerPaymentHistory' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
-        <li><Link to='/dashboard/advertisement' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><RiAdvertisementLine></RiAdvertisementLine></span> Ask For Advertise</Link></li>
+        <li><Link to='/dashboard/sellerHome' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><FaHome></FaHome></span>Seller Home</Link></li>
+        <li><Link to='/dashboard/manageMedicine' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><GiMedicines></GiMedicines></span> Manage Medicines</Link></li>
+        <li><Link to='/dashboard/sellerPaymentHistory' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
+        <li><Link to='/dashboard/advertisement' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><RiAdvertisementLine></RiAdvertisementLine></span> Ask For Advertise</Link></li>
     </>
     const userLinks = <>
         {/* <li><Link to='/dashboard/userHome' className='flex items-center gap-2 py-1 px-4 hover:bg-white '><FaHome></FaHome>User Home</Link></li> */}
-        <li><Link to='/dashboard/paymentHistory' className='flex items-center gap-2 py-1 px-4 hover:bg-white'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
+        <li><Link to='/dashboard/paymentHistory' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
     </>
 
     return (
