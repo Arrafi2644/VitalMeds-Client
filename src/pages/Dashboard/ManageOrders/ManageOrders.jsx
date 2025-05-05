@@ -14,7 +14,7 @@ const ManageOrders = () => {
     const handleDelivered = (_id) => {
         console.log("Make delivered", _id);
         const newStatus = "Delivered"
-        axiosSecure.patch(`orders/${_id}`, newStatus)
+        axiosSecure.patch(`orders/${_id}`, {newStatus})
         .then(res => {
             console.log(res);
             if(res?.data?.modifiedCount > 0){
