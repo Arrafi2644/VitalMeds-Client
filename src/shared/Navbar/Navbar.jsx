@@ -104,7 +104,7 @@ const Navbar = () => {
                 }
 
                 {
-                  (user && !isSeller && !isAdmin) && <li className='border-b'><Link to='/dashboard/paymentHistory'> Dashboard</Link></li>
+                  (user && !isSeller && !isAdmin) && <li className='border-b'><Link to='/dashboard/myOrders'> Dashboard</Link></li>
                 }
 
                 <li><button onClick={handleLogout}>Logout</button></li>

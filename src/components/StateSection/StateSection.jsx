@@ -21,7 +21,7 @@ const StateSection = () => {
                 <div className="stat flex gap-2">
                     <img className='w-16 h-16 object-cover' src="https://i.ibb.co.com/r4VMKcR/icons8-user-80.png" alt="" />
                     <div>
-                        <div className="stat-value">{stateCount?.totalUser}</div>
+                        <div className="stat-value">{stateCount?.totalUser}+</div>
                         <div className="stat-title">Registered Users</div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@ const StateSection = () => {
                 <div className="stat flex gap-4">
                     <img className='w-16 h-16 object-cover' src="https://i.ibb.co.com/GCG4Jcn/icons8-delivery-50-1.png" alt="" />
                     <div>
-                        <div className="stat-value">{stateCount?.totalOrderDelivered}</div>
+                        <div className="stat-value">{stateCount?.totalOrderDelivered}+</div>
                         <div className="stat-title">Orders Delivered</div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ const StateSection = () => {
                 <div className="stat flex gap-2">
                     <img className='w-16 h-16 object-cover' src="https://i.ibb.co.com/kMHxt4g/icons8-medicine-50-1.png" alt="" />
                     <div>
-                        <div className="stat-value">{stateCount?.totalMedicines}</div>
+                        <div className="stat-value">{stateCount?.totalMedicines}+</div>
                         <div className="stat-title">Total Medicine Available</div>
                     </div>
 
@@ -45,7 +45,7 @@ const StateSection = () => {
                 <div className="stat flex gap-2">
                     <img className='w-16 h-16 object-cover' src="https://i.ibb.co.com/sg8YYc1/icons8-seller-80.png" alt="" />
                     <div>
-                        <div className="stat-value">2</div>
+                        <div className="stat-value">10+</div>
                         <div className="stat-title">Active Seller</div>
                     </div>
 

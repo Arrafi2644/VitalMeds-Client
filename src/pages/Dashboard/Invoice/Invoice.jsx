@@ -16,7 +16,7 @@ const Invoice = () => {
                     
                 </nav>
                 <div className='text-sm space-y-2'>
-                    <p>Payment Amount: ${paymentInfo.price}</p>
+                    <p>Payment Amount: {paymentInfo.price} Tk </p>
                     <p>Transaction Id: {paymentInfo.transactionId}</p>
                     <p>Email: {paymentInfo.email}</p>
                    <p> Product Id: {paymentInfo.cartIds.map(product => <span key={product}>{product} | </span>)}</p>

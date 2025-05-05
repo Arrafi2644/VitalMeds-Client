@@ -24,6 +24,7 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import SalesReport from "../pages/Dashboard/SalesReport/SalesReport";
 import SellerPaymentHistory from "../pages/Dashboard/SellerPaymentHistory/SellerPaymentHistory";
 import Blog from "../pages/Blog/Blog";
+import MyOrders from "../pages/MyOrders/MyOrders";
 
 
 const router = createBrowserRouter([
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
             {
               path: 'paymentHistory',
               element: <PaymentHistory></PaymentHistory>
+            },
+            {
+              path: 'myOrders',
+              element: <MyOrders/>
             }
            
           ]

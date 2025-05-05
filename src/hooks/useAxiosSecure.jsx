@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from './useAuth';
 
 const axiosSecure = axios.create({
-    baseURL: 'https://vital-meds-server.vercel.app'
+    // baseURL: 'https://vital-meds-server.vercel.app'
+    baseURL: 'http://localhost:5000'
+
 })
 const useAxiosSecure = () => {
     const {logoutUser} = useAuth();

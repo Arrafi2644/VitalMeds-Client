@@ -9,7 +9,7 @@ import useCartTotalPrice from "../../hooks/useCartTotalPrice";
 import toast from "react-hot-toast";
 
 
-const CheckoutForm = () => {
+const CheckoutForm = ({purchaseDetails}) => {
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('')
     const [transactionId, setTransactionId] = useState('');
@@ -23,6 +23,8 @@ const CheckoutForm = () => {
 
     // console.log(user);
     // console.log(cart);
+
+    console.log("Purchase details", purchaseDetails);
 
     useEffect(() => {
         if (totalPrice > 0) {
@@ -102,7 +104,6 @@ const CheckoutForm = () => {
 
                 const res = await axiosSecure.post('/payments', payment);
                 // console.log('payment saved', res.data);
-                refetch();
                 if (res.data?.paymentResult?.insertedId) {
                     Swal.fire({
                         position: "top-center",
@@ -112,17 +113,29 @@ const CheckoutForm = () => {
                         timer: 1500
                     });
                     totalPriceRefetch()
-                    navigate('/invoice', {state: payment})
+                    refetch();
+                    const orderInfo = {
+                        cart,
+                        status: "Processing"
+                    } 
+                    const orderResponse = await axiosSecure.post(`/orders`, orderInfo)
+                    if(orderResponse?.data?.insertedId){
+                        toast.success("Order successfully completed.")
+                        navigate('/invoice', {state: payment})
+                    }else{
+                        toast.error("Order not completed.")
+
+                    }
                 }
+                
 
                 const salesProductsRes = await axiosSecure.post('/sales', cart)
                 // console.log("sales products are ", salesProductsRes.data);
                 if(salesProductsRes?.data?.insertedId){
-                    toast.success("Sales products added to sales list")
+                    toast.success("Sales products successfully add to sales collection.")
                 }
             }
         }
-
     }
 
     return (
@@ -133,8 +146,10 @@ const CheckoutForm = () => {
                         base: {
                             fontSize: '16px',
                             color: '#424770',
+                            border: "1px solid black",
                             '::placeholder': {
                                 color: '#aab7c4',
+            
                             },
                         },
                         invalid: {
@@ -147,7 +162,7 @@ const CheckoutForm = () => {
                 Pay
             </button>
             <p className="text-red-600">{error}</p>
-            {transactionId && <p className="text-green-600"> Your transaction id: {transactionId}</p>}
+            {/* {transactionId && <p className="text-green-600"> Your transaction id: {transactionId}</p>} */}
         </form>
     );
 };

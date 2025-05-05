@@ -31,14 +31,15 @@ const Dashboard = () => {
     </>
 
     const sellerLinks = <>
-        <li><Link to='/dashboard/sellerHome' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><FaHome></FaHome></span>Seller Home</Link></li>
-        <li><Link to='/dashboard/manageMedicine' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><GiMedicines></GiMedicines></span> Manage Medicines</Link></li>
-        <li><Link to='/dashboard/sellerPaymentHistory' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
-        <li><Link to='/dashboard/advertisement' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><RiAdvertisementLine></RiAdvertisementLine></span> Ask For Advertise</Link></li>
+        <li><NavLink to='/dashboard/sellerHome' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><FaHome></FaHome></span>Seller Home</NavLink></li>
+        <li><NavLink to='/dashboard/manageMedicine' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><GiMedicines></GiMedicines></span> Manage Medicines</NavLink></li>
+        <li><NavLink to='/dashboard/sellerPaymentHistory' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</NavLink></li>
+        <li><NavLink to='/dashboard/advertisement' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><RiAdvertisementLine></RiAdvertisementLine></span> Ask For Advertise</NavLink></li>
     </>
     const userLinks = <>
         {/* <li><Link to='/dashboard/userHome' className='flex items-center gap-2 py-1 px-4 hover:bg-white '><FaHome></FaHome>User Home</Link></li> */}
-        <li><Link to='/dashboard/paymentHistory' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</Link></li>
+        <li><NavLink to='/dashboard/myOrders' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><MdOutlinePayment></MdOutlinePayment></span> My Orders</NavLink></li>
+        <li><NavLink to='/dashboard/paymentHistory' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</NavLink></li>
     </>
 
     return (

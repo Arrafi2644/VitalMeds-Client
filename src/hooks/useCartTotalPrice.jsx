@@ -8,7 +8,7 @@ const useCartTotalPrice = () => {
     const {user} = useAuth();
     const axiosSecure = useAxiosSecure()
 
-    const {data: totalPrice, refetch: totalPriceRefetch} = useQuery({
+    const {data: totalPrice, refetch} = useQuery({
         queryKey: [user.email, "total"],
         queryFn: async() => {
             const res = await axiosSecure.get(`/carts/totalPrice/${user.email}`)
@@ -16,7 +16,7 @@ const useCartTotalPrice = () => {
             return res.data[0].grandTotal;
         }
     })
-    return [totalPrice, totalPriceRefetch]
+    return [totalPrice, refetch]
 };
 
 export default useCartTotalPrice;
