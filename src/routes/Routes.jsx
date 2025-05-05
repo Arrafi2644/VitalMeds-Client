@@ -25,6 +25,7 @@ import SalesReport from "../pages/Dashboard/SalesReport/SalesReport";
 import SellerPaymentHistory from "../pages/Dashboard/SellerPaymentHistory/SellerPaymentHistory";
 import Blog from "../pages/Blog/Blog";
 import MyOrders from "../pages/MyOrders/MyOrders";
+import ManageOrders from "../pages/Dashboard/ManageOrders/ManageOrders";
 
 
 const router = createBrowserRouter([
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
             {
               path: 'sellerPaymentHistory',
               element: <PrivateRoute><SellerPaymentHistory></SellerPaymentHistory></PrivateRoute>
+            },
+            {
+              path: 'manageOrders',
+              element: <PrivateRoute><ManageOrders></ManageOrders></PrivateRoute>
             },
             
             // user 

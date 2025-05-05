@@ -6,7 +6,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../../../hooks/useAdmin';
 import useSeller from '../../../hooks/useSeller';
 import { MdOutlinePayment } from 'react-icons/md';
-import { TbReportSearch } from 'react-icons/tb';
+import { TbMenuOrder, TbReportSearch } from 'react-icons/tb';
 import { RiAdvertisementLine } from 'react-icons/ri';
 import { BiCategory } from 'react-icons/bi';
 import { GiMedicines } from 'react-icons/gi';
@@ -33,12 +33,13 @@ const Dashboard = () => {
     const sellerLinks = <>
         <li><NavLink to='/dashboard/sellerHome' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><FaHome></FaHome></span>Seller Home</NavLink></li>
         <li><NavLink to='/dashboard/manageMedicine' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><GiMedicines></GiMedicines></span> Manage Medicines</NavLink></li>
+        <li><NavLink to='/dashboard/manageOrders' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><TbMenuOrder/></span> Manage Orders</NavLink></li>
         <li><NavLink to='/dashboard/sellerPaymentHistory' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</NavLink></li>
         <li><NavLink to='/dashboard/advertisement' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><RiAdvertisementLine></RiAdvertisementLine></span> Ask For Advertise</NavLink></li>
     </>
     const userLinks = <>
         {/* <li><Link to='/dashboard/userHome' className='flex items-center gap-2 py-1 px-4 hover:bg-white '><FaHome></FaHome>User Home</Link></li> */}
-        <li><NavLink to='/dashboard/myOrders' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><MdOutlinePayment></MdOutlinePayment></span> My Orders</NavLink></li>
+        <li><NavLink to='/dashboard/myOrders' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><TbMenuOrder/></span> My Orders</NavLink></li>
         <li><NavLink to='/dashboard/paymentHistory' className='flex items-center gap-2 py-1 px-4 hover:bg-secondary'><span><MdOutlinePayment></MdOutlinePayment></span> Payment History</NavLink></li>
     </>
 
